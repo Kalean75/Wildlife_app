@@ -1,6 +1,10 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
+# Library files
+lib/
+!lib/.gitkeep
+
 *~
 *.autosave
 *.a

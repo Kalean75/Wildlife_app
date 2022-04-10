@@ -1,6 +1,9 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+#include "physics.h"
+#include "renderer.h"
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -10,9 +13,8 @@ QT_END_NAMESPACE
 class View : public QMainWindow
 {
     Q_OBJECT
-
 public:
-    View(QWidget *parent = nullptr);
+    View(Physics& physics, Renderer& renderer, QWidget *parent = nullptr);
     ~View();
 
 private:

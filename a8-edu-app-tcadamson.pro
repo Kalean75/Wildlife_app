@@ -10,9 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
+    physics.cpp \
+    renderer.cpp \
     view.cpp
 
 HEADERS += \
+    physics.h \
+    renderer.h \
     view.h
 
 FORMS += \
@@ -22,3 +26,14 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+macx|win32: LIBS += -L$$PWD/lib/box2d/build/bin/ -lbox2d
+
+INCLUDEPATH += $$PWD/lib/box2d/include
+DEPENDPATH += $$PWD/lib/box2d/include
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/lib/box2d/build/bin/box2d.lib
+else:macx|win32-g++: PRE_TARGETDEPS += $$PWD/lib/box2d/build/bin/libbox2d.a
+
+RESOURCES += \
+    res.qrc
