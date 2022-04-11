@@ -1,6 +1,7 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+#include "entities.h"
 #include "physics.h"
 #include "renderer.h"
 
@@ -14,10 +15,11 @@ class View : public QMainWindow
 {
     Q_OBJECT
 public:
-    View(Physics& physics, Renderer& renderer, QWidget *parent = nullptr);
+    View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *parent = nullptr);
     ~View();
 
 private:
     Ui::View *ui;
 };
+
 #endif // VIEW_H

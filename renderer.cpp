@@ -3,30 +3,42 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-Renderer::Renderer(QWidget *parent)
-    : QWidget(parent),
-      image(new QImage(":/res/deer.png"))
+Renderer::Renderer(QWidget *parent) : QWidget(parent)
 {
+    images.insert("deer", new QImage(":/deer"));
 }
 
 void Renderer::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    QRect paintArea = e->rect();
-    for (const QPointF& position : positions)
+    QMap<int, Entities::RenderBag*>::iterator i;
+    for (i = renderBags.begin(); i != renderBags.end(); ++i)
     {
-        painter.drawImage(paintArea.center() + position - image->rect().center(), *image);
+        int entity = i.key();
+        if (physicsBags.contains(entity))
+        {
+            Entities::RenderBag *renderBag = i.value();
+            Entities::PhysicsBag *physicsBag = physicsBags[entity];
+            QImage *image = images[renderBag->imageName];
+            QRect paintArea = e->rect();
+            painter.drawImage(paintArea.center() + QPointF(physicsBag->x, physicsBag->y) - image->rect().center(), *image);
+        }
     }
     painter.end();
 }
 
-void Renderer::repaint(const QVector<QPointF>& newPositions)
+void Renderer::rerender(QMap<int, Entities::PhysicsBag*> newPhysicsBags, QMap<int, Entities::RenderBag*> newRenderBags)
 {
-    positions = newPositions;
+    physicsBags = newPhysicsBags;
+    renderBags = newRenderBags;
     update();
 }
 
 Renderer::~Renderer()
 {
-    delete image;
+    QMap<QString, QImage*>::iterator i;
+    for (i = images.begin(); i != images.end(); ++i)
+    {
+        delete i.value();
+    }
 }

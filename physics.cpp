@@ -1,56 +1,42 @@
+#include "entities.h"
 #include "physics.h"
 
-Physics::Physics(QObject *parent)
-    : QObject(parent),
-      world(new b2World(gravity)),
-      timer(new QTimer(this))
+Physics::Physics(QObject *parent) : QObject(parent), world(new b2World(gravity))
 {
-    timer->setTimerType(Qt::PreciseTimer);
-    timer->start(timeStep * msPerSecond);
-    connect(timer, &QTimer::timeout, this, &Physics::updateWorld);
-    // TODO: Use some sort of factory function for loading, maybe load body data from a file or files, maybe have classes
-    // for each kind of entity and assign the class data to the body's userdata
-    // Static body
-    b2Body* staticBody;
-    b2BodyDef staticDef;
-    b2PolygonShape staticShape;
-    staticDef.position.Set(-200 / pixelsPerMeter, 0);
-    staticShape.SetAsBox(400 / pixelsPerMeter, 10 / pixelsPerMeter);
-    staticBody = world->CreateBody(&staticDef);
-    staticBody->CreateFixture(&staticShape, 0);
-    // Dynamic body
-    b2Body* dynamicBody;
-    b2BodyDef dynamicDef;
-    b2PolygonShape dynamicShape;
-    b2FixtureDef dynamicFixture;
-    dynamicDef.type = b2_dynamicBody;
-    dynamicDef.position.Set(0, -100 / pixelsPerMeter);
-    dynamicShape.SetAsBox(1 / pixelsPerMeter, 1 / pixelsPerMeter);
-    dynamicBody = world->CreateBody(&dynamicDef);
-    dynamicFixture.shape = &dynamicShape;
-    dynamicFixture.density = 1.0f;
-    dynamicFixture.friction = 0.3f;
-    dynamicFixture.restitution = 1.0f;
-    dynamicBody->CreateFixture(&dynamicFixture);
 }
 
-void Physics::updateWorld()
+void Physics::updateWorld(float timeStep)
 {
     world->Step(timeStep, velocityIterations, positionIterations);
-    positions.clear();
     for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
     {
-        if (body->GetType() == b2BodyType::b2_dynamicBody)
-        {
-            b2Vec2 position = body->GetPosition();
-            positions.append(QPointF(position.x * pixelsPerMeter, position.y * pixelsPerMeter));
-        }
+        Entities::PhysicsBag *bag = reinterpret_cast<Entities::PhysicsBag*>(body->GetUserData().pointer);
+        b2Vec2 position = body->GetPosition();
+        bag->x = position.x * pixelsPerMeter;
+        bag->y = position.y * pixelsPerMeter;
+        bag->angle = body->GetAngle();
     }
-    emit worldUpdated(positions);
+}
+
+void Physics::createBody(Entities::PhysicsBag *bag)
+{
+    b2Body* body;
+    b2BodyDef bodyDef;
+    b2PolygonShape bodyShape;
+    b2FixtureDef bodyFixture;
+    bodyDef.type = bag->type;
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(bag); // https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
+    bodyDef.position.Set(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
+    bodyShape.SetAsBox(bag->w / pixelsPerMeter, bag->h / pixelsPerMeter);
+    body = world->CreateBody(&bodyDef);
+    bodyFixture.shape = &bodyShape;
+    bodyFixture.density = bag->density;
+    bodyFixture.friction = bag->friction;
+    bodyFixture.restitution = bag->restitution;
+    body->CreateFixture(&bodyFixture);
 }
 
 Physics::~Physics()
 {
-    delete timer;
     delete world;
 }

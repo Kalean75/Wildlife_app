@@ -1,6 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include "entities.h"
+
 #include <QWidget>
 
 class Renderer : public QWidget
@@ -12,11 +14,13 @@ public:
     void paintEvent(QPaintEvent *);
 
 public slots:
-    void repaint(const QVector<QPointF>&);
+    void rerender(QMap<int, Entities::PhysicsBag*>, QMap<int, Entities::RenderBag*>);
 
 private:
-    QImage *image;
-    QVector<QPointF> positions;
+    QMap<QString, QImage*> images;
+    // Cannot signal to the paintEvent directly, so bag collections are stored as members for use in paintEvent
+    QMap<int, Entities::PhysicsBag*> physicsBags;
+    QMap<int, Entities::RenderBag*> renderBags;
 };
 
 #endif // RENDERER_H
