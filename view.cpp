@@ -10,11 +10,13 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
     connect(&entities, &Entities::physicsOutdated, &physics, &Physics::updatePhysics);
     connect(&entities, &Entities::renderOutdated, &renderer, &Renderer::updateRenderer);
+    // Renderer connections
+    connect(&renderer, &Renderer::mousePressed, &physics, &Physics::queryPoint);
     // Entity initialization
     int ground = entities.add();
     int deer = entities.add();
     Entities::PhysicsBag *groundPhysics = new Entities::PhysicsBag{.y = 200.f, .w = 1000.f, .type = b2BodyType::b2_staticBody};
-    Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{.y = -100.f, .w = 256.f, .h = 256.f, .restitution = 1.f};
+    Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{.y = -100.f, .w = 256.f, .h = 256.f, .restitution = 0.5f};
     Entities::RenderBag *deerRender = new Entities::RenderBag{.imageName = "deer"};
     entities.addPhysics(ground, groundPhysics);
     entities.addPhysics(deer, deerPhysics);

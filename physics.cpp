@@ -18,19 +18,6 @@ void Physics::updatePhysics()
     }
 }
 
-void Physics::removeBody(Entities::PhysicsBag *bag)
-{
-    if (!bag) return;
-    for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
-    {
-        if (loadUserData(body) == bag)
-        {
-            world->DestroyBody(body);
-            return;
-        }
-    }
-}
-
 void Physics::addBody(Entities::PhysicsBag *bag)
 {
     b2Body* body;
@@ -50,6 +37,32 @@ void Physics::addBody(Entities::PhysicsBag *bag)
     body->CreateFixture(&bodyFixture);
 }
 
+void Physics::removeBody(Entities::PhysicsBag *bag)
+{
+    if (!bag) return;
+    for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
+    {
+        if (loadUserData(body) == bag)
+        {
+            world->DestroyBody(body);
+            return;
+        }
+    }
+}
+
+void Physics::queryPoint(QPoint point)
+{
+    b2Body* body;
+    b2AABB bounds;
+    bounds.lowerBound = b2Vec2(point.x() / pixelsPerMeter, point.y() / pixelsPerMeter);
+    bounds.upperBound = b2Vec2((point.x() + 1) / pixelsPerMeter, (point.y() + 1) / pixelsPerMeter);
+    worldQuery->body = nullptr;
+    world->QueryAABB(worldQuery, bounds);
+    body = worldQuery->body;
+    // TODO: Maybe emit a signal to some steering system for body movement
+    if (body) body->ApplyLinearImpulseToCenter(b2Vec2(0, -9.f * body->GetMass()), true); // Ad hoc "jump impulse on click" implementation
+}
+
 Entities::PhysicsBag* Physics::loadUserData(b2Body *body)
 {
     return reinterpret_cast<Entities::PhysicsBag*>(body->GetUserData().pointer);
@@ -58,4 +71,5 @@ Entities::PhysicsBag* Physics::loadUserData(b2Body *body)
 Physics::~Physics()
 {
     delete world;
+    delete worldQuery;
 }
