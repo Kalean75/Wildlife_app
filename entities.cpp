@@ -50,8 +50,6 @@ void Entities::removeAll()
         remove(i);
     }
     eid = 0;
-    physicsBags.clear();
-    renderBags.clear();
 }
 
 Entities::~Entities()
