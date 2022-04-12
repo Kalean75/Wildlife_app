@@ -20,7 +20,7 @@ void Physics::updatePhysics()
 
 void Physics::addBody(Entities::PhysicsBag *bag)
 {
-    b2Body* body;
+    b2Body *body;
     b2BodyDef bodyDef;
     b2PolygonShape bodyShape;
     b2FixtureDef bodyFixture;
@@ -52,15 +52,13 @@ void Physics::removeBody(Entities::PhysicsBag *bag)
 
 void Physics::queryPoint(QPoint point)
 {
-    b2Body* body;
     b2AABB bounds;
-    bounds.lowerBound = b2Vec2(point.x() / pixelsPerMeter, point.y() / pixelsPerMeter);
-    bounds.upperBound = b2Vec2((point.x() + 1) / pixelsPerMeter, (point.y() + 1) / pixelsPerMeter);
+    bounds.upperBound = b2Vec2(point.x() / pixelsPerMeter, point.y() / pixelsPerMeter);
+    bounds.lowerBound = b2Vec2((point.x() + 1) / pixelsPerMeter, (point.y() + 1) / pixelsPerMeter);
     worldQuery->body = nullptr;
     world->QueryAABB(worldQuery, bounds);
-    body = worldQuery->body;
     // TODO: Maybe emit a signal to some steering system for body movement
-    if (body) body->ApplyLinearImpulseToCenter(b2Vec2(0, -9.f * body->GetMass()), true); // Ad hoc "jump impulse on click" implementation
+    if (worldQuery->body) worldQuery->body->ApplyLinearImpulseToCenter(b2Vec2(0, -9.f * worldQuery->body->GetMass()), true); // Ad hoc "jump impulse on click" implementation
 }
 
 Entities::PhysicsBag* Physics::loadUserData(b2Body *body)
