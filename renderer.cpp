@@ -2,10 +2,14 @@
 
 #include <QPainter>
 #include <QPaintEvent>
+#include <QDir>
 
 Renderer::Renderer(QWidget *parent) : QWidget(parent)
 {
-    images.insert("deer", new QImage(":/deer"));
+    foreach(const QString& imageName, QDir(":").entryList() )
+    {
+        images.insert(imageName, QImage(":/" + imageName));
+    }
 }
 
 void Renderer::paintEvent(QPaintEvent *e)
@@ -20,12 +24,12 @@ void Renderer::paintEvent(QPaintEvent *e)
         {
             Entities::RenderBag *renderBag = i.value();
             Entities::PhysicsBag *physicsBag = physicsBags[entity];
-            QImage *image = images[renderBag->imageName];
+            QImage image = images.value(renderBag->imageName);
             QRect paintArea = e->rect();
             painter.save();
             painter.translate(paintArea.center() + QPointF(physicsBag->x, physicsBag->y));
             painter.rotate(physicsBag->angle * radiansToDegrees);
-            painter.drawImage(-image->rect().center(), *image);
+            painter.drawImage(-image.rect().center(), image);
             painter.restore();
         }
     }
@@ -41,9 +45,4 @@ void Renderer::updateRenderer(Entities::PhysicsBags newPhysicsBags, Entities::Re
 
 Renderer::~Renderer()
 {
-    QMap<QString, QImage*>::iterator i;
-    for (i = images.begin(); i != images.end(); ++i)
-    {
-        delete i.value();
-    }
 }
