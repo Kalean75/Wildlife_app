@@ -27,7 +27,7 @@ void Renderer::paintEvent(QPaintEvent *e)
     painter.end();
 }
 
-void Renderer::updateRenderer(QMap<int, Entities::PhysicsBag*> newPhysicsBags, QMap<int, Entities::RenderBag*> newRenderBags)
+void Renderer::updateRenderer(Entities::PhysicsBags newPhysicsBags, Entities::RenderBags newRenderBags)
 {
     physicsBags = newPhysicsBags;
     renderBags = newRenderBags;

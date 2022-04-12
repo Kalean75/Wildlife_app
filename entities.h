@@ -29,6 +29,8 @@ public:
     {
         QString imageName;
     };
+    typedef QMap<int, PhysicsBag*> PhysicsBags;
+    typedef QMap<int, RenderBag*> RenderBags;
     int newEntity();
     void addPhysics(int, PhysicsBag*);
     void addRender(int, RenderBag*);
@@ -39,14 +41,14 @@ public slots:
 signals:
     void addedPhysics(Entities::PhysicsBag*);
     void physicsOutdated(float);
-    void renderOutdated(QMap<int, Entities::PhysicsBag*>, QMap<int, Entities::RenderBag*>);
+    void renderOutdated(Entities::PhysicsBags, Entities::RenderBags);
 
 private:
     const float timeStep = 1 / 60.0f;
     int eid = 0;
     QTimer *timer;
-    QMap<int, PhysicsBag*> physicsBags;
-    QMap<int, RenderBag*> renderBags;
+    PhysicsBags physicsBags;
+    RenderBags renderBags;
 };
 
 #endif // ENTITIES_H

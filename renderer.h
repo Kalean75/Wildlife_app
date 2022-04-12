@@ -14,13 +14,13 @@ public:
     void paintEvent(QPaintEvent *);
 
 public slots:
-    void updateRenderer(QMap<int, Entities::PhysicsBag*>, QMap<int, Entities::RenderBag*>);
+    void updateRenderer(Entities::PhysicsBags, Entities::RenderBags);
 
 private:
     QMap<QString, QImage*> images;
     // Cannot signal to the paintEvent directly, so bag collections are stored as members for use in paintEvent
-    QMap<int, Entities::PhysicsBag*> physicsBags;
-    QMap<int, Entities::RenderBag*> renderBags;
+    Entities::PhysicsBags physicsBags;
+    Entities::RenderBags renderBags;
 };
 
 #endif // RENDERER_H
