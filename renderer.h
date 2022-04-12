@@ -14,7 +14,7 @@ public:
     void paintEvent(QPaintEvent *);
 
 public slots:
-    void rerender(QMap<int, Entities::PhysicsBag*>, QMap<int, Entities::RenderBag*>);
+    void updateRenderer(QMap<int, Entities::PhysicsBag*>, QMap<int, Entities::RenderBag*>);
 
 private:
     QMap<QString, QImage*> images;

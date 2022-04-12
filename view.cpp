@@ -8,7 +8,7 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::createBody);
     connect(&entities, &Entities::physicsOutdated, &physics, &Physics::updateWorld);
-    connect(&entities, &Entities::renderOutdated, &renderer, &Renderer::rerender);
+    connect(&entities, &Entities::renderOutdated, &renderer, &Renderer::updateRenderer);
     // Entity initialization
     int ground = entities.newEntity();
     int deer = entities.newEntity();
