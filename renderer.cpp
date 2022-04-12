@@ -11,7 +11,8 @@ Renderer::Renderer(QWidget *parent) : QWidget(parent)
 void Renderer::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    QMap<int, Entities::RenderBag*>::iterator i;
+    Entities::RenderBags::iterator i;
+    painter.setRenderHints(QPainter::SmoothPixmapTransform, true);
     for (i = renderBags.begin(); i != renderBags.end(); ++i)
     {
         int entity = i.key();
@@ -21,7 +22,11 @@ void Renderer::paintEvent(QPaintEvent *e)
             Entities::PhysicsBag *physicsBag = physicsBags[entity];
             QImage *image = images[renderBag->imageName];
             QRect paintArea = e->rect();
-            painter.drawImage(paintArea.center() + QPointF(physicsBag->x, physicsBag->y) - image->rect().center(), *image);
+            painter.save();
+            painter.translate(paintArea.center() + QPointF(physicsBag->x, physicsBag->y));
+            painter.rotate(physicsBag->angle * radiansToDegrees);
+            painter.drawImage(-image->rect().center(), *image);
+            painter.restore();
         }
     }
     painter.end();

@@ -19,10 +19,10 @@ public slots:
     void createBody(Entities::PhysicsBag*);
 
 private:
-    const float pixelsPerMeter = 32.0f;
+    const float pixelsPerMeter = 32.f;
     const int velocityIterations = 6;
     const int positionIterations = 2;
-    const b2Vec2 gravity = b2Vec2(0, 9.8f);
+    const b2Vec2 gravity = b2Vec2(0.f, 9.8f);
     b2World *world;
 };
 

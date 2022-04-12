@@ -15,19 +15,19 @@ public:
     ~Entities();
     struct PhysicsBag
     {
-        float x;
-        float y;
-        float w;
-        float h;
-        float density = 1.0f;
-        float friction = 1.0f;
-        float restitution = 0;
-        float angle = 0;
+        float x = 0.f;
+        float y = 0.f;
+        float w = 1.f;
+        float h = 1.f;
+        float angle = 0.f;
+        float density = 1.f;
+        float friction = 1.f;
+        float restitution = 0.f;
         b2BodyType type = b2_dynamicBody;
     };
     struct RenderBag
     {
-        QString imageName;
+        QString imageName = "";
     };
     typedef QMap<int, PhysicsBag*> PhysicsBags;
     typedef QMap<int, RenderBag*> RenderBags;
@@ -44,7 +44,7 @@ signals:
     void renderOutdated(Entities::PhysicsBags, Entities::RenderBags);
 
 private:
-    const float timeStep = 1 / 60.0f;
+    const float timeStep = 1.f / 60.f;
     int eid = 0;
     QTimer *timer;
     PhysicsBags physicsBags;

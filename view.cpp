@@ -12,8 +12,8 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     // Entity initialization
     int ground = entities.newEntity();
     int deer = entities.newEntity();
-    Entities::PhysicsBag *groundPhysics = new Entities::PhysicsBag{.x = -200, .y = 0, .w = 400, .h = 10, .type = b2BodyType::b2_staticBody};
-    Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{.x = 0, .y = -100, .w = 1, .h = 1, .restitution = 1.0f};
+    Entities::PhysicsBag *groundPhysics = new Entities::PhysicsBag{.y = 200.f, .w = 1000.f, .type = b2BodyType::b2_staticBody};
+    Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{.y = -100.f, .w = 256.f, .h = 256.f, .restitution = 1.f};
     Entities::RenderBag *deerRender = new Entities::RenderBag{.imageName = "deer"};
     entities.addPhysics(ground, groundPhysics);
     entities.addPhysics(deer, deerPhysics);

@@ -11,7 +11,7 @@ void Physics::updateWorld(float timeStep)
     for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
     {
         Entities::PhysicsBag *bag = reinterpret_cast<Entities::PhysicsBag*>(body->GetUserData().pointer);
-        b2Vec2 position = body->GetPosition();
+        b2Vec2 position = body->GetWorldCenter();
         bag->x = position.x * pixelsPerMeter;
         bag->y = position.y * pixelsPerMeter;
         bag->angle = body->GetAngle();
@@ -25,14 +25,15 @@ void Physics::createBody(Entities::PhysicsBag *bag)
     b2PolygonShape bodyShape;
     b2FixtureDef bodyFixture;
     bodyDef.type = bag->type;
+    bodyDef.angle = bag->angle;
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(bag); // https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
     bodyDef.position.Set(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
-    bodyShape.SetAsBox(bag->w / pixelsPerMeter, bag->h / pixelsPerMeter);
-    body = world->CreateBody(&bodyDef);
+    bodyShape.SetAsBox((bag->w / pixelsPerMeter) / 2.f, (bag->h / pixelsPerMeter) / 2.f);
     bodyFixture.shape = &bodyShape;
     bodyFixture.density = bag->density;
     bodyFixture.friction = bag->friction;
     bodyFixture.restitution = bag->restitution;
+    body = world->CreateBody(&bodyDef);
     body->CreateFixture(&bodyFixture);
 }
 
