@@ -31,20 +31,23 @@ public:
     };
     typedef QMap<int, PhysicsBag*> PhysicsBags;
     typedef QMap<int, RenderBag*> RenderBags;
-    int newEntity();
+    static constexpr float updateRate = 1.f / 60.f;
+    int add();
     void addPhysics(int, PhysicsBag*);
     void addRender(int, RenderBag*);
+    void remove(int);
+    void removeAll();
 
 public slots:
-    void updateEntities();
+    void update();
 
 signals:
     void addedPhysics(Entities::PhysicsBag*);
-    void physicsOutdated(float);
+    void removedPhysics(Entities::PhysicsBag*);
+    void physicsOutdated();
     void renderOutdated(Entities::PhysicsBags, Entities::RenderBags);
 
 private:
-    const float timeStep = 1.f / 60.f;
     int eid = 0;
     QTimer *timer;
     PhysicsBags physicsBags;

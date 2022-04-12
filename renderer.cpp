@@ -15,9 +15,8 @@ Renderer::Renderer(QWidget *parent) : QWidget(parent)
 void Renderer::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    Entities::RenderBags::iterator i;
     painter.setRenderHints(QPainter::SmoothPixmapTransform, true);
-    for (i = renderBags.begin(); i != renderBags.end(); ++i)
+    for (Entities::RenderBags::iterator i = renderBags.begin(); i != renderBags.end(); ++i)
     {
         int entity = i.key();
         if (physicsBags.contains(entity))

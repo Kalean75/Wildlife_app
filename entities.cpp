@@ -3,18 +3,18 @@
 Entities::Entities(QObject *parent) : QObject(parent), timer(new QTimer(this))
 {
     timer->setTimerType(Qt::PreciseTimer);
-    timer->start(timeStep * 1000);
-    connect(timer, &QTimer::timeout, this, &Entities::updateEntities);
+    timer->start(updateRate * 1000);
+    connect(timer, &QTimer::timeout, this, &Entities::update);
 }
 
-int Entities::newEntity()
+int Entities::add()
 {
     return eid++;
 }
 
-void Entities::updateEntities()
+void Entities::update()
 {
-    emit physicsOutdated(timeStep);
+    emit physicsOutdated();
     emit renderOutdated(physicsBags, renderBags);
 }
 
@@ -29,9 +29,32 @@ void Entities::addPhysics(int e, PhysicsBag *bag)
 
 void Entities::addRender(int e, RenderBag *bag)
 {
-    renderBags[e] = bag;
+    if (!renderBags.contains(e)) renderBags[e] = bag;
+}
+
+void Entities::remove(int e)
+{
+    Entities::PhysicsBag *physicsBag = physicsBags.value(e, nullptr);
+    Entities::RenderBag *renderBag = renderBags.value(e, nullptr);
+    emit removedPhysics(physicsBag);
+    delete physicsBag;
+    delete renderBag;
+    physicsBags.remove(e);
+    renderBags.remove(e);
+}
+
+void Entities::removeAll()
+{
+    for (int i = 0; i < eid; i++)
+    {
+        remove(i);
+    }
+    eid = 0;
+    physicsBags.clear();
+    renderBags.clear();
 }
 
 Entities::~Entities()
 {
+    removeAll();
 }

@@ -15,8 +15,9 @@ public:
     ~Physics();
 
 public slots:
-    void updateWorld(float);
-    void createBody(Entities::PhysicsBag*);
+    void updatePhysics();
+    void addBody(Entities::PhysicsBag*);
+    void removeBody(Entities::PhysicsBag*);
 
 private:
     const float pixelsPerMeter = 32.f;
@@ -24,6 +25,7 @@ private:
     const int positionIterations = 2;
     const b2Vec2 gravity = b2Vec2(0.f, 9.8f);
     b2World *world;
+    Entities::PhysicsBag* loadUserData(b2Body*);
 };
 
 #endif // PHYSICS_H
