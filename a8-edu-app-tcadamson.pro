@@ -39,3 +39,10 @@ else:macx|win32-g++: PRE_TARGETDEPS += $$PWD/lib/box2d/build/bin/libbox2d.a
 
 RESOURCES += \
     res.qrc
+
+unix:!macx: LIBS += -L$$PWD/lib/box2d/build/bin/ -lbox2d
+
+INCLUDEPATH += $$PWD/lib/box2d/include
+DEPENDPATH += $$PWD/lib/box2d/include
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/lib/box2d/build/bin/libbox2d.a
