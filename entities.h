@@ -35,7 +35,7 @@ public:
     typedef QMap<int, PhysicsBag*> PhysicsBags;
     typedef QMap<int, RenderBag*> RenderBags;
     static constexpr float updateRate = 1.f / 120.f;
-    static constexpr float renderRate = 1.f / 500.f;
+    static constexpr float renderRate = 1.f / 200.f;
     int add();
     void addPhysics(int, PhysicsBag*);
     void addRender(int, RenderBag*);
