@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QMap>
 #include <QTimer>
+#include <QElapsedTimer>
 
 class Entities : public QObject
 {
@@ -33,15 +34,13 @@ public:
     };
     typedef QMap<int, PhysicsBag*> PhysicsBags;
     typedef QMap<int, RenderBag*> RenderBags;
-    static constexpr float updateRate = 1.f / 60.f;
+    static constexpr float updateRate = 1.f / 120.f;
+    static constexpr float renderRate = 1.f / 500.f;
     int add();
     void addPhysics(int, PhysicsBag*);
     void addRender(int, RenderBag*);
     void remove(int);
     void removeAll();
-
-public slots:
-    void update();
 
 signals:
     void addedPhysics(Entities::PhysicsBag*);
@@ -50,10 +49,15 @@ signals:
     void renderOutdated(Entities::PhysicsBags, Entities::RenderBags);
 
 private:
+    const int msPerSecond = 1000;
     int eid = 0;
-    QTimer *timer;
+    int accumulator = 0;
+    QTimer *renderTimer;
+    QElapsedTimer *frameTimer;
     PhysicsBags physicsBags;
     RenderBags renderBags;
+    void update();
+    void render();
 };
 
 #endif // ENTITIES_H

@@ -44,7 +44,7 @@ void Renderer::updateRenderer(Entities::PhysicsBags newPhysicsBags, Entities::Re
 {
     physicsBags = newPhysicsBags;
     renderBags = newRenderBags;
-    update();
+    repaint();
 }
 
 Renderer::~Renderer()
