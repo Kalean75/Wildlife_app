@@ -16,11 +16,11 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     int ground = entities.add();
     int deer = entities.add();
     Entities::PhysicsBag *groundPhysics = new Entities::PhysicsBag{};
-    groundPhysics->y = 200.f;
+    groundPhysics->y = 300.f;
     groundPhysics->w = 1000.f;
     groundPhysics->type = b2BodyType::b2_staticBody;
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{};
-    deerPhysics->y = -100.f;
+    deerPhysics->y = -300.f;
     deerPhysics->w = 256.f;
     deerPhysics->h = 256.f;
     deerPhysics->restitution = 0.5f;

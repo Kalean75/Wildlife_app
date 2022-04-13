@@ -30,7 +30,7 @@ private:
             return false;
         }
     };
-    const float pixelsPerMeter = 32.f;
+    const float pixelsPerMeter = 128.f;
     const int velocityIterations = 6;
     const int positionIterations = 2;
     const b2Vec2 gravity = b2Vec2(0.f, 9.8f);

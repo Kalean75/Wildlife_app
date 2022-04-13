@@ -23,6 +23,8 @@ public:
         float density = 1.f;
         float friction = 1.f;
         float restitution = 0.f;
+        float linearDamping = 0.f;
+        float angularDamping = 0.5f;
         b2BodyType type = b2_dynamicBody;
     };
     struct RenderBag
