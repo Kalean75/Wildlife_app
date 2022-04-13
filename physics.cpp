@@ -26,8 +26,10 @@ void Physics::addBody(Entities::PhysicsBag *bag)
     b2FixtureDef bodyFixture;
     bodyDef.type = bag->type;
     bodyDef.angle = bag->angle;
-    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(bag); // https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
     bodyDef.position.Set(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(bag); // https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
+    bodyDef.linearDamping = bag->linearDamping;
+    bodyDef.angularDamping = bag->angularDamping;
     bodyShape.SetAsBox((bag->w / pixelsPerMeter) / 2.f, (bag->h / pixelsPerMeter) / 2.f);
     bodyFixture.shape = &bodyShape;
     bodyFixture.density = bag->density;
@@ -58,7 +60,7 @@ void Physics::queryPoint(QPoint point)
     worldQuery->body = nullptr;
     world->QueryAABB(worldQuery, bounds);
     // TODO: Maybe emit a signal to some steering system for body movement
-    if (worldQuery->body) worldQuery->body->ApplyLinearImpulseToCenter(b2Vec2(0, -9.f * worldQuery->body->GetMass()), true); // Ad hoc "jump impulse on click" implementation
+    if (worldQuery->body) worldQuery->body->SetLinearVelocity(b2Vec2(0, -5.f)); // Ad hoc "jump impulse on click" implementation
 }
 
 Entities::PhysicsBag* Physics::loadUserData(b2Body *body)
