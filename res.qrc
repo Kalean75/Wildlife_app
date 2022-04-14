@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file alias="deer">res/deer.png</file>
-        <file>res/rabbit.png</file>
-        <file>res/squirrel.png</file>
-        <file>res/turtle.png</file>
+        <file alias="rabbit">res/rabbit.png</file>
+        <file alias="squirrel">res/squirrel.png</file>
+        <file alias="turtle">res/turtle.png</file>
     </qresource>
 </RCC>
