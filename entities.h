@@ -35,7 +35,6 @@ public:
     typedef QMap<int, PhysicsBag*> PhysicsBags;
     typedef QMap<int, RenderBag*> RenderBags;
     static constexpr float updateRate = 1.f / 120.f;
-    static constexpr float renderRate = 1.f / 200.f;
     int add();
     void addPhysics(int, PhysicsBag*);
     void addRender(int, RenderBag*);
@@ -49,15 +48,13 @@ signals:
     void renderOutdated(Entities::PhysicsBags, Entities::RenderBags);
 
 private:
-    const int msPerSecond = 1000;
+    const int updateMsDelta = updateRate * 1000;
     int eid = 0;
     int accumulator = 0;
-    QTimer *renderTimer;
     QElapsedTimer *frameTimer;
     PhysicsBags physicsBags;
     RenderBags renderBags;
     void update();
-    void render();
 };
 
 #endif // ENTITIES_H

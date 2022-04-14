@@ -5,19 +5,22 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
 {
     ui->setupUi(this);
     ui->rootLayout->addWidget(&renderer);
+    physics.setDebugRenderer(renderer);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
-    connect(&entities, &Entities::physicsOutdated, &physics, &Physics::updatePhysics);
-    connect(&entities, &Entities::renderOutdated, &renderer, &Renderer::updateRenderer);
+    connect(&entities, &Entities::physicsOutdated, &physics, &Physics::update);
+    connect(&entities, &Entities::renderOutdated, &renderer, &Renderer::update);
     // Renderer connections
     connect(&renderer, &Renderer::mousePressed, &physics, &Physics::queryPoint);
+    connect(&renderer, &Renderer::debugRenderQueued, &physics, &Physics::debugRender);
     // Entity initialization
     int ground = entities.add();
     int deer = entities.add();
     Entities::PhysicsBag *groundPhysics = new Entities::PhysicsBag{};
     groundPhysics->y = 300.f;
     groundPhysics->w = 1000.f;
+    groundPhysics->h = 20.f;
     groundPhysics->type = b2BodyType::b2_staticBody;
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{};
     deerPhysics->y = -300.f;

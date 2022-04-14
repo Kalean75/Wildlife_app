@@ -1,14 +1,8 @@
 #include "entities.h"
 
-Entities::Entities(QObject *parent)
-    : QObject(parent),
-      renderTimer(new QTimer()),
-      frameTimer(new QElapsedTimer())
+Entities::Entities(QObject *parent) : QObject(parent), frameTimer(new QElapsedTimer())
 {
-    renderTimer->setTimerType(Qt::PreciseTimer);
-    renderTimer->start(renderRate * msPerSecond);
     frameTimer->start();
-    connect(renderTimer, &QTimer::timeout, this, &Entities::render);
     update();
 }
 
@@ -19,7 +13,6 @@ int Entities::add()
 
 void Entities::update()
 {
-    int updateMsDelta = updateRate * msPerSecond;
     accumulator += frameTimer->restart();
     // Fixed timestep ensures that on average, simulation updates every fixed time interval regardless of framerate
     while (accumulator >= updateMsDelta)
@@ -27,12 +20,8 @@ void Entities::update()
         emit physicsOutdated();
         accumulator -= updateMsDelta;
     }
-    QTimer::singleShot(updateMsDelta - accumulator, this, &Entities::update);
-}
-
-void Entities::render()
-{
     emit renderOutdated(physicsBags, renderBags);
+    QTimer::singleShot(updateMsDelta - accumulator, this, &Entities::update);
 }
 
 void Entities::addPhysics(int e, PhysicsBag *bag)
@@ -72,6 +61,5 @@ void Entities::removeAll()
 Entities::~Entities()
 {
     removeAll();
-    delete renderTimer;
     delete frameTimer;
 }

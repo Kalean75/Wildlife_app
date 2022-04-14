@@ -5,7 +5,7 @@ Physics::Physics(QObject *parent) : QObject(parent), world(new b2World(gravity))
 {
 }
 
-void Physics::updatePhysics()
+void Physics::update()
 {
     world->Step(Entities::updateRate, velocityIterations, positionIterations);
     for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
@@ -61,6 +61,16 @@ void Physics::queryPoint(QPoint point)
     world->QueryAABB(worldQuery, bounds);
     // TODO: Maybe emit a signal to some steering system for body movement
     if (worldQuery->body) worldQuery->body->SetLinearVelocity(b2Vec2(0, -5.f)); // Ad hoc "jump impulse on click" implementation
+}
+
+void Physics::setDebugRenderer(b2Draw& renderer)
+{
+    world->SetDebugDraw(&renderer);
+}
+
+void Physics::debugRender()
+{
+    world->DebugDraw();
 }
 
 Entities::PhysicsBag* Physics::loadUserData(b2Body *body)

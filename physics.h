@@ -13,12 +13,15 @@ class Physics : public QObject
 public:
     explicit Physics(QObject *parent = nullptr);
     ~Physics();
+    static constexpr float pixelsPerMeter = 128.f;
+    void setDebugRenderer(b2Draw&);
 
 public slots:
-    void updatePhysics();
+    void update();
     void addBody(Entities::PhysicsBag*);
     void removeBody(Entities::PhysicsBag*);
     void queryPoint(QPoint);
+    void debugRender();
 
 private:
     struct WorldQuery : b2QueryCallback
@@ -30,7 +33,6 @@ private:
             return false;
         }
     };
-    const float pixelsPerMeter = 128.f;
     const int velocityIterations = 6;
     const int positionIterations = 2;
     const b2Vec2 gravity = b2Vec2(0.f, 9.8f);
