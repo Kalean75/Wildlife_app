@@ -4,7 +4,7 @@
 View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
-    ui->rootLayout->addWidget(&renderer);
+    ui->renderLayout->addWidget(&renderer);
     physics.setDebugRenderer(renderer);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
@@ -14,6 +14,8 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     // Renderer connections
     connect(&renderer, &Renderer::mousePressed, &physics, &Physics::queryPoint);
     connect(&renderer, &Renderer::debugRenderQueued, &physics, &Physics::debugRender);
+    // Interface connections
+    connect(ui->debugRenderCheckbox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     // Entity initialization
     int ground = entities.add();
     int deer = entities.add();

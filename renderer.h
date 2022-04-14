@@ -25,6 +25,7 @@ public:
 
 public slots:
     void update(Entities::PhysicsBags, Entities::RenderBags);
+    void toggleDebugging(bool);
 
 signals:
     void mousePressed(QPoint);
@@ -32,6 +33,7 @@ signals:
 
 private:
     const float radiansToDegrees = 180.f / M_PI;
+    bool debugging = false;
     QMap<QString, QImage> images;
     QRect renderArea;
     QPixmap debugRenderBuffer;

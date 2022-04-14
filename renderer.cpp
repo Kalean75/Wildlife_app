@@ -19,8 +19,6 @@ void Renderer::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     painter.setRenderHints(QPainter::SmoothPixmapTransform, true);
     renderArea = e->rect();
-    debugRenderBuffer = QPixmap(renderArea.size());
-    debugRenderBuffer.fill(Qt::transparent);
     for (Entities::RenderBags::iterator i = renderBags.begin(); i != renderBags.end(); ++i)
     {
         int entity = i.key();
@@ -36,8 +34,13 @@ void Renderer::paintEvent(QPaintEvent *e)
             painter.restore();
         }
     }
-    emit debugRenderQueued();
-    painter.drawPixmap(0, 0, debugRenderBuffer);
+    if (debugging)
+    {
+        debugRenderBuffer = QPixmap(renderArea.size());
+        debugRenderBuffer.fill(Qt::transparent);
+        emit debugRenderQueued();
+        painter.drawPixmap(0, 0, debugRenderBuffer);
+    }
     painter.end();
 }
 
@@ -51,6 +54,11 @@ void Renderer::update(Entities::PhysicsBags newPhysicsBags, Entities::RenderBags
     physicsBags = newPhysicsBags;
     renderBags = newRenderBags;
     repaint();
+}
+
+void Renderer::toggleDebugging(bool isDebugging)
+{
+    debugging = isDebugging;
 }
 
 Renderer::~Renderer()
@@ -90,7 +98,7 @@ void Renderer::DrawSolidPolygon(const b2Vec2 *vertices, int32 vertexCount, const
         points[i] = QPointF(vertices[i].x * Physics::pixelsPerMeter, vertices[i].y * Physics::pixelsPerMeter);
     }
     painter.save();
-    painter.translate(debugRenderBuffer.rect().center());
+    painter.translate(renderArea.center());
     painter.drawPolygon(points, vertexCount);
     painter.restore();
 }
