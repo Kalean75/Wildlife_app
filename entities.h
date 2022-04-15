@@ -18,6 +18,9 @@ public:
     {
         float x = 0.f;
         float y = 0.f;
+        // x2 and y2 used for edge shapes
+        float x2 = 0.f;
+        float y2 = 0.f;
         float w = 1.f;
         float h = 1.f;
         float angle = 0.f;
@@ -26,7 +29,8 @@ public:
         float restitution = 0.f;
         float linearDamping = 0.f;
         float angularDamping = 0.5f;
-        b2BodyType type = b2_dynamicBody;
+        b2Shape::Type shapeType = b2Shape::e_polygon;
+        b2BodyType bodyType = b2_dynamicBody;
     };
     struct RenderBag
     {

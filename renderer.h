@@ -38,6 +38,12 @@ private:
         QVector<QPointF> vertices;
         QColor color;
     };
+    struct DebugLine
+    {
+        QPointF p1;
+        QPointF p2;
+        QColor color;
+    };
     float cameraScale = 1.f;
     float cameraScaleStep = 0.25f;
     float minCameraScale = 0.5f;
@@ -45,11 +51,13 @@ private:
     bool debugging = false;
     QMap<QString, QImage> images;
     QVector<DebugPolygon> debugPolygons;
+    QVector<DebugLine> debugLines;
     QRect camera;
     QPoint cameraPanningBuffer;
     // Cannot signal to the paintEvent directly, so bag collections are stored as members for use in paintEvent
     Entities::PhysicsBags physicsBags;
     Entities::RenderBags renderBags;
+    QColor parseB2Color(b2Color);
 };
 
 #endif // RENDERER_H

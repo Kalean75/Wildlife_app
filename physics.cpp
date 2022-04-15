@@ -1,7 +1,7 @@
 #include "entities.h"
 #include "physics.h"
 
-Physics::Physics(QObject *parent) : QObject(parent), world(new b2World(gravity))
+Physics::Physics(QObject *parent) : QObject(parent), world(new b2World(gravity)), worldQuery(new WorldQuery{})
 {
 }
 
@@ -20,23 +20,40 @@ void Physics::update()
 
 void Physics::addBody(Entities::PhysicsBag *bag)
 {
-    b2Body *body;
     b2BodyDef bodyDef;
-    b2PolygonShape bodyShape;
     b2FixtureDef bodyFixture;
-    bodyDef.type = bag->type;
+    b2PolygonShape polygonShape;
+    b2EdgeShape edgeShape;
+    bodyDef.type = bag->bodyType;
     bodyDef.angle = bag->angle;
-    bodyDef.position.Set(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(bag); // https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
     bodyDef.linearDamping = bag->linearDamping;
     bodyDef.angularDamping = bag->angularDamping;
-    bodyShape.SetAsBox((bag->w / pixelsPerMeter) / 2.f, (bag->h / pixelsPerMeter) / 2.f);
-    bodyFixture.shape = &bodyShape;
     bodyFixture.density = bag->density;
     bodyFixture.friction = bag->friction;
     bodyFixture.restitution = bag->restitution;
-    body = world->CreateBody(&bodyDef);
-    body->CreateFixture(&bodyFixture);
+    // Cases enclosed in a scope to allow bodyFixture.shape to be assigned
+    switch(bag->shapeType)
+    {
+    case(b2Shape::e_polygon):
+    {
+        polygonShape.SetAsBox((bag->w / pixelsPerMeter) / 2.f, (bag->h / pixelsPerMeter) / 2.f);
+        bodyDef.position.Set(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
+        bodyFixture.shape = &polygonShape;
+        break;
+    }
+    case(b2Shape::e_edge):
+    {
+        b2Vec2 p1(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
+        b2Vec2 p2(bag->x2 / pixelsPerMeter, bag->y2 / pixelsPerMeter);
+        edgeShape.SetTwoSided(p1, p2);
+        bodyFixture.shape = &edgeShape;
+        break;
+    }
+    default:
+        break;
+    }
+    world->CreateBody(&bodyDef)->CreateFixture(&bodyFixture);
 }
 
 void Physics::removeBody(Entities::PhysicsBag *bag)
@@ -60,7 +77,9 @@ void Physics::queryPoint(QPoint point)
     worldQuery->body = nullptr;
     world->QueryAABB(worldQuery, bounds);
     // TODO: Maybe emit a signal to some steering system for body movement
-    if (worldQuery->body) worldQuery->body->SetLinearVelocity(b2Vec2(0, -5.f)); // Ad hoc "jump impulse on click" implementation
+    // TODO: Some sort of heuristic for determining an animal aside from just "is dynamic body"
+    b2Body *body = worldQuery->body;
+    if (body && body->GetType() == b2_dynamicBody) body->SetLinearVelocity(b2Vec2(0, -5.f)); // Ad hoc "jump impulse on click" implementation
 }
 
 void Physics::setDebugRenderer(b2Draw& renderer)

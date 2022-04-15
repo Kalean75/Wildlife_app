@@ -18,12 +18,20 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     connect(ui->debugRenderCheckbox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     // Entity initialization
     int ground = entities.add();
+    int edge = entities.add();
     int deer = entities.add();
     Entities::PhysicsBag *groundPhysics = new Entities::PhysicsBag{};
     groundPhysics->y = 300.f;
     groundPhysics->w = 5000.f;
     groundPhysics->h = 20.f;
-    groundPhysics->type = b2BodyType::b2_staticBody;
+    groundPhysics->bodyType = b2BodyType::b2_staticBody;
+    Entities::PhysicsBag *edgePhysics = new Entities::PhysicsBag{};
+    edgePhysics->x = 0.f;
+    edgePhysics->y = 100.f;
+    edgePhysics->x2 = 300.f;
+    edgePhysics->y2 = 300.f;
+    edgePhysics->shapeType = b2Shape::e_edge;
+    edgePhysics->bodyType = b2BodyType::b2_staticBody;
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{};
     deerPhysics->y = -300.f;
     deerPhysics->w = 256.f;
@@ -32,6 +40,7 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     Entities::RenderBag *deerRender = new Entities::RenderBag{};
     deerRender->imageName = "deer";
     entities.addPhysics(ground, groundPhysics);
+    entities.addPhysics(edge, edgePhysics);
     entities.addPhysics(deer, deerPhysics);
     entities.addRender(deer, deerRender);
 }

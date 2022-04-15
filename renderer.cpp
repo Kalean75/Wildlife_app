@@ -44,7 +44,13 @@ void Renderer::paintEvent(QPaintEvent *e)
             painter.setBrush(QBrush(polygon.color));
             painter.drawPolygon(polygon.vertices.data(), polygon.vertices.size());
         }
+        for (const DebugLine& line : debugLines)
+        {
+            painter.setBrush(QBrush(line.color));
+            painter.drawLine(line.p1, line.p2);
+        }
         debugPolygons.clear();
+        debugLines.clear();
     }
     painter.end();
 }
@@ -83,6 +89,11 @@ void Renderer::toggleDebugging(bool isDebugging)
     debugging = isDebugging;
 }
 
+QColor Renderer::parseB2Color(b2Color color)
+{
+    return QColor::fromRgbF(color.r, color.g, color.b, color.a / 2.f);
+}
+
 // Box2D debug drawing functions inherited from b2Draw class
 // These are purely for rendering Box2D bodies and aren't to be used for anything else
 
@@ -98,8 +109,13 @@ void Renderer::DrawPoint(const b2Vec2&, float, const b2Color&)
 {
 }
 
-void Renderer::DrawSegment(const b2Vec2&, const b2Vec2&, const b2Color&)
+void Renderer::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
 {
+    DebugLine line{};
+    line.p1 = QPointF(p1.x, p1.y) * Physics::pixelsPerMeter;
+    line.p2 = QPointF(p2.x, p2.y) * Physics::pixelsPerMeter;
+    line.color = parseB2Color(color);
+    debugLines.append(line);
 }
 
 void Renderer::DrawTransform(const b2Transform&)
@@ -111,9 +127,9 @@ void Renderer::DrawSolidPolygon(const b2Vec2 *vertices, int32 vertexCount, const
     QVector<QPointF> copiedVertices;
     for (int i = 0; i < vertexCount; i++)
     {
-        copiedVertices.append(QPointF(vertices[i].x * Physics::pixelsPerMeter, vertices[i].y * Physics::pixelsPerMeter));
+        copiedVertices.append(QPointF(vertices[i].x, vertices[i].y) * Physics::pixelsPerMeter);
     }
-    debugPolygons.append(DebugPolygon{copiedVertices, QColor::fromRgbF(color.r, color.g, color.b, color.a / 2.f)});
+    debugPolygons.append(DebugPolygon{copiedVertices, parseB2Color(color)});
 }
 
 void Renderer::DrawSolidCircle(const b2Vec2&, float, const b2Vec2&, const b2Color&)

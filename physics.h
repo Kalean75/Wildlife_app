@@ -37,7 +37,7 @@ private:
     const int positionIterations = 3;
     const b2Vec2 gravity = b2Vec2(0.f, 9.8f);
     b2World *world;
-    WorldQuery *worldQuery = new WorldQuery{};
+    WorldQuery *worldQuery;
     Entities::PhysicsBag* loadUserData(b2Body*);
 };
 
