@@ -20,6 +20,7 @@ void Renderer::paintEvent(QPaintEvent *e)
     camera.setSize(e->rect().size() / cameraScale);
     painter.setRenderHints(QPainter::SmoothPixmapTransform, true);
     painter.scale(cameraScale, cameraScale);
+    painter.translate(camera.center());
     for (Entities::RenderBags::iterator i = renderBags.begin(); i != renderBags.end(); ++i)
     {
         int entity = i.key();
@@ -29,19 +30,21 @@ void Renderer::paintEvent(QPaintEvent *e)
             Entities::PhysicsBag *physicsBag = physicsBags[entity];
             QImage image = images.value(renderBag->imageName);
             painter.save();
-            painter.translate(camera.center() + QPointF(physicsBag->x, physicsBag->y));
+            painter.translate(physicsBag->x, physicsBag->y);
             painter.rotate(qRadiansToDegrees(physicsBag->angle));
             painter.drawImage(-image.rect().center(), image);
             painter.restore();
         }
     }
-    // TODO: Possible alternative to pixmap for drawing outside paintEvent (poor performance on lower zoom scales)
     if (debugging)
     {
-        debugRenderBuffer = QPixmap(camera.size());
-        debugRenderBuffer.fill(Qt::transparent);
         emit debugRenderQueued();
-        painter.drawPixmap(0, 0, debugRenderBuffer);
+        for (const DebugPolygon& polygon : debugPolygons)
+        {
+            painter.setBrush(QBrush(polygon.color));
+            painter.drawPolygon(polygon.vertices.data(), polygon.vertices.size());
+        }
+        debugPolygons.clear();
     }
     painter.end();
 }
@@ -49,15 +52,16 @@ void Renderer::paintEvent(QPaintEvent *e)
 void Renderer::mousePressEvent(QMouseEvent *e)
 {
     emit mousePressed(e->pos() / cameraScale - camera.center());
-    panningBuffer = e->pos(); // Track mouse delta when click + dragging camera
+    cameraPanningBuffer = e->pos();
 }
 
 void Renderer::mouseMoveEvent(QMouseEvent *e)
 {
     if (e->buttons() & Qt::LeftButton)
     {
-        camera.translate((e->pos() - panningBuffer) / cameraScale);
-        panningBuffer = e->pos();
+        camera.translate((e->pos() - cameraPanningBuffer) / cameraScale);
+        cameraPanningBuffer = e->pos();
+        repaint(); // Purely for smoothness while panning; remove if performance becomes an issue
     }
 }
 
@@ -104,17 +108,12 @@ void Renderer::DrawTransform(const b2Transform&)
 
 void Renderer::DrawSolidPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2Color& color)
 {
-    QPainter painter(&debugRenderBuffer);
-    QPointF points[vertexCount];
-    painter.setBrush(QBrush(QColor::fromRgbF(color.r, color.g, color.b, color.a / 2.f)));
+    QVector<QPointF> copiedVertices;
     for (int i = 0; i < vertexCount; i++)
     {
-        points[i] = QPointF(vertices[i].x * Physics::pixelsPerMeter, vertices[i].y * Physics::pixelsPerMeter);
+        copiedVertices.append(QPointF(vertices[i].x * Physics::pixelsPerMeter, vertices[i].y * Physics::pixelsPerMeter));
     }
-    painter.save();
-    painter.translate(camera.center());
-    painter.drawPolygon(points, vertexCount);
-    painter.restore();
+    debugPolygons.append(DebugPolygon{copiedVertices, QColor::fromRgbF(color.r, color.g, color.b, color.a / 2.f)});
 }
 
 void Renderer::DrawSolidCircle(const b2Vec2&, float, const b2Vec2&, const b2Color&)

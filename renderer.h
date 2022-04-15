@@ -33,15 +33,20 @@ signals:
     void debugRenderQueued();
 
 private:
+    struct DebugPolygon
+    {
+        QVector<QPointF> vertices;
+        QColor color;
+    };
     float cameraScale = 1.f;
     float cameraScaleStep = 0.25f;
     float minCameraScale = 0.5f;
     float maxCameraScale = 1.5f;
     bool debugging = false;
     QMap<QString, QImage> images;
-    QPixmap debugRenderBuffer;
+    QVector<DebugPolygon> debugPolygons;
     QRect camera;
-    QPoint panningBuffer;
+    QPoint cameraPanningBuffer;
     // Cannot signal to the paintEvent directly, so bag collections are stored as members for use in paintEvent
     Entities::PhysicsBags physicsBags;
     Entities::RenderBags renderBags;
