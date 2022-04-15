@@ -17,8 +17,9 @@ Renderer::Renderer(QWidget *parent) : QWidget(parent)
 void Renderer::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
+    camera.setSize(e->rect().size() / cameraScale);
     painter.setRenderHints(QPainter::SmoothPixmapTransform, true);
-    renderArea = e->rect();
+    painter.scale(cameraScale, cameraScale);
     for (Entities::RenderBags::iterator i = renderBags.begin(); i != renderBags.end(); ++i)
     {
         int entity = i.key();
@@ -28,15 +29,16 @@ void Renderer::paintEvent(QPaintEvent *e)
             Entities::PhysicsBag *physicsBag = physicsBags[entity];
             QImage image = images.value(renderBag->imageName);
             painter.save();
-            painter.translate(renderArea.center() + QPointF(physicsBag->x, physicsBag->y));
-            painter.rotate(physicsBag->angle * radiansToDegrees);
+            painter.translate(camera.center() + QPointF(physicsBag->x, physicsBag->y));
+            painter.rotate(qRadiansToDegrees(physicsBag->angle));
             painter.drawImage(-image.rect().center(), image);
             painter.restore();
         }
     }
+    // TODO: Possible alternative to pixmap for drawing outside paintEvent (poor performance on lower zoom scales)
     if (debugging)
     {
-        debugRenderBuffer = QPixmap(renderArea.size());
+        debugRenderBuffer = QPixmap(camera.size());
         debugRenderBuffer.fill(Qt::transparent);
         emit debugRenderQueued();
         painter.drawPixmap(0, 0, debugRenderBuffer);
@@ -46,7 +48,23 @@ void Renderer::paintEvent(QPaintEvent *e)
 
 void Renderer::mousePressEvent(QMouseEvent *e)
 {
-    emit mousePressed(e->pos() - renderArea.center());
+    emit mousePressed(e->pos() / cameraScale - camera.center());
+    panningBuffer = e->pos(); // Track mouse delta when click + dragging camera
+}
+
+void Renderer::mouseMoveEvent(QMouseEvent *e)
+{
+    if (e->buttons() & Qt::LeftButton)
+    {
+        camera.translate((e->pos() - panningBuffer) / cameraScale);
+        panningBuffer = e->pos();
+    }
+}
+
+void Renderer::wheelEvent(QWheelEvent *e)
+{
+    float wheelDelta = QVector2D(e->angleDelta()).normalized().y();
+    cameraScale = std::min(std::max(cameraScale + cameraScaleStep * wheelDelta, minCameraScale), maxCameraScale);
 }
 
 void Renderer::update(Entities::PhysicsBags newPhysicsBags, Entities::RenderBags newRenderBags)
@@ -59,10 +77,6 @@ void Renderer::update(Entities::PhysicsBags newPhysicsBags, Entities::RenderBags
 void Renderer::toggleDebugging(bool isDebugging)
 {
     debugging = isDebugging;
-}
-
-Renderer::~Renderer()
-{
 }
 
 // Box2D debug drawing functions inherited from b2Draw class
@@ -98,7 +112,7 @@ void Renderer::DrawSolidPolygon(const b2Vec2 *vertices, int32 vertexCount, const
         points[i] = QPointF(vertices[i].x * Physics::pixelsPerMeter, vertices[i].y * Physics::pixelsPerMeter);
     }
     painter.save();
-    painter.translate(renderArea.center());
+    painter.translate(camera.center());
     painter.drawPolygon(points, vertexCount);
     painter.restore();
 }

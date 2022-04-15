@@ -11,9 +11,10 @@ class Renderer : public QWidget, public b2Draw
     Q_OBJECT
 public:
     explicit Renderer(QWidget *parent = nullptr);
-    ~Renderer();
     void paintEvent(QPaintEvent*);
     void mousePressEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
+    void wheelEvent(QWheelEvent*);
     // Box2D debug drawing functions
     void DrawPolygon(const b2Vec2*, int, const b2Color&);
     void DrawCircle(const b2Vec2&, float, const b2Color&);
@@ -32,11 +33,15 @@ signals:
     void debugRenderQueued();
 
 private:
-    const float radiansToDegrees = 180.f / M_PI;
+    float cameraScale = 1.f;
+    float cameraScaleStep = 0.25f;
+    float minCameraScale = 0.5f;
+    float maxCameraScale = 1.5f;
     bool debugging = false;
     QMap<QString, QImage> images;
-    QRect renderArea;
     QPixmap debugRenderBuffer;
+    QRect camera;
+    QPoint panningBuffer;
     // Cannot signal to the paintEvent directly, so bag collections are stored as members for use in paintEvent
     Entities::PhysicsBags physicsBags;
     Entities::RenderBags renderBags;
