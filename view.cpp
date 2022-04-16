@@ -41,9 +41,9 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
         int minDy = 200;
         int rangeDx = 1500;
         int rangeDy = 300;
-        void buildVertices(int vertexCount, QPoint origin = QPoint())
+        void buildVertices(int vertexCount, QPoint startingVertex = QPoint())
         {
-            QPoint vertex(origin);
+            QPoint vertex(startingVertex);
             for (int i = 0; i < vertexCount; i++)
             {
                 vertices.append(vertex);
@@ -53,17 +53,17 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
                 {
                     testY = vertex.y() + (QRandomGenerator::global()->generate() % rangeDy + minDy) * qCos(M_PI * (i % 2));
                 }
-                while (qAbs(testY) - (qAbs(origin.y()) - rangeY / 2) > rangeY);
+                while (qAbs(testY) - (qAbs(startingVertex.y()) - rangeY / 2) > rangeY);
                 vertex.setY(testY);
-                buildVertexSegments(i);
+                if (i > 0) buildCurveSegments(i - 1, i);
             }
         }
-        void buildVertexSegments(int vertexIndex)
+        void buildCurveSegments(int vertexIndex1, int vertexIndex2)
         {
-            if (vertexIndex == 0) return;
-            QPointF v1 = vertices.at(vertexIndex - 1);
-            QPointF v2 = vertices.at(vertexIndex);
+            QPointF v1 = vertices.at(vertexIndex1);
+            QPointF v2 = vertices.at(vertexIndex2);
             float midpointY = (v1 + v2).y() / 2.f;
+            edgeVertices.append(v1);
             for (int i = 0; i < segmentsPerEdge; i++)
             {
                 QPointF v;
