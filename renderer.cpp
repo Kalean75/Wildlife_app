@@ -21,7 +21,7 @@ void Renderer::paintEvent(QPaintEvent *e)
     painter.setRenderHints(QPainter::SmoothPixmapTransform, true);
     painter.scale(cameraScale, cameraScale);
     painter.translate(camera.center());
-    for (Entities::RenderBags::iterator i = renderBags.begin(); i != renderBags.end(); ++i)
+    for (Entities::RenderBags::iterator i = renderBags.begin(); i != renderBags.end(); i++)
     {
         int entity = i.key();
         if (physicsBags.contains(entity))

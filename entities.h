@@ -18,9 +18,9 @@ public:
     {
         float x = 0.f;
         float y = 0.f;
-        // x2 and y2 used for edge shapes
-        float x2 = 0.f;
-        float y2 = 0.f;
+        // x1 and y1 used for edge shapes
+        float x1 = 0.f;
+        float y1 = 0.f;
         float w = 1.f;
         float h = 1.f;
         float angle = 0.f;

@@ -1,6 +1,8 @@
 #include "view.h"
 #include "ui_view.h"
 
+#include <QRandomGenerator>
+
 View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
@@ -17,32 +19,76 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
     // Interface connections
     connect(ui->debugRenderCheckbox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     // Entity initialization
-    int ground = entities.add();
-    int edge = entities.add();
     int deer = entities.add();
-    Entities::PhysicsBag *groundPhysics = new Entities::PhysicsBag{};
-    groundPhysics->y = 300.f;
-    groundPhysics->w = 5000.f;
-    groundPhysics->h = 20.f;
-    groundPhysics->bodyType = b2BodyType::b2_staticBody;
-    Entities::PhysicsBag *edgePhysics = new Entities::PhysicsBag{};
-    edgePhysics->x = 0.f;
-    edgePhysics->y = 100.f;
-    edgePhysics->x2 = 300.f;
-    edgePhysics->y2 = 300.f;
-    edgePhysics->shapeType = b2Shape::e_edge;
-    edgePhysics->bodyType = b2BodyType::b2_staticBody;
-    Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag{};
-    deerPhysics->y = -300.f;
+    Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag;
+    deerPhysics->y = -500.f;
     deerPhysics->w = 256.f;
     deerPhysics->h = 256.f;
     deerPhysics->restitution = 0.5f;
-    Entities::RenderBag *deerRender = new Entities::RenderBag{};
+    Entities::RenderBag *deerRender = new Entities::RenderBag;
     deerRender->imageName = "deer";
-    entities.addPhysics(ground, groundPhysics);
-    entities.addPhysics(edge, edgePhysics);
     entities.addPhysics(deer, deerPhysics);
     entities.addRender(deer, deerRender);
+    // Terrain generation test
+    struct TerrainGenerator
+    {
+        QVector<QPoint> vertices;
+        QVector<QPointF> edgeVertices; // Vertex could be sampled from here to spawn an entity at a random point
+        // Parameters can be adjusted for "noisiness"
+        int segmentsPerEdge = 10;
+        int rangeY = 500;
+        int minDx = 750;
+        int minDy = 200;
+        int rangeDx = 1500;
+        int rangeDy = 300;
+        void buildVertices(int vertexCount, QPoint origin = QPoint())
+        {
+            QPoint vertex(origin);
+            for (int i = 0; i < vertexCount; i++)
+            {
+                vertices.append(vertex);
+                vertex.rx() += QRandomGenerator::global()->generate() % rangeDx + minDx;
+                int testY;
+                do
+                {
+                    testY = vertex.y() + (QRandomGenerator::global()->generate() % rangeDy + minDy) * qCos(M_PI * (i % 2));
+                }
+                while (qAbs(testY) - (qAbs(origin.y()) - rangeY / 2) > rangeY);
+                vertex.setY(testY);
+                buildVertexSegments(i);
+            }
+        }
+        void buildVertexSegments(int vertexIndex)
+        {
+            if (vertexIndex == 0) return;
+            QPointF v1 = vertices.at(vertexIndex - 1);
+            QPointF v2 = vertices.at(vertexIndex);
+            float midpointY = (v1 + v2).y() / 2.f;
+            for (int i = 0; i < segmentsPerEdge; i++)
+            {
+                QPointF v;
+                v.setX(v1.x() + i * (v2 - v1).x() / segmentsPerEdge);
+                v.setY(midpointY - (midpointY - v1.y()) * qCos(i * M_PI / segmentsPerEdge));
+                edgeVertices.append(v);
+            }
+        }
+    };
+    TerrainGenerator generator;
+    generator.buildVertices(50, QPoint(-10000, 0));
+    for (int i = 1; i < generator.edgeVertices.size(); i++)
+    {
+        int edge = entities.add();
+        Entities::PhysicsBag *edgePhysics = new Entities::PhysicsBag{};
+        QPointF v1 = generator.edgeVertices.at(i - 1);
+        QPointF v2 = generator.edgeVertices.at(i);
+        edgePhysics->x = v1.x();
+        edgePhysics->y = v1.y();
+        edgePhysics->x1 = v2.x();
+        edgePhysics->y1 = v2.y();
+        edgePhysics->shapeType = b2Shape::e_edge;
+        edgePhysics->bodyType = b2BodyType::b2_staticBody;
+        entities.addPhysics(edge, edgePhysics);
+    }
 }
 
 View::~View()

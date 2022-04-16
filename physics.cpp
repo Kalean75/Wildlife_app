@@ -44,9 +44,9 @@ void Physics::addBody(Entities::PhysicsBag *bag)
     }
     case(b2Shape::e_edge):
     {
-        b2Vec2 p1(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
-        b2Vec2 p2(bag->x2 / pixelsPerMeter, bag->y2 / pixelsPerMeter);
-        edgeShape.SetTwoSided(p1, p2);
+        b2Vec2 v1(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
+        b2Vec2 v2(bag->x1 / pixelsPerMeter, bag->y1 / pixelsPerMeter);
+        edgeShape.SetTwoSided(v1, v2);
         bodyFixture.shape = &edgeShape;
         break;
     }
