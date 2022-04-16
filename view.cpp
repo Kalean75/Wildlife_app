@@ -74,7 +74,7 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
         }
     };
     TerrainGenerator generator;
-    generator.buildVertices(50, QPoint(-10000, 0));
+    generator.buildVertices(20, QPoint(-10000, 0));
     for (int i = 1; i < generator.edgeVertices.size(); i++)
     {
         int edge = entities.add();

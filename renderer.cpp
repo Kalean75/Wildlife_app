@@ -18,27 +18,39 @@ void Renderer::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     camera.setSize(e->rect().size() / cameraScale);
-    painter.setRenderHints(QPainter::SmoothPixmapTransform, true);
     painter.scale(cameraScale, cameraScale);
     painter.translate(camera.center());
-    for (Entities::RenderBags::iterator i = renderBags.begin(); i != renderBags.end(); i++)
+    for (Entities::PhysicsBags::iterator i = physicsBags.begin(); i != physicsBags.end(); i++)
     {
         int entity = i.key();
-        if (physicsBags.contains(entity))
+        if (renderBags.contains(entity))
         {
-            Entities::RenderBag *renderBag = i.value();
-            Entities::PhysicsBag *physicsBag = physicsBags[entity];
+            Entities::PhysicsBag *physicsBag = i.value();
+            Entities::RenderBag *renderBag = renderBags[entity];
             QImage image = images.value(renderBag->imageName);
             painter.save();
+            painter.setRenderHints(QPainter::SmoothPixmapTransform);
             painter.translate(physicsBag->x, physicsBag->y);
             painter.rotate(qRadiansToDegrees(physicsBag->angle));
             painter.drawImage(-image.rect().center(), image);
             painter.restore();
         }
     }
+    emit debugRenderQueued();
+    // Edge vertex data is already collected for the debug view, so it makes more sense to reuse that instead of recreating it from the physics bag
+    for (const DebugLine& line : debugLines)
+    {
+        QPointF edgeDepth(0, camera.height());
+        QVector<QPointF> vertices = {line.v1, line.v2, line.v2 + edgeDepth, line.v1 + edgeDepth};
+        painter.save();
+        painter.setRenderHints(QPainter::Antialiasing);
+        painter.setBrush(QBrush(Qt::lightGray));
+        painter.setPen(QPen(painter.brush(), 2.f)); // Increased stroke width to eliminate polygon gaps on lower zoom scales
+        painter.drawPolygon(vertices.data(), vertices.size());
+        painter.restore();
+    }
     if (debugging)
     {
-        emit debugRenderQueued();
         for (const DebugPolygon& polygon : debugPolygons)
         {
             painter.setBrush(QBrush(polygon.color));
@@ -47,11 +59,11 @@ void Renderer::paintEvent(QPaintEvent *e)
         for (const DebugLine& line : debugLines)
         {
             painter.setBrush(QBrush(line.color));
-            painter.drawLine(line.p1, line.p2);
+            painter.drawLine(line.v1, line.v2);
         }
-        debugPolygons.clear();
-        debugLines.clear();
     }
+    debugPolygons.clear();
+    debugLines.clear();
     painter.end();
 }
 
@@ -109,11 +121,11 @@ void Renderer::DrawPoint(const b2Vec2&, float, const b2Color&)
 {
 }
 
-void Renderer::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
+void Renderer::DrawSegment(const b2Vec2& v1, const b2Vec2& v2, const b2Color& color)
 {
     DebugLine line{};
-    line.p1 = QPointF(p1.x, p1.y) * Physics::pixelsPerMeter;
-    line.p2 = QPointF(p2.x, p2.y) * Physics::pixelsPerMeter;
+    line.v1 = QPointF(v1.x, v1.y) * Physics::pixelsPerMeter;
+    line.v2 = QPointF(v2.x, v2.y) * Physics::pixelsPerMeter;
     line.color = parseB2Color(color);
     debugLines.append(line);
 }

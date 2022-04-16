@@ -40,8 +40,8 @@ private:
     };
     struct DebugLine
     {
-        QPointF p1;
-        QPointF p2;
+        QPointF v1;
+        QPointF v2;
         QColor color;
     };
     float cameraScale = 1.f;

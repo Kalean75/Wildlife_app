@@ -11,9 +11,12 @@ void Physics::update()
     for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
     {
         Entities::PhysicsBag *bag = loadUserData(body);
-        b2Vec2 position = body->GetWorldCenter();
-        bag->x = position.x * pixelsPerMeter;
-        bag->y = position.y * pixelsPerMeter;
+        b2Vec2 bodyPosition = body->GetWorldCenter();
+        if (body->GetType() == b2BodyType::b2_dynamicBody)
+        {
+            bag->x = bodyPosition.x * pixelsPerMeter;
+            bag->y = bodyPosition.y * pixelsPerMeter;
+        }
         bag->angle = body->GetAngle();
     }
 }
