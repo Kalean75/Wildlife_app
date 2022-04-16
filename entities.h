@@ -21,6 +21,8 @@ public:
         // x1 and y1 used for edge shapes
         float x1 = 0.f;
         float y1 = 0.f;
+        // r used for circle shapes
+        float r = 1.f;
         float w = 1.f;
         float h = 1.f;
         float angle = 0.f;

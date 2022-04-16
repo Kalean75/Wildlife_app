@@ -20,8 +20,10 @@ void Physics::update()
 
 void Physics::addBody(Entities::PhysicsBag *bag)
 {
+    b2Vec2 bodyPosition(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
     b2BodyDef bodyDef;
     b2FixtureDef bodyFixture;
+    b2CircleShape circleShape;
     b2PolygonShape polygonShape;
     b2EdgeShape edgeShape;
     bodyDef.type = bag->bodyType;
@@ -33,20 +35,25 @@ void Physics::addBody(Entities::PhysicsBag *bag)
     bodyFixture.friction = bag->friction;
     bodyFixture.restitution = bag->restitution;
     // Cases enclosed in a scope to allow bodyFixture.shape to be assigned
-    switch(bag->shapeType)
+    switch (bag->shapeType)
     {
-    case(b2Shape::e_polygon):
+    case b2Shape::e_circle:
+    {
+        circleShape.m_radius = bag->r / pixelsPerMeter;
+        circleShape.m_p = bodyPosition;
+        bodyFixture.shape = &circleShape;
+        break;
+    }
+    case b2Shape::e_polygon:
     {
         polygonShape.SetAsBox((bag->w / pixelsPerMeter) / 2.f, (bag->h / pixelsPerMeter) / 2.f);
-        bodyDef.position.Set(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
+        bodyDef.position = bodyPosition;
         bodyFixture.shape = &polygonShape;
         break;
     }
-    case(b2Shape::e_edge):
+    case b2Shape::e_edge:
     {
-        b2Vec2 v1(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
-        b2Vec2 v2(bag->x1 / pixelsPerMeter, bag->y1 / pixelsPerMeter);
-        edgeShape.SetTwoSided(v1, v2);
+        edgeShape.SetTwoSided(bodyPosition, b2Vec2(bag->x1 / pixelsPerMeter, bag->y1 / pixelsPerMeter));
         bodyFixture.shape = &edgeShape;
         break;
     }
