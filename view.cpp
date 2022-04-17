@@ -60,21 +60,21 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
         }
         void buildCurveSegments(int vertexIndex1, int vertexIndex2)
         {
-            QPointF v1 = vertices.at(vertexIndex1);
-            QPointF v2 = vertices.at(vertexIndex2);
-            float midpointY = (v1 + v2).y() / 2.f;
-            edgeVertices.append(v1);
+            QPointF vertex1 = vertices.at(vertexIndex1);
+            QPointF vertex2 = vertices.at(vertexIndex2);
+            float midpointY = (vertex1 + vertex2).y() / 2.f;
+            edgeVertices.append(vertex1);
             for (int i = 0; i < segmentsPerEdge; i++)
             {
                 QPointF v;
-                v.setX(v1.x() + i * (v2 - v1).x() / segmentsPerEdge);
-                v.setY(midpointY - (midpointY - v1.y()) * qCos(i * M_PI / segmentsPerEdge));
+                v.setX(vertex1.x() + i * (vertex2 - vertex1).x() / segmentsPerEdge);
+                v.setY(midpointY - (midpointY - vertex1.y()) * qCos(i * M_PI / segmentsPerEdge));
                 edgeVertices.append(v);
             }
         }
     };
     TerrainGenerator generator;
-    generator.buildVertices(20, QPoint(-10000, 0));
+    generator.buildVertices(50, QPoint(-10000, 0));
     for (int i = 1; i < generator.edgeVertices.size(); i++)
     {
         int edge = entities.add();

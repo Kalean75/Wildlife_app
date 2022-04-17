@@ -40,14 +40,16 @@ private:
     };
     struct DebugLine
     {
-        QPointF v1;
-        QPointF v2;
+        QPointF vertex1;
+        QPointF vertex2;
         QColor color;
     };
+    const int cullingMargin = 250;
+    const float debugAlphaScale = 0.5f;
+    const float cameraScaleStep = 0.25f;
+    const float minCameraScale = 0.5f;
+    const float maxCameraScale = 1.5f;
     float cameraScale = 1.f;
-    float cameraScaleStep = 0.25f;
-    float minCameraScale = 0.5f;
-    float maxCameraScale = 1.5f;
     bool debugging = false;
     QMap<QString, QImage> images;
     QVector<DebugPolygon> debugPolygons;
@@ -58,6 +60,8 @@ private:
     Entities::PhysicsBags physicsBags;
     Entities::RenderBags renderBags;
     QColor parseB2Color(b2Color);
+    bool isCulled(QPointF);
+    bool isCulled(QVector<QPointF>);
 };
 
 #endif // RENDERER_H

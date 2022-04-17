@@ -10,53 +10,53 @@ void Physics::update()
     world->Step(Entities::updateRate, velocityIterations, positionIterations);
     for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
     {
-        Entities::PhysicsBag *bag = loadUserData(body);
+        Entities::PhysicsBag *physicsBag = loadUserData(body);
         b2Vec2 bodyPosition = body->GetWorldCenter();
         if (body->GetType() == b2BodyType::b2_dynamicBody)
         {
-            bag->x = bodyPosition.x * pixelsPerMeter;
-            bag->y = bodyPosition.y * pixelsPerMeter;
+            physicsBag->x = bodyPosition.x * pixelsPerMeter;
+            physicsBag->y = bodyPosition.y * pixelsPerMeter;
         }
-        bag->angle = body->GetAngle();
+        physicsBag->angle = body->GetAngle();
     }
 }
 
-void Physics::addBody(Entities::PhysicsBag *bag)
+void Physics::addBody(Entities::PhysicsBag *physicsBag)
 {
-    b2Vec2 bodyPosition(bag->x / pixelsPerMeter, bag->y / pixelsPerMeter);
+    b2Vec2 bodyPosition(physicsBag->x / pixelsPerMeter, physicsBag->y / pixelsPerMeter);
     b2BodyDef bodyDef;
     b2FixtureDef bodyFixture;
     b2CircleShape circleShape;
     b2PolygonShape polygonShape;
     b2EdgeShape edgeShape;
-    bodyDef.type = bag->bodyType;
-    bodyDef.angle = bag->angle;
-    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(bag); // https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
-    bodyDef.linearDamping = bag->linearDamping;
-    bodyDef.angularDamping = bag->angularDamping;
-    bodyFixture.density = bag->density;
-    bodyFixture.friction = bag->friction;
-    bodyFixture.restitution = bag->restitution;
+    bodyDef.type = physicsBag->bodyType;
+    bodyDef.angle = physicsBag->angle;
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(physicsBag); // https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_loose_ends.html
+    bodyDef.linearDamping = physicsBag->linearDamping;
+    bodyDef.angularDamping = physicsBag->angularDamping;
+    bodyFixture.density = physicsBag->density;
+    bodyFixture.friction = physicsBag->friction;
+    bodyFixture.restitution = physicsBag->restitution;
     // Cases enclosed in a scope to allow bodyFixture.shape to be assigned
-    switch (bag->shapeType)
+    switch (physicsBag->shapeType)
     {
     case b2Shape::e_circle:
     {
-        circleShape.m_radius = bag->r / pixelsPerMeter;
+        circleShape.m_radius = physicsBag->r / pixelsPerMeter;
         circleShape.m_p = bodyPosition;
         bodyFixture.shape = &circleShape;
         break;
     }
     case b2Shape::e_polygon:
     {
-        polygonShape.SetAsBox((bag->w / pixelsPerMeter) / 2.f, (bag->h / pixelsPerMeter) / 2.f);
+        polygonShape.SetAsBox(physicsBag->w / pixelsPerMeter / 2.f, physicsBag->h / pixelsPerMeter / 2.f);
         bodyDef.position = bodyPosition;
         bodyFixture.shape = &polygonShape;
         break;
     }
     case b2Shape::e_edge:
     {
-        edgeShape.SetTwoSided(bodyPosition, b2Vec2(bag->x1 / pixelsPerMeter, bag->y1 / pixelsPerMeter));
+        edgeShape.SetTwoSided(bodyPosition, b2Vec2(physicsBag->x1 / pixelsPerMeter, physicsBag->y1 / pixelsPerMeter));
         bodyFixture.shape = &edgeShape;
         break;
     }
@@ -66,12 +66,12 @@ void Physics::addBody(Entities::PhysicsBag *bag)
     world->CreateBody(&bodyDef)->CreateFixture(&bodyFixture);
 }
 
-void Physics::removeBody(Entities::PhysicsBag *bag)
+void Physics::removeBody(Entities::PhysicsBag *physicsBag)
 {
-    if (!bag) return;
+    if (!physicsBag) return;
     for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
     {
-        if (loadUserData(body) == bag)
+        if (loadUserData(body) == physicsBag)
         {
             world->DestroyBody(body);
             return;

@@ -28,12 +28,15 @@ void Renderer::paintEvent(QPaintEvent *e)
             Entities::PhysicsBag *physicsBag = i.value();
             Entities::RenderBag *renderBag = renderBags[entity];
             QImage image = images.value(renderBag->imageName);
-            painter.save();
-            painter.setRenderHints(QPainter::SmoothPixmapTransform);
-            painter.translate(physicsBag->x, physicsBag->y);
-            painter.rotate(qRadiansToDegrees(physicsBag->angle));
-            painter.drawImage(-image.rect().center(), image);
-            painter.restore();
+            if (!isCulled(QPointF(physicsBag->x, physicsBag->y)))
+            {
+                painter.save();
+                painter.setRenderHints(QPainter::SmoothPixmapTransform);
+                painter.translate(physicsBag->x, physicsBag->y);
+                painter.rotate(qRadiansToDegrees(physicsBag->angle));
+                painter.drawImage(-image.rect().center(), image);
+                painter.restore();
+            }
         }
     }
     emit debugRenderQueued();
@@ -41,13 +44,16 @@ void Renderer::paintEvent(QPaintEvent *e)
     for (const DebugLine& line : debugLines)
     {
         QPointF edgeDepth(0, camera.height());
-        QVector<QPointF> vertices = {line.v1, line.v2, line.v2 + edgeDepth, line.v1 + edgeDepth};
-        painter.save();
-        painter.setRenderHints(QPainter::Antialiasing);
-        painter.setBrush(QBrush(Qt::lightGray));
-        painter.setPen(QPen(painter.brush(), 2.f)); // Increased stroke width to eliminate polygon gaps on lower zoom scales
-        painter.drawPolygon(vertices.data(), vertices.size());
-        painter.restore();
+        QVector<QPointF> vertices ={line.vertex1, line.vertex2, line.vertex2 + edgeDepth, line.vertex1 + edgeDepth};
+        if (!isCulled(vertices))
+        {
+            painter.save();
+            painter.setRenderHints(QPainter::Antialiasing);
+            painter.setBrush(QBrush(Qt::lightGray));
+            painter.setPen(QPen(painter.brush(), 2)); // Increased stroke width to eliminate polygon gaps on lower zoom scales
+            painter.drawPolygon(vertices.data(), vertices.size());
+            painter.restore();
+        }
     }
     if (debugging)
     {
@@ -59,7 +65,7 @@ void Renderer::paintEvent(QPaintEvent *e)
         for (const DebugLine& line : debugLines)
         {
             painter.setBrush(QBrush(line.color));
-            painter.drawLine(line.v1, line.v2);
+            painter.drawLine(line.vertex1, line.vertex2);
         }
     }
     debugPolygons.clear();
@@ -103,7 +109,26 @@ void Renderer::toggleDebugging(bool isDebugging)
 
 QColor Renderer::parseB2Color(b2Color color)
 {
-    return QColor::fromRgbF(color.r, color.g, color.b, color.a / 2.f);
+    return QColor::fromRgbF(color.r, color.g, color.b, color.a * debugAlphaScale);
+}
+
+bool Renderer::isCulled(QPointF vertex)
+{
+    // If entity size is not taken into account when culling, sprites will "pop in"
+    // Tried passing a QRect to the contains method, but it does not work as expected, so an added margin/buffer was used instead as a quick fix
+    QRectF viewport(-camera.center(), camera.size());
+    viewport.translate(-cullingMargin, -cullingMargin);
+    viewport.setSize(viewport.size() + QSize(cullingMargin, cullingMargin) * 2);
+    return !viewport.contains(vertex);
+}
+
+bool Renderer::isCulled(QVector<QPointF> vertices)
+{
+    for (const QPointF& vertex : vertices)
+    {
+        if (!isCulled(vertex)) return false;
+    }
+    return true;
 }
 
 // Box2D debug drawing functions inherited from b2Draw class
@@ -121,11 +146,11 @@ void Renderer::DrawPoint(const b2Vec2&, float, const b2Color&)
 {
 }
 
-void Renderer::DrawSegment(const b2Vec2& v1, const b2Vec2& v2, const b2Color& color)
+void Renderer::DrawSegment(const b2Vec2& vertex1, const b2Vec2& vertex2, const b2Color& color)
 {
     DebugLine line{};
-    line.v1 = QPointF(v1.x, v1.y) * Physics::pixelsPerMeter;
-    line.v2 = QPointF(v2.x, v2.y) * Physics::pixelsPerMeter;
+    line.vertex1 = QPointF(vertex1.x, vertex1.y) * Physics::pixelsPerMeter;
+    line.vertex2 = QPointF(vertex2.x, vertex2.y) * Physics::pixelsPerMeter;
     line.color = parseB2Color(color);
     debugLines.append(line);
 }
