@@ -50,7 +50,7 @@ void Renderer::paintEvent(QPaintEvent *e)
             painter.save();
             painter.setRenderHints(QPainter::Antialiasing);
             painter.setBrush(QBrush(Qt::lightGray));
-            painter.setPen(QPen(painter.brush(), 2)); // Increased stroke width to eliminate polygon gaps on lower zoom scales
+            painter.setPen(QPen(painter.brush(), 3)); // Increased stroke width to eliminate polygon gaps on lower zoom scales
             painter.drawPolygon(vertices.data(), vertices.size());
             painter.restore();
         }
