@@ -11,20 +11,17 @@ CONFIG += c++11
 SOURCES += \
     entities.cpp \
     main.cpp \
-    mainmenu.cpp \
     physics.cpp \
     renderer.cpp \
     view.cpp
 
 HEADERS += \
     entities.h \
-    mainmenu.h \
     physics.h \
     renderer.h \
     view.h
 
 FORMS += \
-    mainmenu.ui \
     view.ui
 
 # Default rules for deployment.
