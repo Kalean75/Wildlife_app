@@ -2,7 +2,6 @@
 #include "entities.h"
 #include "physics.h"
 #include "renderer.h"
-#include "mainmenu.h"
 
 #include <QApplication>
 
@@ -15,7 +14,6 @@ int main(int argc, char *argv[])
     Physics physics;
     Renderer renderer;
     View view(entities, physics, renderer);
-    MainMenu menu;
     view.show();
     return application.exec();
 }
