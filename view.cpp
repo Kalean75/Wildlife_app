@@ -14,9 +14,15 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
     connect(&entities, &Entities::physicsOutdated, &physics, &Physics::update);
     connect(&entities, &Entities::renderOutdated, &renderer, &Renderer::update);
+    connect(&entities, &Entities::quizOutdated, &quiz, &Quiz::update);
     // Renderer connections
     connect(&renderer, &Renderer::mousePressed, &physics, &Physics::queryPoint);
     connect(&renderer, &Renderer::debugRenderQueued, &physics, &Physics::debugRender);
+    // Physics connections
+    connect(&physics, &Physics::bodyQueried, &quiz, &Quiz::queueAnswer);
+    // Quiz connections
+    connect(&quiz, &Quiz::questionChanged, ui->quizLabel, &QLabel::setText);
+    connect(&quiz, &Quiz::quizFinished, ui->quizLabel, &QLabel::setText);
     // Interface connections
     connect(ui->debugRenderCheckBox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonPressed);
@@ -33,8 +39,11 @@ void View::startGameButtonPressed()
     deerPhysics->restitution = 0.5f;
     Entities::RenderBag *deerRender = new Entities::RenderBag;
     deerRender->imageName = "deer";
+    Entities::QuizBag *deerQuiz = new Entities::QuizBag;
+    deerQuiz->answerID = Quiz::Answer::Deer;
     entities.addPhysics(deer, deerPhysics);
     entities.addRender(deer, deerRender);
+    entities.addQuiz(deer, deerQuiz);
     // Terrain generation test
     struct TerrainGenerator
     {
@@ -95,6 +104,7 @@ void View::startGameButtonPressed()
         edgePhysics->bodyType = b2BodyType::b2_staticBody;
         entities.addPhysics(edge, edgePhysics);
     }
+    quiz.startQuiz(Quiz::Difficulty::Easy);
     ui->applicationStack->setCurrentWidget(ui->game);
 }
 

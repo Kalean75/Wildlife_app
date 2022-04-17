@@ -20,22 +20,28 @@ void Entities::update()
         emit physicsOutdated();
         accumulator -= updateMsDelta;
     }
+    emit quizOutdated(physicsBags, quizBags);
     emit renderOutdated(physicsBags, renderBags);
     QTimer::singleShot(updateMsDelta - accumulator, this, &Entities::update);
 }
 
-void Entities::addPhysics(int e, PhysicsBag *bag)
+void Entities::addPhysics(int e, PhysicsBag *physicsBag)
 {
     if (!physicsBags.contains(e))
     {
-        emit addedPhysics(bag);
-        physicsBags[e] = bag;
+        emit addedPhysics(physicsBag);
+        physicsBags[e] = physicsBag;
     }
 }
 
-void Entities::addRender(int e, RenderBag *bag)
+void Entities::addRender(int e, RenderBag *renderBag)
 {
-    if (!renderBags.contains(e)) renderBags[e] = bag;
+    if (!renderBags.contains(e)) renderBags[e] = renderBag;
+}
+
+void Entities::addQuiz(int e, QuizBag *quizBag)
+{
+    if (!quizBags.contains(e)) quizBags[e] = quizBag;
 }
 
 void Entities::remove(int e)

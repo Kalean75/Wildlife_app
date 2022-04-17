@@ -12,12 +12,14 @@ SOURCES += \
     entities.cpp \
     main.cpp \
     physics.cpp \
+    quiz.cpp \
     renderer.cpp \
     view.cpp
 
 HEADERS += \
     entities.h \
     physics.h \
+    quiz.h \
     renderer.h \
     view.h
 

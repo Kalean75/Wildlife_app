@@ -4,6 +4,7 @@
 #include "entities.h"
 #include "physics.h"
 #include "renderer.h"
+#include "quiz.h"
 
 #include <QMainWindow>
 
@@ -25,6 +26,7 @@ private:
     Entities entities;
     Physics physics;
     Renderer renderer;
+    Quiz quiz;
     Ui::View *ui;
 };
 

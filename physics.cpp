@@ -89,7 +89,11 @@ void Physics::queryPoint(QPoint point)
     // TODO: Maybe emit a signal to some steering system for body movement
     // TODO: Some sort of heuristic for determining an animal aside from just "is dynamic body"
     b2Body *body = worldQuery->body;
-    if (body && body->GetType() == b2_dynamicBody) body->SetLinearVelocity(b2Vec2(0, -5.f)); // Ad hoc "jump impulse on click" implementation
+    if (body && body->GetType() == b2_dynamicBody)
+    {
+        body->SetLinearVelocity(b2Vec2(0, -5.f)); // Ad hoc "jump impulse on click" implementation
+        emit bodyQueried(loadUserData(body));
+    }
 }
 
 void Physics::setDebugRenderer(b2Draw& renderer)

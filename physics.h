@@ -23,6 +23,9 @@ public slots:
     void queryPoint(QPoint);
     void debugRender();
 
+signals:
+    void bodyQueried(Entities::PhysicsBag*);
+
 private:
     struct WorldQuery : b2QueryCallback
     {

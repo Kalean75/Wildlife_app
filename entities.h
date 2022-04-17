@@ -38,12 +38,18 @@ public:
     {
         QString imageName = "";
     };
+    struct QuizBag
+    {
+        int answerID = 0;
+    };
     typedef QMap<int, PhysicsBag*> PhysicsBags;
     typedef QMap<int, RenderBag*> RenderBags;
+    typedef QMap<int, QuizBag*> QuizBags;
     static constexpr float updateRate = 1.f / 165.f;
     int add();
     void addPhysics(int, PhysicsBag*);
     void addRender(int, RenderBag*);
+    void addQuiz(int, QuizBag*);
     void remove(int);
     void removeAll();
 
@@ -52,6 +58,7 @@ signals:
     void removedPhysics(Entities::PhysicsBag*);
     void physicsOutdated();
     void renderOutdated(Entities::PhysicsBags, Entities::RenderBags);
+    void quizOutdated(Entities::PhysicsBags, Entities::QuizBags);
 
 private:
     const int updateMsDelta = updateRate * 1000;
@@ -60,6 +67,7 @@ private:
     QElapsedTimer *frameTimer;
     PhysicsBags physicsBags;
     RenderBags renderBags;
+    QuizBags quizBags;
     void update();
 };
 
