@@ -46,10 +46,10 @@ private:
     };
     const int cullingMargin = 250;
     const float debugAlphaScale = 0.5f;
-    const float cameraScaleStep = 0.25f;
-    const float minCameraScale = 0.5f;
+    const float cameraScaleStep = 0.2f;
+    const float minCameraScale = 0.3f;
     const float maxCameraScale = 1.5f;
-    float cameraScale = 1.f;
+    float cameraScale = 0.7f;
     bool debugging = false;
     QMap<QString, QImage> images;
     QVector<DebugPolygon> debugPolygons;
