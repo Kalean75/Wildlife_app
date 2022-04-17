@@ -2,19 +2,13 @@
 #include "ui_view.h"
 
 #include <QRandomGenerator>
+#include <regex>
 
-View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
+View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
-    //set up main menu
-    ui->stackedWidget->setCurrentIndex(0);
-    connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGame);
-}
-
-void View::startGame(){
-    ui->renderGameLayout->addWidget(&renderer);
+    ui->renderLayout->addWidget(&renderer);
     physics.setDebugRenderer(renderer);
-    ui->stackedWidget->setCurrentIndex(1);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
@@ -24,7 +18,12 @@ void View::startGame(){
     connect(&renderer, &Renderer::mousePressed, &physics, &Physics::queryPoint);
     connect(&renderer, &Renderer::debugRenderQueued, &physics, &Physics::debugRender);
     // Interface connections
-    connect(ui->debugRenderCheckbox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
+    connect(ui->debugRenderCheckBox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
+    connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonPressed);
+}
+
+void View::startGameButtonPressed()
+{
     // Entity initialization
     int deer = entities.add();
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag;
@@ -96,7 +95,7 @@ void View::startGame(){
         edgePhysics->bodyType = b2BodyType::b2_staticBody;
         entities.addPhysics(edge, edgePhysics);
     }
-
+    ui->applicationStack->setCurrentWidget(ui->game);
 }
 
 View::~View()

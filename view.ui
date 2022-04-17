@@ -43,83 +43,31 @@
      <number>0</number>
     </property>
     <item>
-     <layout class="QVBoxLayout" name="controlLayout">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QGroupBox" name="controlBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+     <widget class="QStackedWidget" name="applicationStack">
+      <widget class="QWidget" name="mainMenu">
+       <layout class="QVBoxLayout" name="mainMenuLayout">
+        <property name="spacing">
+         <number>10</number>
         </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>56</height>
-         </size>
+        <property name="leftMargin">
+         <number>250</number>
         </property>
-        <property name="title">
-         <string/>
+        <property name="topMargin">
+         <number>250</number>
         </property>
-        <property name="flat">
-         <bool>false</bool>
+        <property name="rightMargin">
+         <number>250</number>
         </property>
-        <widget class="QCheckBox" name="debugRenderCheckbox">
-         <property name="geometry">
-          <rect>
-           <x>18</x>
-           <y>16</y>
-           <width>121</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Box2D debug view</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="cameraControlLabel">
-         <property name="geometry">
-          <rect>
-           <x>170</x>
-           <y>0</y>
-           <width>161</width>
-           <height>51</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Click and drag to pan camera
-Scroll to zoom camera</string>
-         </property>
-        </widget>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QVBoxLayout" name="renderLayout">
-      <item>
-       <widget class="QStackedWidget" name="stackedWidget">
-        <widget class="QWidget" name="MainMenu">
-         <widget class="QLabel" name="label">
-          <property name="geometry">
-           <rect>
-            <x>600</x>
-            <y>240</y>
-            <width>281</width>
-            <height>51</height>
-           </rect>
+        <property name="bottomMargin">
+         <number>250</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="titleLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
           <property name="font">
            <font>
@@ -127,55 +75,136 @@ Scroll to zoom camera</string>
            </font>
           </property>
           <property name="text">
-           <string>WildLife Quiz</string>
+           <string>Wildlife Education App</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QPushButton" name="beastiaryButton">
-          <property name="geometry">
-           <rect>
-            <x>600</x>
-            <y>430</y>
-            <width>261</width>
-            <height>61</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Beastiary</string>
-          </property>
-         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="startGameButton">
-          <property name="geometry">
-           <rect>
-            <x>600</x>
-            <y>340</y>
-            <width>261</width>
-            <height>61</height>
-           </rect>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>75</height>
+           </size>
           </property>
           <property name="text">
            <string>Start Game</string>
           </property>
          </widget>
-        </widget>
-        <widget class="QWidget" name="GameView">
-         <widget class="QWidget" name="verticalLayoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>1441</width>
-            <height>811</height>
-           </rect>
+        </item>
+        <item>
+         <widget class="QPushButton" name="beastiaryButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <layout class="QVBoxLayout" name="renderGameLayout"/>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>75</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Beastiary</string>
+          </property>
          </widget>
-        </widget>
-       </widget>
-      </item>
-     </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="game">
+       <layout class="QVBoxLayout" name="gameLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="controlLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="controlGroupBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>56</height>
+             </size>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>false</bool>
+            </property>
+            <widget class="QCheckBox" name="debugRenderCheckBox">
+             <property name="geometry">
+              <rect>
+               <x>18</x>
+               <y>16</y>
+               <width>121</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Box2D debug view</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="cameraControlLabel">
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>0</y>
+               <width>161</width>
+               <height>51</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Click and drag to pan camera
+Scroll to zoom camera</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="renderLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>

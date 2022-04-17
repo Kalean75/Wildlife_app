@@ -15,15 +15,17 @@ class View : public QMainWindow
 {
     Q_OBJECT
 public:
-    View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *parent = nullptr);
+    View(QWidget *parent = nullptr);
     ~View();
 
+public slots:
+    void startGameButtonPressed();
+
 private:
-    Ui::View *ui;
-    void startGame();
-    Renderer renderer;
-    Physics physics;
     Entities entities;
+    Physics physics;
+    Renderer renderer;
+    Ui::View *ui;
 };
 
 #endif // VIEW_H
