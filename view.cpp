@@ -6,8 +6,15 @@
 View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
-    ui->renderLayout->addWidget(&renderer);
+    //set up main menu
+    ui->stackedWidget->setCurrentIndex(0);
+    connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGame);
+}
+
+void View::startGame(){
+    ui->renderGameLayout->addWidget(&renderer);
     physics.setDebugRenderer(renderer);
+    ui->stackedWidget->setCurrentIndex(1);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
@@ -89,6 +96,7 @@ View::View(Entities& entities, Physics& physics, Renderer& renderer, QWidget *pa
         edgePhysics->bodyType = b2BodyType::b2_staticBody;
         entities.addPhysics(edge, edgePhysics);
     }
+
 }
 
 View::~View()

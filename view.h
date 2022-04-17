@@ -20,6 +20,10 @@ public:
 
 private:
     Ui::View *ui;
+    void startGame();
+    Renderer renderer;
+    Physics physics;
+    Entities entities;
 };
 
 #endif // VIEW_H
