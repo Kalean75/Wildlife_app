@@ -41,9 +41,9 @@ private:
     {
         {Easy, easyQuizPool}
     };
+    Entities::PhysicsBag *answer = nullptr;
     QVector<Question> questions;
     QVector<Answer> answers;
-    Entities::PhysicsBag *answer;
     bool quizInProgress();
     QString quizQuestionLabel();
 };

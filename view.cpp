@@ -2,7 +2,6 @@
 #include "ui_view.h"
 
 #include <QRandomGenerator>
-#include <regex>
 
 View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
