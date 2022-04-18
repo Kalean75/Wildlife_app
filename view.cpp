@@ -121,6 +121,40 @@ void View::startGameButtonPressed()
         edgePhysics->bodyType = b2BodyType::b2_staticBody;
         entities.addPhysics(edge, edgePhysics);
     }
+    for (int i = 0; i < 100; i++)
+    {
+        int bush = entities.add();
+        int bushIndex = qMax(1, QRandomGenerator::global()->generate() % generator.edgeVertices.size());
+        int mirrorX = qCos(QRandomGenerator::global()->generate() % 2 * M_PI);
+        QPointF bushVertex = generator.edgeVertices.at(bushIndex);
+        QPointF previousBushVertex = generator.edgeVertices.at(bushIndex - 1);
+        Entities::PhysicsBag *bushPhysics = new Entities::PhysicsBag;
+        Entities::RenderBag *bushRender = new Entities::RenderBag;
+        if (i % 2 == 0)
+        {
+            int tree = entities.add();
+            QPointF treeVertex = generator.edgeVertices.at(QRandomGenerator::global()->generate() % generator.edgeVertices.size());
+            Entities::PhysicsBag *treePhysics = new Entities::PhysicsBag;
+            Entities::RenderBag *treeRender = new Entities::RenderBag;
+            treePhysics->x = treeVertex.x();
+            treePhysics->y = treeVertex.y() - 250.f;
+            treePhysics->isSensor = true;
+            treePhysics->bodyType = b2BodyType::b2_staticBody;
+            treeRender->imageName = "tree";
+            treeRender->mirrorX = mirrorX;
+            entities.addPhysics(tree, treePhysics);
+            entities.addRender(tree, treeRender);
+        }
+        bushPhysics->x = bushVertex.x();
+        bushPhysics->y = bushVertex.y() - 45.f;
+        bushPhysics->angle = qAtan2(bushVertex.y() - previousBushVertex.y(), bushVertex.x() - previousBushVertex.x());;
+        bushPhysics->isSensor = true;
+        bushPhysics->bodyType = b2BodyType::b2_staticBody;
+        bushRender->imageName = "bush";
+        bushRender->mirrorX = mirrorX;
+        entities.addPhysics(bush, bushPhysics);
+        entities.addRender(bush, bushRender);
+    }
     quiz.startQuiz(Quiz::Difficulty::Easy);
     ui->applicationStack->setCurrentWidget(ui->game);
 }

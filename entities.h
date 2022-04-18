@@ -38,6 +38,8 @@ public:
     struct RenderBag
     {
         QString imageName = "";
+        int mirrorX = 1;
+        int mirrorY = 1;
     };
     struct QuizBag
     {
