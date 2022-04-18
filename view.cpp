@@ -7,8 +7,6 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
     ui->renderLayout->addWidget(&renderer);
-    // main menu to load first
-    ui->applicationStack->setCurrentWidget(ui->mainMenu);
     physics.setDebugRenderer(renderer);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
