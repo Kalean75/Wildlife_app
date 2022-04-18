@@ -4,5 +4,7 @@
         <file alias="rabbit">res/rabbit.png</file>
         <file alias="squirrel">res/squirrel.png</file>
         <file alias="turtle">res/turtle.png</file>
+        <file alias="cloud1">res/cloud1.png</file>
+        <file alias="cloud2">res/cloud2.png</file>
     </qresource>
 </RCC>

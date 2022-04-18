@@ -30,15 +30,29 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 void View::startGameButtonPressed()
 {
     // Entity initialization
+    // TODO: Move all these hard-coded values to a spawner system, or at least some sort of centralized, well-defined location
+    for (int i = -25; i < 25; i++)
+    {
+        int cloud = entities.add();
+        Entities::PhysicsBag *cloudPhysics = new Entities::PhysicsBag;
+        Entities::RenderBag *cloudRender = new Entities::RenderBag;
+        cloudPhysics->x = i * 1024.f;
+        cloudPhysics->y = -400.f;
+        cloudPhysics->isSensor = true;
+        cloudPhysics->bodyType = b2BodyType::b2_staticBody;
+        cloudRender->imageName = QString("cloud%1").arg(QString::number(QRandomGenerator::global()->generate() % 2 + 1));
+        entities.addPhysics(cloud, cloudPhysics);
+        entities.addRender(cloud, cloudRender);
+    }
     int deer = entities.add();
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag;
+    Entities::RenderBag *deerRender = new Entities::RenderBag;
+    Entities::QuizBag *deerQuiz = new Entities::QuizBag;
     deerPhysics->y = -500.f;
     deerPhysics->w = 256.f;
     deerPhysics->h = 256.f;
     deerPhysics->restitution = 0.5f;
-    Entities::RenderBag *deerRender = new Entities::RenderBag;
     deerRender->imageName = "deer";
-    Entities::QuizBag *deerQuiz = new Entities::QuizBag;
     deerQuiz->answerID = Quiz::Answer::Deer;
     entities.addPhysics(deer, deerPhysics);
     entities.addRender(deer, deerRender);
@@ -92,7 +106,7 @@ void View::startGameButtonPressed()
     for (int i = 1; i < generator.edgeVertices.size(); i++)
     {
         int edge = entities.add();
-        Entities::PhysicsBag *edgePhysics = new Entities::PhysicsBag{};
+        Entities::PhysicsBag *edgePhysics = new Entities::PhysicsBag;
         QPointF v1 = generator.edgeVertices.at(i - 1);
         QPointF v2 = generator.edgeVertices.at(i);
         edgePhysics->x = v1.x();

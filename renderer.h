@@ -33,6 +33,14 @@ signals:
     void debugRenderQueued();
 
 private:
+    enum ThemeKey
+    {
+        BG,
+        Terrain,
+        Grass1,
+        Grass2,
+        Grass3
+    };
     struct DebugPolygon
     {
         QVector<QPointF> vertices;
@@ -44,13 +52,23 @@ private:
         QPointF vertex2;
         QColor color;
     };
-    const int cullingMargin = 250;
+    const int cullingMargin = 500;
+    const int grassWidth = 175;
+    const int grassBorderWidth = 25;
     const float debugAlphaScale = 0.5f;
     const float cameraScaleStep = 0.2f;
     const float minCameraScale = 0.3f;
-    const float maxCameraScale = 1.5f;
-    float cameraScale = 0.7f;
+    const float maxCameraScale = 1.3f;
+    float cameraScale = 0.5f;
     bool debugging = false;
+    QMap<ThemeKey, QColor> theme =
+    {
+        {BG, QColor("#cfeffc")},
+        {Terrain, QColor("#d26b4c")},
+        {Grass1, QColor("#c26246")},
+        {Grass2, QColor("#f78d3b")},
+        {Grass3, QColor("#ff913c")},
+    };
     QMap<QString, QImage> images;
     QVector<DebugPolygon> debugPolygons;
     QVector<DebugLine> debugLines;

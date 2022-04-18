@@ -31,6 +31,7 @@ public:
         float restitution = 0.f;
         float linearDamping = 0.f;
         float angularDamping = 0.5f;
+        bool isSensor = false;
         b2Shape::Type shapeType = b2Shape::e_polygon;
         b2BodyType bodyType = b2_dynamicBody;
     };

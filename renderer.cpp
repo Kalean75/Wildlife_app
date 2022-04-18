@@ -3,29 +3,34 @@
 
 #include <QPainter>
 #include <QPaintEvent>
+#include <QPainterPath>
 #include <QDir>
 
 Renderer::Renderer(QWidget *parent) : QWidget(parent)
 {
     SetFlags(b2Draw::e_shapeBit); // https://box2d.org/documentation/classb2_draw.html
+    setAttribute(Qt::WA_StyledBackground, true);
+    setStyleSheet(QString("background-color: %1;").arg(theme.value(BG).name()));
     foreach(const QString& imageName, QDir(":").entryList() )
     {
-        images.insert(imageName, QImage(":/" + imageName));
+        images.insert(imageName, QImage(":/" + imageName).convertToFormat(QImage::Format_ARGB32_Premultiplied));
     }
 }
 
 void Renderer::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
+    QPainterPath polygon;
+    QPainterPath stroke;
     camera.setSize(e->rect().size() / cameraScale);
     painter.scale(cameraScale, cameraScale);
     painter.translate(camera.center());
     for (Entities::PhysicsBags::iterator i = physicsBags.begin(); i != physicsBags.end(); i++)
     {
         int entity = i.key();
+        Entities::PhysicsBag *physicsBag = i.value();
         if (renderBags.contains(entity))
         {
-            Entities::PhysicsBag *physicsBag = i.value();
             Entities::RenderBag *renderBag = renderBags[entity];
             QImage image = images.value(renderBag->imageName);
             if (!isCulled(QPointF(physicsBag->x, physicsBag->y)))
@@ -38,25 +43,42 @@ void Renderer::paintEvent(QPaintEvent *e)
                 painter.restore();
             }
         }
-    }
-    emit debugRenderQueued();
-    // Edge vertex data is already collected for the debug view, so it makes more sense to reuse that instead of recreating it from the physics bag
-    for (const DebugLine& line : debugLines)
-    {
-        QPointF edgeDepth(0, camera.height());
-        QVector<QPointF> vertices ={line.vertex1, line.vertex2, line.vertex2 + edgeDepth, line.vertex1 + edgeDepth};
-        if (!isCulled(vertices))
+        // May be possible to move render vertex data directly into the render bag, eliminating the need for this extra case
+        else if (physicsBag->shapeType == b2Shape::e_edge)
         {
-            painter.save();
-            painter.setRenderHints(QPainter::Antialiasing);
-            painter.setBrush(QBrush(Qt::lightGray));
-            painter.setPen(QPen(painter.brush(), 3)); // Increased stroke width to eliminate polygon gaps on lower zoom scales
-            painter.drawPolygon(vertices.data(), vertices.size());
-            painter.restore();
+            QVector<QPointF> vertices =
+            {
+                QPointF(physicsBag->x, physicsBag->y),
+                QPointF(physicsBag->x1, physicsBag->y1),
+                QPointF(physicsBag->x1, physicsBag->y1 + camera.height()),
+                QPointF(physicsBag->x, physicsBag->y + camera.height())
+            };
+            if (!isCulled(vertices))
+            {
+                QPainterPath subPolygon(vertices[0]);
+                for (const QPointF& vertex : vertices)
+                {
+                    subPolygon.lineTo(vertex);
+                }
+                polygon = polygon.united(subPolygon);
+                if (stroke.isEmpty()) stroke.moveTo(vertices[0]);
+                stroke.lineTo(vertices[1]);
+            }
         }
     }
+    QPainterPathStroker stroker;
+    painter.setRenderHints(QPainter::Antialiasing);
+    painter.fillPath(polygon, QBrush(theme.value(Terrain)));
+    stroker.setWidth((grassWidth + grassBorderWidth) * 2);
+    painter.fillPath(stroker.createStroke(stroke).intersected(polygon), QBrush(theme.value(Grass1)));
+    stroker.setWidth(grassWidth * 2);
+    painter.fillPath(stroker.createStroke(stroke).intersected(polygon), QBrush(theme.value(Grass2)));
+    stroker.setWidth(grassBorderWidth * 2);
+    painter.fillPath(stroker.createStroke(stroke).intersected(polygon), QBrush(theme.value(Grass3)));
     if (debugging)
     {
+        emit debugRenderQueued();
+        painter.setRenderHints(QPainter::Antialiasing, false);
         for (const DebugPolygon& polygon : debugPolygons)
         {
             painter.setBrush(QBrush(polygon.color));
@@ -85,7 +107,6 @@ void Renderer::mouseMoveEvent(QMouseEvent *e)
     {
         camera.translate((e->pos() - cameraPanningBuffer) / cameraScale);
         cameraPanningBuffer = e->pos();
-        repaint(); // Purely for smoothness while panning; remove if performance becomes an issue
     }
 }
 
