@@ -478,7 +478,7 @@
             <widget class="QCheckBox" name="debugRenderCheckBox">
              <property name="geometry">
               <rect>
-               <x>18</x>
+               <x>162</x>
                <y>16</y>
                <width>121</width>
                <height>22</height>
@@ -491,8 +491,8 @@
             <widget class="QLabel" name="cameraControlLabel">
              <property name="geometry">
               <rect>
-               <x>170</x>
-               <y>0</y>
+               <x>300</x>
+               <y>1</y>
                <width>161</width>
                <height>51</height>
               </rect>
@@ -505,9 +505,9 @@ Scroll to zoom camera</string>
             <widget class="QLabel" name="quizLabel">
              <property name="geometry">
               <rect>
-               <x>370</x>
+               <x>520</x>
                <y>0</y>
-               <width>611</width>
+               <width>901</width>
                <height>51</height>
               </rect>
              </property>
@@ -518,10 +518,10 @@ Scroll to zoom camera</string>
             <widget class="QPushButton" name="gameBackButton">
              <property name="geometry">
               <rect>
-               <x>1139</x>
-               <y>13</y>
-               <width>161</width>
-               <height>41</height>
+               <x>12</x>
+               <y>12</y>
+               <width>131</width>
+               <height>31</height>
               </rect>
              </property>
              <property name="text">

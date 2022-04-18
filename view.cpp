@@ -7,6 +7,7 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
     ui->renderLayout->addWidget(&renderer);
+    ui->applicationStack->setCurrentWidget(ui->mainMenu); // Main menu to load first
     physics.setDebugRenderer(renderer);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
@@ -123,11 +124,13 @@ void View::startGameButtonPressed()
     quiz.startQuiz(Quiz::Difficulty::Easy);
     ui->applicationStack->setCurrentWidget(ui->game);
 }
+
 void View::beastiaryButtonPressed()
 {
-    //open bestiary
+    // Open bestiary
     ui->applicationStack->setCurrentWidget(ui->bestiary);
 }
+
 void View::backButtonPressed()
 {
     ui->applicationStack->setCurrentWidget(ui->mainMenu);

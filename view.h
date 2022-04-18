@@ -21,8 +21,6 @@ public:
 
 public slots:
     void startGameButtonPressed();
-
-private slots:
     void beastiaryButtonPressed();
     void backButtonPressed();
 
