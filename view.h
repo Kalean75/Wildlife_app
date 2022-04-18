@@ -22,6 +22,10 @@ public:
 public slots:
     void startGameButtonPressed();
 
+private slots:
+    void beastiaryButtonPressed();
+    void backButtonPressed();
+
 private:
     Entities entities;
     Physics physics;

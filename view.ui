@@ -44,6 +44,9 @@
     </property>
     <item>
      <widget class="QStackedWidget" name="applicationStack">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QVBoxLayout" name="mainMenuLayout">
         <property name="spacing">
@@ -121,6 +124,314 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="bestiary">
+       <widget class="QLabel" name="DeerImage">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>80</y>
+          <width>131</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="res.qrc">:/res/deersilhouette.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="NextPage">
+        <property name="geometry">
+         <rect>
+          <x>1320</x>
+          <y>820</y>
+          <width>111</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Next Page</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>70</y>
+          <width>401</width>
+          <height>301</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="deerName">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>40</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>?????</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="Line" name="line">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>60</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="deerName_2">
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>50</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>?????</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_2">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>80</y>
+          <width>401</width>
+          <height>301</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="Line" name="line_2">
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>70</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="squirrelImage">
+        <property name="geometry">
+         <rect>
+          <x>810</x>
+          <y>90</y>
+          <width>131</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="res.qrc">:/res/squirrelsilhouette.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="rabbitImage">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>470</y>
+          <width>131</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="res.qrc">:/res/rabbitsilhouette.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="RabbitName">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>430</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>?????</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="Line" name="line_3">
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>460</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_3">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>470</y>
+          <width>401</width>
+          <height>261</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_4">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>460</y>
+          <width>401</width>
+          <height>271</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="Line" name="line_4">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>450</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="turtleImage">
+        <property name="geometry">
+         <rect>
+          <x>810</x>
+          <y>480</y>
+          <width>131</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="res.qrc">:/res/turtlesilhouette.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="turtleName">
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>440</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>?????</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="beastiaryBackButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>101</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Back To Menu</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="game">
        <layout class="QVBoxLayout" name="gameLayout">
@@ -204,6 +515,19 @@ Scroll to zoom camera</string>
               <string/>
              </property>
             </widget>
+            <widget class="QPushButton" name="gameBackButton">
+             <property name="geometry">
+              <rect>
+               <x>1139</x>
+               <y>13</y>
+               <width>161</width>
+               <height>41</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Back to Menu</string>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -235,6 +559,8 @@ Scroll to zoom camera</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>
