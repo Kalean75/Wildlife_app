@@ -111,3 +111,10 @@ View::~View()
 {
     delete ui;
 }
+
+void View::on_beastiaryButton_pressed()
+{
+    //open bestiary
+    ui->applicationStack->setCurrentWidget(ui->bestiary);
+}
+

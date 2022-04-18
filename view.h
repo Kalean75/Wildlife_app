@@ -22,6 +22,9 @@ public:
 public slots:
     void startGameButtonPressed();
 
+private slots:
+    void on_beastiaryButton_pressed();
+
 private:
     Entities entities;
     Physics physics;
