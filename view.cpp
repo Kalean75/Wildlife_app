@@ -7,6 +7,8 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
     ui->renderLayout->addWidget(&renderer);
+    // main menu to load first
+    ui->applicationStack->setCurrentWidget(ui->mainMenu);
     physics.setDebugRenderer(renderer);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
@@ -25,6 +27,9 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     // Interface connections
     connect(ui->debugRenderCheckBox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonPressed);
+    connect(ui->beastiaryButton, &QPushButton::clicked, this, &View::beastiaryButtonPressed);
+    connect(ui->beastiaryBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
+    connect(ui->gameBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
 }
 
 void View::startGameButtonPressed()
@@ -106,15 +111,20 @@ void View::startGameButtonPressed()
     quiz.startQuiz(Quiz::Difficulty::Easy);
     ui->applicationStack->setCurrentWidget(ui->game);
 }
+void View::beastiaryButtonPressed()
+{
+    //open bestiary
+    ui->applicationStack->setCurrentWidget(ui->bestiary);
+}
+void View::backButtonPressed()
+{
+    ui->applicationStack->setCurrentWidget(ui->mainMenu);
+}
 
 View::~View()
 {
     delete ui;
 }
 
-void View::on_beastiaryButton_pressed()
-{
-    //open bestiary
-    ui->applicationStack->setCurrentWidget(ui->bestiary);
-}
+
 

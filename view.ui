@@ -45,7 +45,7 @@
     <item>
      <widget class="QStackedWidget" name="applicationStack">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QVBoxLayout" name="mainMenuLayout">
@@ -419,6 +419,19 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QPushButton" name="beastiaryBackButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>101</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Back To Menu</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="game">
        <layout class="QVBoxLayout" name="gameLayout">
@@ -500,6 +513,19 @@ Scroll to zoom camera</string>
              </property>
              <property name="text">
               <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="gameBackButton">
+             <property name="geometry">
+              <rect>
+               <x>1139</x>
+               <y>13</y>
+               <width>161</width>
+               <height>41</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Back to Menu</string>
              </property>
             </widget>
            </widget>

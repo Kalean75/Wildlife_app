@@ -23,7 +23,8 @@ public slots:
     void startGameButtonPressed();
 
 private slots:
-    void on_beastiaryButton_pressed();
+    void beastiaryButtonPressed();
+    void backButtonPressed();
 
 private:
     Entities entities;
