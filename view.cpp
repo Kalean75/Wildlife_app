@@ -127,12 +127,12 @@ void View::startGameButtonPressed()
 
 void View::beastiaryButtonPressed()
 {
-    // Open bestiary
-    ui->applicationStack->setCurrentWidget(ui->bestiary);
+    ui->applicationStack->setCurrentWidget(ui->bestiary); // Open bestiary
 }
 
 void View::backButtonPressed()
 {
+    entities.removeAll();
     ui->applicationStack->setCurrentWidget(ui->mainMenu);
 }
 

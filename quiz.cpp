@@ -9,6 +9,8 @@ Quiz::Quiz(QObject *parent) : QObject(parent)
 void Quiz::startQuiz(Difficulty difficulty)
 {
     QVector<Question> pool = quizPoolMap.value(difficulty);
+    questions.clear();
+    answers.clear();
     for (int i = 0; i < qMin(pool.size(), questionCount); i++)
     {
         questions.append(pool.takeAt(QRandomGenerator::global()->generate() % pool.size()));
@@ -35,8 +37,6 @@ void Quiz::update(Entities::PhysicsBags physicsBags, Entities::QuizBags quizBags
             if (answers.at(i) == questions.at(i).second) correctAnswers++;
         }
         emit quizFinished(QString("Quiz grade: %1%").arg(QString::number(correctAnswers / questions.size() * 100)));
-        questions.clear();
-        answers.clear();
     }
     answer = nullptr;
 }
