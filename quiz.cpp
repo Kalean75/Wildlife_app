@@ -1,7 +1,5 @@
 #include "quiz.h"
 
-#include <QRandomGenerator>
-
 Quiz::Quiz(QObject *parent) : QObject(parent)
 {
 }
@@ -13,7 +11,7 @@ void Quiz::startQuiz(Difficulty difficulty)
     answers.clear();
     for (int i = 0; i < qMin(pool.size(), questionCount); i++)
     {
-        questions.append(pool.takeAt(QRandomGenerator::global()->generate() % pool.size()));
+        questions.append(pool.takeAt(random(0, static_cast<int>(pool.size() - 1))));
     }
     emit questionChanged(quizQuestionLabel());
 }

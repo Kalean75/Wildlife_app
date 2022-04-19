@@ -1,8 +1,6 @@
 #include "view.h"
 #include "ui_view.h"
 
-#include <QRandomGenerator>
-
 View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
@@ -44,7 +42,7 @@ void View::startGameButtonPressed()
         cloudPhysics->y = -400.f;
         cloudPhysics->isSensor = true;
         cloudPhysics->bodyType = b2BodyType::b2_staticBody;
-        cloudRender->imageName = QString("cloud%1").arg(QString::number(QRandomGenerator::global()->generate() % 2 + 1));
+        cloudRender->imageName = QString("cloud%1").arg(QString::number(random(1, 2)));
         entities.addPhysics(cloud, cloudPhysics);
         entities.addRender(cloud, cloudRender);
     }
@@ -79,11 +77,11 @@ void View::startGameButtonPressed()
             for (int i = 0; i < vertexCount; i++)
             {
                 vertices.append(vertex);
-                vertex.rx() += QRandomGenerator::global()->generate() % rangeDx + minDx;
+                vertex.rx() += random(minDx, rangeDx);
                 int testY;
                 do
                 {
-                    testY = vertex.y() + (QRandomGenerator::global()->generate() % rangeDy + minDy) * qCos(M_PI * (i % 2));
+                    testY = vertex.y() + random(minDy, rangeDy) * std::cos(M_PI * (i % 2));
                 }
                 while (qAbs(testY) - (qAbs(startingVertex.y()) - rangeY / 2) > rangeY);
                 vertex.setY(testY);
@@ -99,7 +97,7 @@ void View::startGameButtonPressed()
             {
                 QPointF vertex;
                 vertex.setX(vertex1.x() + i * (vertex2 - vertex1).x() / segmentsPerEdge);
-                vertex.setY(midpointY - (midpointY - vertex1.y()) * qCos(i * M_PI / segmentsPerEdge));
+                vertex.setY(midpointY - (midpointY - vertex1.y()) * std::cos(i * M_PI / segmentsPerEdge));
                 edgeVertices.append(vertex);
             }
         }
@@ -123,8 +121,8 @@ void View::startGameButtonPressed()
     for (int i = 0; i < 100; i++)
     {
         int bush = entities.add();
-        int bushIndex = qMax(1, QRandomGenerator::global()->generate() % generator.edgeVertices.size());
-        int mirrorX = qCos(QRandomGenerator::global()->generate() % 2 * M_PI);
+        int bushIndex = qMax(1, random(0, static_cast<int>(generator.edgeVertices.size() - 1)));
+        int mirrorX = qCos(random(0, 1) * M_PI);
         QPointF bushVertex = generator.edgeVertices.at(bushIndex);
         QPointF previousBushVertex = generator.edgeVertices.at(bushIndex - 1);
         Entities::PhysicsBag *bushPhysics = new Entities::PhysicsBag;
@@ -132,7 +130,7 @@ void View::startGameButtonPressed()
         if (i % 2 == 0)
         {
             int tree = entities.add();
-            QPointF treeVertex = generator.edgeVertices.at(QRandomGenerator::global()->generate() % generator.edgeVertices.size());
+            QPointF treeVertex = generator.edgeVertices.at(random(0, static_cast<int>(generator.edgeVertices.size() - 1)));
             Entities::PhysicsBag *treePhysics = new Entities::PhysicsBag;
             Entities::RenderBag *treeRender = new Entities::RenderBag;
             treePhysics->x = treeVertex.x();
@@ -146,7 +144,7 @@ void View::startGameButtonPressed()
         }
         bushPhysics->x = bushVertex.x();
         bushPhysics->y = bushVertex.y() - 45.f;
-        bushPhysics->angle = qAtan2(bushVertex.y() - previousBushVertex.y(), bushVertex.x() - previousBushVertex.x());;
+        bushPhysics->angle = std::atan2(bushVertex.y() - previousBushVertex.y(), bushVertex.x() - previousBushVertex.x());;
         bushPhysics->isSensor = true;
         bushPhysics->bodyType = b2BodyType::b2_staticBody;
         bushRender->imageName = "bush";
@@ -173,6 +171,3 @@ View::~View()
 {
     delete ui;
 }
-
-
-

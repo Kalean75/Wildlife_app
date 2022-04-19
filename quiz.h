@@ -4,6 +4,7 @@
 #include "entities.h"
 
 #include <QObject>
+#include <QVector>
 
 class Quiz : public QObject
 {

@@ -7,6 +7,17 @@
 #include <QMap>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <random>
+
+// Utility function for uniform random put here for convenience
+template<typename T>
+T random(T min, T max)
+{
+    std::random_device seed;
+    std::mt19937 generator(seed());
+    std::uniform_int_distribution<T> dist(min, max);
+    return dist(generator);
+}
 
 class Entities : public QObject
 {
