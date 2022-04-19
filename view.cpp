@@ -122,7 +122,7 @@ void View::startGameButtonPressed()
     {
         int bush = entities.add();
         int bushIndex = qMax(1, random(0, static_cast<int>(generator.edgeVertices.size() - 1)));
-        int mirrorX = qCos(random(0, 1) * M_PI);
+        int mirrorX = std::cos(random(0, 1) * M_PI);
         QPointF bushVertex = generator.edgeVertices.at(bushIndex);
         QPointF previousBushVertex = generator.edgeVertices.at(bushIndex - 1);
         Entities::PhysicsBag *bushPhysics = new Entities::PhysicsBag;
