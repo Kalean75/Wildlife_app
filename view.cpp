@@ -5,7 +5,7 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
     ui->renderLayout->addWidget(&renderer);
-    ui->applicationStack->setCurrentWidget(ui->mainMenu); // Main menu to load first
+    ui->applicationStack->setCurrentWidget(ui->mainMenu); // Ensure main menu is always presented first regardless of designer state
     physics.setDebugRenderer(renderer);
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
@@ -59,57 +59,14 @@ void View::startGameButtonPressed()
     entities.addPhysics(deer, deerPhysics);
     entities.addRender(deer, deerRender);
     entities.addQuiz(deer, deerQuiz);
-    // Terrain generation test
-    struct TerrainGenerator
-    {
-        QVector<QPoint> vertices;
-        QVector<QPointF> edgeVertices; // Vertex could be sampled from here to spawn an entity at a random point
-        // Parameters can be adjusted for "noisiness"
-        int segmentsPerEdge = 10;
-        int rangeY = 500;
-        int minDx = 750;
-        int minDy = 200;
-        int rangeDx = 1500;
-        int rangeDy = 300;
-        void buildVertices(int vertexCount, QPoint startingVertex = QPoint())
-        {
-            QPoint vertex(startingVertex);
-            for (int i = 0; i < vertexCount; i++)
-            {
-                vertices.append(vertex);
-                vertex.rx() += random(minDx, rangeDx);
-                int testY;
-                do
-                {
-                    testY = vertex.y() + random(minDy, rangeDy) * std::cos(M_PI * (i % 2));
-                }
-                while (qAbs(testY) - (qAbs(startingVertex.y()) - rangeY / 2) > rangeY);
-                vertex.setY(testY);
-                if (i > 0) buildCurveSegments(i - 1, i);
-            }
-        }
-        void buildCurveSegments(int vertexIndex1, int vertexIndex2)
-        {
-            QPointF vertex1 = vertices.at(vertexIndex1);
-            QPointF vertex2 = vertices.at(vertexIndex2);
-            float midpointY = (vertex1 + vertex2).y() / 2.f;
-            for (int i = 0; i <= segmentsPerEdge; i++)
-            {
-                QPointF vertex;
-                vertex.setX(vertex1.x() + i * (vertex2 - vertex1).x() / segmentsPerEdge);
-                vertex.setY(midpointY - (midpointY - vertex1.y()) * std::cos(i * M_PI / segmentsPerEdge));
-                edgeVertices.append(vertex);
-            }
-        }
-    };
-    TerrainGenerator generator;
-    generator.buildVertices(50, QPoint(-10000, 200));
-    for (int i = 1; i < generator.edgeVertices.size(); i++)
+    // Terrain initialization
+    Terrain::Vertices vertices = terrain.buildVertices(50, QPoint(-10000, 200));
+    for (int i = 1; i < vertices.size(); i++)
     {
         int edge = entities.add();
         Entities::PhysicsBag *edgePhysics = new Entities::PhysicsBag;
-        QPointF v1 = generator.edgeVertices.at(i - 1);
-        QPointF v2 = generator.edgeVertices.at(i);
+        QPointF v1 = vertices.at(i - 1);
+        QPointF v2 = vertices.at(i);
         edgePhysics->x = v1.x();
         edgePhysics->y = v1.y();
         edgePhysics->x1 = v2.x();
@@ -121,16 +78,15 @@ void View::startGameButtonPressed()
     for (int i = 0; i < 100; i++)
     {
         int bush = entities.add();
-        int bushIndex = qMax(1, random(0, static_cast<int>(generator.edgeVertices.size() - 1)));
-        int mirrorX = std::cos(random(0, 1) * M_PI);
-        QPointF bushVertex = generator.edgeVertices.at(bushIndex);
-        QPointF previousBushVertex = generator.edgeVertices.at(bushIndex - 1);
+        int bushIndex = qMax(1, random(0, static_cast<int>(vertices.size() - 1)));
+        QPointF bushVertex = vertices.at(bushIndex);
+        QPointF previousBushVertex = vertices.at(bushIndex - 1);
         Entities::PhysicsBag *bushPhysics = new Entities::PhysicsBag;
         Entities::RenderBag *bushRender = new Entities::RenderBag;
         if (i % 2 == 0)
         {
             int tree = entities.add();
-            QPointF treeVertex = generator.edgeVertices.at(random(0, static_cast<int>(generator.edgeVertices.size() - 1)));
+            QPointF treeVertex = vertices.at(random(0, static_cast<int>(vertices.size() - 1)));
             Entities::PhysicsBag *treePhysics = new Entities::PhysicsBag;
             Entities::RenderBag *treeRender = new Entities::RenderBag;
             treePhysics->x = treeVertex.x();
@@ -138,7 +94,7 @@ void View::startGameButtonPressed()
             treePhysics->isSensor = true;
             treePhysics->bodyType = b2BodyType::b2_staticBody;
             treeRender->imageName = "tree";
-            treeRender->mirrorX = mirrorX;
+            treeRender->mirrorX = std::cos(random(0, 1) * M_PI);
             entities.addPhysics(tree, treePhysics);
             entities.addRender(tree, treeRender);
         }
@@ -148,11 +104,13 @@ void View::startGameButtonPressed()
         bushPhysics->isSensor = true;
         bushPhysics->bodyType = b2BodyType::b2_staticBody;
         bushRender->imageName = "bush";
-        bushRender->mirrorX = mirrorX;
+        bushRender->mirrorX = std::cos(random(0, 1) * M_PI);
         entities.addPhysics(bush, bushPhysics);
         entities.addRender(bush, bushRender);
     }
+    // Quiz initialization
     quiz.startQuiz(Quiz::Difficulty::Easy);
+    // Switch to game state
     ui->applicationStack->setCurrentWidget(ui->game);
 }
 

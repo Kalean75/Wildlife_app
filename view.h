@@ -5,6 +5,7 @@
 #include "physics.h"
 #include "renderer.h"
 #include "quiz.h"
+#include "terrain.h"
 
 #include <QMainWindow>
 
@@ -29,6 +30,7 @@ private:
     Physics physics;
     Renderer renderer;
     Quiz quiz;
+    Terrain terrain;
     Ui::View *ui;
 };
 

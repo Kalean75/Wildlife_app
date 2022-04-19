@@ -14,6 +14,7 @@ SOURCES += \
     physics.cpp \
     quiz.cpp \
     renderer.cpp \
+    terrain.cpp \
     view.cpp
 
 HEADERS += \
@@ -21,6 +22,7 @@ HEADERS += \
     physics.h \
     quiz.h \
     renderer.h \
+    terrain.h \
     view.h
 
 FORMS += \
