@@ -35,7 +35,7 @@ void View::startGameButtonPressed()
 {
     // Entity initialization
     // TODO: Move all these hard-coded values to a spawner system, or at least some sort of centralized, well-defined location
-    for (int i = -25; i < 25; i++)
+    for (int i = -10; i < 60; i++)
     {
         int cloud = entities.add();
         Entities::PhysicsBag *cloudPhysics = new Entities::PhysicsBag;
@@ -54,7 +54,7 @@ void View::startGameButtonPressed()
     Entities::QuizBag *deerQuiz = new Entities::QuizBag;
     deerPhysics->y = -500.f;
     deerPhysics->w = 256.f;
-    deerPhysics->h = 256.f;
+    deerPhysics->h = 240.f;
     deerPhysics->restitution = 0.5f;
     deerRender->imageName = "deer";
     deerQuiz->answerID = Quiz::Answer::Deer;
@@ -95,18 +95,17 @@ void View::startGameButtonPressed()
             QPointF vertex1 = vertices.at(vertexIndex1);
             QPointF vertex2 = vertices.at(vertexIndex2);
             float midpointY = (vertex1 + vertex2).y() / 2.f;
-            edgeVertices.append(vertex1);
-            for (int i = 0; i < segmentsPerEdge; i++)
+            for (int i = 0; i <= segmentsPerEdge; i++)
             {
-                QPointF v;
-                v.setX(vertex1.x() + i * (vertex2 - vertex1).x() / segmentsPerEdge);
-                v.setY(midpointY - (midpointY - vertex1.y()) * qCos(i * M_PI / segmentsPerEdge));
-                edgeVertices.append(v);
+                QPointF vertex;
+                vertex.setX(vertex1.x() + i * (vertex2 - vertex1).x() / segmentsPerEdge);
+                vertex.setY(midpointY - (midpointY - vertex1.y()) * qCos(i * M_PI / segmentsPerEdge));
+                edgeVertices.append(vertex);
             }
         }
     };
     TerrainGenerator generator;
-    generator.buildVertices(50, QPoint(-10000, 0));
+    generator.buildVertices(50, QPoint(-10000, 200));
     for (int i = 1; i < generator.edgeVertices.size(); i++)
     {
         int edge = entities.add();

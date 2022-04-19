@@ -11,24 +11,27 @@ void Physics::update()
     for (b2Body *body = world->GetBodyList(); body; body = body->GetNext())
     {
         Entities::PhysicsBag *physicsBag = loadUserData(body);
-        b2Vec2 bodyPosition = body->GetWorldCenter();
-        b2Shape *bodyShape = body->GetFixtureList()->GetShape();
-        switch (bodyShape->GetType())
+        if (body->GetType() == b2BodyType::b2_dynamicBody)
         {
-        case b2Shape::e_edge:
-        {
-            b2EdgeShape *edge = (b2EdgeShape*) bodyShape;
-            b2Vec2 vertex1 = edge->m_vertex1;
-            b2Vec2 vertex2 = edge->m_vertex2;
-            physicsBag->x = vertex1.x * pixelsPerMeter;
-            physicsBag->y = vertex1.y * pixelsPerMeter;
-            physicsBag->x1 = vertex2.x * pixelsPerMeter;
-            physicsBag->y1 = vertex2.y * pixelsPerMeter;
-            break;
-        }
-        default:
-            physicsBag->x = bodyPosition.x * pixelsPerMeter;
-            physicsBag->y = bodyPosition.y * pixelsPerMeter;
+            b2Shape *bodyShape = body->GetFixtureList()->GetShape();
+            switch (bodyShape->GetType())
+            {
+            case b2Shape::e_edge:
+            {
+                b2EdgeShape *edge = static_cast<b2EdgeShape*>(bodyShape);
+                b2Vec2 vertex1 = edge->m_vertex1;
+                b2Vec2 vertex2 = edge->m_vertex2;
+                physicsBag->x = vertex1.x * pixelsPerMeter;
+                physicsBag->y = vertex1.y * pixelsPerMeter;
+                physicsBag->x1 = vertex2.x * pixelsPerMeter;
+                physicsBag->y1 = vertex2.y * pixelsPerMeter;
+                break;
+            }
+            default:
+                b2Vec2 bodyPosition = body->GetWorldCenter();
+                physicsBag->x = bodyPosition.x * pixelsPerMeter;
+                physicsBag->y = bodyPosition.y * pixelsPerMeter;
+            }
         }
         physicsBag->angle = body->GetAngle();
     }

@@ -53,8 +53,8 @@ private:
         QColor color;
     };
     const int cullingMargin = 500;
-    const int grassWidth = 175;
-    const int grassBorderWidth = 25;
+    const int grassWidth = 170;
+    const int grassBorderWidth = 18;
     const float debugAlphaScale = 0.5f;
     const float cameraScaleStep = 0.2f;
     const float minCameraScale = 0.3f;
@@ -79,7 +79,6 @@ private:
     Entities::RenderBags renderBags;
     QColor parseB2Color(b2Color);
     bool isCulled(QPointF);
-    bool isCulled(QVector<QPointF>);
 };
 
 #endif // RENDERER_H

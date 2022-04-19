@@ -13,15 +13,14 @@ Renderer::Renderer(QWidget *parent) : QWidget(parent)
     setStyleSheet(QString("background-color: %1;").arg(theme.value(BG).name()));
     foreach(const QString& imageName, QDir(":").entryList() )
     {
-        images.insert(imageName, QImage(":/" + imageName).convertToFormat(QImage::Format_ARGB32_Premultiplied));
+        images.insert(imageName, QImage(":/" + imageName).convertToFormat(QImage::Format_ARGB32_Premultiplied)); // Premultiplied supposed to be more performant
     }
 }
 
 void Renderer::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    QPainterPath polygon;
-    QPainterPath stroke;
+    QPainterPath path;
     camera.setSize(e->rect().size() / cameraScale);
     painter.scale(cameraScale, cameraScale);
     painter.translate(camera.center());
@@ -47,35 +46,28 @@ void Renderer::paintEvent(QPaintEvent *e)
         // May be possible to move render vertex data directly into the render bag, eliminating the need for this extra case
         else if (physicsBag->shapeType == b2Shape::e_edge)
         {
-            QVector<QPointF> vertices =
+            QPointF vertex1(physicsBag->x, physicsBag->y);
+            QPointF vertex2(physicsBag->x1, physicsBag->y1);
+            if (!isCulled(vertex1) && !isCulled(vertex2))
             {
-                QPointF(physicsBag->x, physicsBag->y),
-                QPointF(physicsBag->x1, physicsBag->y1),
-                QPointF(physicsBag->x1, physicsBag->y1 + camera.height()),
-                QPointF(physicsBag->x, physicsBag->y + camera.height())
-            };
-            if (!isCulled(vertices))
-            {
-                QPainterPath subPolygon(vertices[0]);
-                for (const QPointF& vertex : vertices)
-                {
-                    subPolygon.lineTo(vertex);
-                }
-                polygon = polygon.united(subPolygon);
-                if (stroke.isEmpty()) stroke.moveTo(vertices[0]);
-                stroke.lineTo(vertices[1]);
+                if (path.isEmpty()) path.moveTo(vertex1);
+                path.lineTo(vertex2);
             }
         }
     }
-    QPainterPathStroker stroker;
+    QPainterPath polygon(path);
+    if (!path.isEmpty())
+    {
+        QPointF expand(0, camera.height());
+        polygon.lineTo(path.currentPosition() + expand);
+        polygon.lineTo(path.elementAt(0) + expand);
+        polygon.closeSubpath();
+    }
     painter.setRenderHints(QPainter::Antialiasing);
     painter.fillPath(polygon, QBrush(theme.value(Terrain)));
-    stroker.setWidth((grassWidth + grassBorderWidth) * 2);
-    painter.fillPath(stroker.createStroke(stroke).intersected(polygon), QBrush(theme.value(Grass1)));
-    stroker.setWidth(grassWidth * 2);
-    painter.fillPath(stroker.createStroke(stroke).intersected(polygon), QBrush(theme.value(Grass2)));
-    stroker.setWidth(grassBorderWidth * 2);
-    painter.fillPath(stroker.createStroke(stroke).intersected(polygon), QBrush(theme.value(Grass3)));
+    painter.fillPath(polygon.subtracted(polygon.translated(0, grassWidth + grassBorderWidth)), theme.value(Grass1));
+    painter.fillPath(polygon.subtracted(polygon.translated(0, grassWidth)), theme.value(Grass2));
+    painter.fillPath(polygon.subtracted(polygon.translated(0, grassBorderWidth)), theme.value(Grass3));
     if (debugging)
     {
         emit debugRenderQueued();
@@ -142,15 +134,6 @@ bool Renderer::isCulled(QPointF vertex)
     viewport.translate(-cullingMargin, -cullingMargin);
     viewport.setSize(viewport.size() + QSize(cullingMargin, cullingMargin) * 2);
     return !viewport.contains(vertex);
-}
-
-bool Renderer::isCulled(QVector<QPointF> vertices)
-{
-    for (const QPointF& vertex : vertices)
-    {
-        if (!isCulled(vertex)) return false;
-    }
-    return true;
 }
 
 // Box2D debug drawing functions inherited from b2Draw class
