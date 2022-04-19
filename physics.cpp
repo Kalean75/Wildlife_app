@@ -1,7 +1,7 @@
 #include "entities.h"
 #include "physics.h"
 
-Physics::Physics(QObject *parent) : QObject(parent), world(new b2World(gravity)), worldQuery(new WorldQuery{})
+Physics::Physics(QObject *parent) : QObject(parent), world(new b2World(gravity)), worldQuery(new WorldQuery)
 {
 }
 

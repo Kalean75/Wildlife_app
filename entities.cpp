@@ -48,11 +48,14 @@ void Entities::remove(int e)
 {
     Entities::PhysicsBag *physicsBag = physicsBags.value(e, nullptr);
     Entities::RenderBag *renderBag = renderBags.value(e, nullptr);
+    Entities::QuizBag *quizBag = quizBags.value(e, nullptr);
     emit removedPhysics(physicsBag);
     delete physicsBag;
     delete renderBag;
+    delete quizBag;
     physicsBags.remove(e);
     renderBags.remove(e);
+    quizBags.remove(e);
 }
 
 void Entities::removeAll()
