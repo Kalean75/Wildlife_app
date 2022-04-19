@@ -39,7 +39,7 @@ void View::startGameButtonPressed()
         Entities::PhysicsBag *cloudPhysics = new Entities::PhysicsBag;
         Entities::RenderBag *cloudRender = new Entities::RenderBag;
         cloudPhysics->x = i * 1024.f;
-        cloudPhysics->y = -400.f;
+        cloudPhysics->y = -300.f;
         cloudPhysics->isSensor = true;
         cloudPhysics->bodyType = b2BodyType::b2_staticBody;
         cloudRender->imageName = QString("cloud%1").arg(QString::number(random(1, 2)));

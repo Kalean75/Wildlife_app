@@ -45,7 +45,7 @@
     <item>
      <widget class="QStackedWidget" name="applicationStack">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QVBoxLayout" name="mainMenuLayout">
@@ -466,7 +466,7 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>56</height>
+              <height>66</height>
              </size>
             </property>
             <property name="title">
@@ -475,59 +475,140 @@
             <property name="flat">
              <bool>false</bool>
             </property>
-            <widget class="QCheckBox" name="debugRenderCheckBox">
-             <property name="geometry">
-              <rect>
-               <x>162</x>
-               <y>16</y>
-               <width>121</width>
-               <height>22</height>
-              </rect>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>11</number>
              </property>
-             <property name="text">
-              <string>Box2D debug view</string>
+             <property name="leftMargin">
+              <number>18</number>
              </property>
-            </widget>
-            <widget class="QLabel" name="cameraControlLabel">
-             <property name="geometry">
-              <rect>
-               <x>300</x>
-               <y>1</y>
-               <width>161</width>
-               <height>51</height>
-              </rect>
+             <property name="rightMargin">
+              <number>18</number>
              </property>
-             <property name="text">
-              <string>Click and drag to pan camera
+             <item>
+              <widget class="QCheckBox" name="debugRenderCheckBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Box2D debug view</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="cameraControlLabel">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Click and drag to pan camera
 Scroll to zoom camera</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="quizLabel">
-             <property name="geometry">
-              <rect>
-               <x>520</x>
-               <y>0</y>
-               <width>901</width>
-               <height>51</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="gameBackButton">
-             <property name="geometry">
-              <rect>
-               <x>12</x>
-               <y>12</y>
-               <width>131</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Back to Menu</string>
-             </property>
-            </widget>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_5">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="quizLabel">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+               <property name="indent">
+                <number>2</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="gameBackButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Back to Menu</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
