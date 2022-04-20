@@ -7,6 +7,8 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     ui->renderLayout->addWidget(&renderer);
     ui->applicationStack->setCurrentWidget(ui->mainMenu); // Ensure main menu is always presented first regardless of designer state
     physics.setDebugRenderer(renderer);
+    //set help box shown to false
+    helpBoxShown = false;
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
@@ -27,6 +29,7 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     connect(ui->beastiaryButton, &QPushButton::clicked, this, &View::beastiaryButtonPressed);
     connect(ui->beastiaryBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->gameBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
+    connect(ui->helpButton, &QPushButton::clicked, this, &View::helpButtonPressed);
 }
 
 void View::startGameButtonPressed()
@@ -112,6 +115,11 @@ void View::startGameButtonPressed()
     quiz.startQuiz(Quiz::Difficulty::Easy);
     // Switch to game state
     ui->applicationStack->setCurrentWidget(ui->game);
+    //show the help box at the beginning of each game.
+    if(helpBoxShown == false){
+        showHelpBox();
+        helpBoxShown = true;
+    }
 }
 
 void View::beastiaryButtonPressed()
@@ -123,6 +131,14 @@ void View::backButtonPressed()
 {
     entities.removeAll();
     ui->applicationStack->setCurrentWidget(ui->mainMenu);
+}
+void View::helpButtonPressed(){
+    showHelpBox();
+}
+void View::showHelpBox(){
+    helpBox.setText("How to Play");
+    helpBox.setInformativeText("Wild Life Education is a quiz based app designed to help users Identify animals in their natural environment. The quiz is played as follows: A question or a fun fact will appear at the top of the screen. You will need to find the animal that statement is describing and click on the animal. The quicker you find and click on the animal the more points you get!");
+    helpBox.exec();
 }
 
 View::~View()

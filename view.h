@@ -6,6 +6,7 @@
 #include "renderer.h"
 #include "quiz.h"
 #include "terrain.h"
+#include <QMessageBox>
 
 #include <QMainWindow>
 
@@ -24,6 +25,7 @@ public slots:
     void startGameButtonPressed();
     void beastiaryButtonPressed();
     void backButtonPressed();
+    void helpButtonPressed();
 
 private:
     Entities entities;
@@ -31,6 +33,9 @@ private:
     Renderer renderer;
     Quiz quiz;
     Terrain terrain;
+    QMessageBox helpBox;
+    void showHelpBox();
+    bool helpBoxShown;
     Ui::View *ui;
 };
 
