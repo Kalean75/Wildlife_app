@@ -38,7 +38,7 @@ void Renderer::paintEvent(QPaintEvent *e)
                 painter.setRenderHints(QPainter::SmoothPixmapTransform);
                 painter.translate(physicsBag->x, physicsBag->y);
                 painter.rotate(physicsBag->angle * 180 / M_PI);
-                painter.scale(renderBag->mirrorX, renderBag->mirrorY);
+                painter.scale(renderBag->scaleX, renderBag->scaleY);
                 painter.drawImage(-image.rect().center(), image);
                 painter.restore();
             }

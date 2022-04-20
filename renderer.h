@@ -11,6 +11,7 @@ class Renderer : public QWidget, public b2Draw
     Q_OBJECT
 public:
     explicit Renderer(QWidget *parent = nullptr);
+    static const int maxRGB = 255;
     void paintEvent(QPaintEvent*);
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);

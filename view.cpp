@@ -1,6 +1,9 @@
 #include "view.h"
 #include "ui_view.h"
 
+#include <QPainter>
+#include <QRegularExpression>
+
 View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
 {
     ui->setupUi(this);
@@ -9,6 +12,20 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     helpBox.setWindowTitle("How to Play");
     helpBox.setText(helpBoxText);
     physics.setDebugRenderer(renderer);
+    // Load all bestiary silhouettes from their corresponding animal images
+    QRegularExpression imageNameTest("(.+)Image$");
+    for (QLabel* label : ui->bestiary->findChildren<QLabel*>(imageNameTest))
+    {
+        QSize labelSize(label->width(), label->height());
+        QPixmap labelPixmap(labelSize);
+        QPainter painter;
+        labelPixmap.fill(QColor(0, 0, 0, Renderer::maxRGB - 1)); // Fill color cannot be fully opaque or the composition blending does not work
+        painter.begin(&labelPixmap);
+        painter.setCompositionMode(QPainter::CompositionMode_DestinationIn);
+        painter.drawPixmap(0, 0, QPixmap::fromImage(QImage(":/" + imageNameTest.match(label->objectName()).captured(1)).scaled(labelSize)));
+        label->setPixmap(labelPixmap);
+        painter.end();
+    }
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
@@ -97,7 +114,7 @@ void View::startGameButtonPressed()
             treePhysics->isSensor = true;
             treePhysics->bodyType = b2BodyType::b2_staticBody;
             treeRender->imageName = "tree";
-            treeRender->mirrorX = std::cos(random(0, 1) * M_PI);
+            treeRender->scaleX = std::cos(random(0, 1) * M_PI);
             entities.addPhysics(tree, treePhysics);
             entities.addRender(tree, treeRender);
         }
@@ -107,7 +124,7 @@ void View::startGameButtonPressed()
         bushPhysics->isSensor = true;
         bushPhysics->bodyType = b2BodyType::b2_staticBody;
         bushRender->imageName = "bush";
-        bushRender->mirrorX = std::cos(random(0, 1) * M_PI);
+        bushRender->scaleX = std::cos(random(0, 1) * M_PI);
         entities.addPhysics(bush, bushPhysics);
         entities.addRender(bush, bushRender);
     }

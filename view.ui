@@ -48,7 +48,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QVBoxLayout" name="mainMenuLayout">
@@ -129,7 +129,7 @@
        </layout>
       </widget>
       <widget class="QWidget" name="bestiary">
-       <widget class="QLabel" name="DeerImage">
+       <widget class="QLabel" name="deerImage">
         <property name="geometry">
          <rect>
           <x>180</x>
@@ -143,9 +143,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="res.qrc">:/deersilhouette</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -338,9 +335,6 @@ p, li { white-space: pre-wrap; }
         <property name="text">
          <string/>
         </property>
-        <property name="pixmap">
-         <pixmap resource="res.qrc">:/squirrelsilhouette</pixmap>
-        </property>
         <property name="scaledContents">
          <bool>true</bool>
         </property>
@@ -362,9 +356,6 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="res.qrc">:/rabbitsilhouette</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -517,9 +508,6 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="res.qrc">:/turtlesilhouette</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -900,8 +888,6 @@ Scroll to zoom camera</string>
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -1,16 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file alias="deer">res/deer.png</file>
+        <file alias="cloud1">res/cloud1.png</file>
+        <file alias="cloud2">res/cloud2.png</file>
+        <file alias="tree">res/tree.png</file>
+        <file alias="bush">res/bush.png</file>
         <file alias="rabbit">res/rabbit.png</file>
         <file alias="squirrel">res/squirrel.png</file>
         <file alias="turtle">res/turtle.png</file>
-        <file alias="cloud1">res/cloud1.png</file>
-        <file alias="cloud2">res/cloud2.png</file>
-        <file alias="deersilhouette">res/deersilhouette.png</file>
-        <file alias="rabbitsilhouette">res/rabbitsilhouette.png</file>
-        <file alias="squirrelsilhouette">res/squirrelsilhouette.png</file>
-        <file alias="turtlesilhouette">res/turtlesilhouette.png</file>
-        <file alias="tree">res/tree.png</file>
-        <file alias="bush">res/bush.png</file>
     </qresource>
 </RCC>

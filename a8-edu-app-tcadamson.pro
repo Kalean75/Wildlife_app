@@ -43,9 +43,3 @@ else:unix|win32-g++: PRE_TARGETDEPS += $$PWD/lib/box2d/build/bin/libbox2d.a
 
 RESOURCES += \
     res.qrc
-
-DISTFILES += \
-    res/deersilhouette.png \
-    res/rabbitsilhouette.png \
-    res/squirrelsilhouette.png \
-    res/turtlesilhouette.png
