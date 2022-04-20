@@ -44,8 +44,11 @@
     </property>
     <item>
      <widget class="QStackedWidget" name="applicationStack">
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QVBoxLayout" name="mainMenuLayout">
@@ -164,9 +167,9 @@
          <string>Next Page</string>
         </property>
        </widget>
-       <widget class="QTextEdit" name="textEdit">
+       <widget class="QTextEdit" name="deerInfo">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -176,18 +179,43 @@
           <height>301</height>
          </rect>
         </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-c2ff94f9-7fff-a245-e4d3-4cbe053c4389&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;he common deer is any of the 43 species of hoofed mammalian ruminants in the order Artiodactyla, notable for having two large and two small hooves on each foot and also for having antlers in the males of most species. Deer are native to all continents except Australia and Antarctica. One species, the reindeer (also known as caribou), has been domesticated. Reindeer also carry the distinction of being the only species of deer where both sexes carry antlers. All deer lack a gallbladder, and females carry four mammary glands. Specialized herbivores and highly selective feeders, deer prefer plant food characterized by low fiber and high protein content, such as herbs, lichens, foliage and fruits. The bias of deer toward high-quality food has its origin in the very high demands of antler growth in terms of minerals, protein and energy.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
        </widget>
        <widget class="QLabel" name="deerName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>40</y>
+          <y>20</y>
           <width>141</width>
           <height>31</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>?????</string>
+         <string>Deer</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -202,32 +230,51 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <property name="autoFillBackground">
          <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
-       <widget class="QLabel" name="deerName_2">
+       <widget class="QLabel" name="squirrelName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>980</x>
-          <y>50</y>
+          <y>30</y>
           <width>141</width>
           <height>31</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>?????</string>
+         <string>Squirrel</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QTextEdit" name="textEdit_2">
+       <widget class="QTextEdit" name="squirrelInfo">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -236,6 +283,20 @@
           <width>401</width>
           <height>301</height>
          </rect>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-ac83340c-7fff-032f-947f-a0a0952a9f30&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;quirrels are small to medium sized rabbits of the order rodentia and the family sciuridae, squirrels are common in much of the world, being indigenous to North and South America, Europe and Asia, Africa, as well as being introduced to Australia by humans.The closest related animals to squirrels are the mountain beaver, and the dormice.The name squirrel comes from the greek word skiouros, meaning “shadow-tailed” which refers to the their bushy tail. Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly, squirrels have four to five toed feet, and typically have longer hind limbs than forelimbs, which assists with climbined.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
        <widget class="Line" name="line_2">
@@ -247,8 +308,16 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <property name="autoFillBackground">
          <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -305,16 +374,27 @@
         </property>
        </widget>
        <widget class="QLabel" name="RabbitName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>350</x>
-          <y>430</y>
+          <y>410</y>
           <width>141</width>
           <height>31</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>?????</string>
+         <string>Rabbit</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -329,16 +409,24 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <property name="autoFillBackground">
          <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
-       <widget class="QTextEdit" name="textEdit_3">
+       <widget class="QTextEdit" name="turtleInfo">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -348,10 +436,25 @@
           <height>261</height>
          </rect>
         </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-b4186b46-7fff-7814-56eb-81bce9d4c5ba&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;urtles belong to an order of reptiles known as Testudines, which are characterized by a hard shell which is developed mainly from their ribs. Modern turtles are divided into two major groups, side-necked and hidden-neck, which are distinguished by the way their heads retract.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;Turtles are found on the majority of continents, as well as the ocean. Since they breathe air and do not lay their eggs underwater, they are amphibians. Turtles are closely related to crocodilians(Alligators, crocodiles, etc) as well as birds. Turtle species can range in size from around 9 feet, and 1,000 lbs for the largest, to around 4 inches and 6.1 ounces for the smallest species.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
        </widget>
-       <widget class="QTextEdit" name="textEdit_4">
+       <widget class="QTextEdit" name="rabbitInfo">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -360,6 +463,20 @@
           <width>401</width>
           <height>271</height>
          </rect>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-f12f92c6-7fff-3c3a-7a46-b8c20e53ea45&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;R&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;abbits, also known as bunnies or bunny rabbits, are small mammals in the family Leporidae (which also contains the hares). There 205 breeds of domesticated rabbits and 13 wild species. Male rabbits are called bucks and female does (similar to deer). Rabbits were first domesticated in ancient Rome. Rabbit feet are often considered signs of good luck across many cultures. The max speed of a rabbit is 25 mph and can jump up to 3 feet. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
        <widget class="Line" name="line_4">
@@ -371,8 +488,16 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <property name="autoFillBackground">
          <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -404,16 +529,27 @@
         </property>
        </widget>
        <widget class="QLabel" name="turtleName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>980</x>
-          <y>440</y>
+          <y>420</y>
           <width>141</width>
           <height>31</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>?????</string>
+         <string>Turtle</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -430,6 +566,102 @@
         </property>
         <property name="text">
          <string>Back To Menu</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_6">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>730</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_7">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>370</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_8">
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>730</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_9">
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>380</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="lineWidth">
+         <number>5</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </widget>
