@@ -71,7 +71,7 @@ void Renderer::paintEvent(QPaintEvent *e)
     if (debugging)
     {
         emit debugRenderQueued();
-        painter.setRenderHints(QPainter::Antialiasing, false);
+        painter.setPen(QPen(Qt::black, debugStrokeWidth));
         for (const DebugPolygon& polygon : debugPolygons)
         {
             painter.setBrush(QBrush(polygon.color));
@@ -82,9 +82,16 @@ void Renderer::paintEvent(QPaintEvent *e)
             painter.setBrush(QBrush(line.color));
             painter.drawLine(line.vertex1, line.vertex2);
         }
+        for (const DebugCircle& circle : debugCircles)
+        {
+            painter.setBrush(QBrush(circle.color));
+            painter.drawEllipse(circle.center, circle.radius, circle.radius);
+            painter.drawLine(circle.center, circle.center + circle.axis);
+        }
     }
     debugPolygons.clear();
     debugLines.clear();
+    debugCircles.clear();
     painter.end();
 }
 
@@ -153,7 +160,7 @@ void Renderer::DrawPoint(const b2Vec2&, float, const b2Color&)
 
 void Renderer::DrawSegment(const b2Vec2& vertex1, const b2Vec2& vertex2, const b2Color& color)
 {
-    DebugLine line{};
+    DebugLine line;
     line.vertex1 = QPointF(vertex1.x, vertex1.y) * Physics::pixelsPerMeter;
     line.vertex2 = QPointF(vertex2.x, vertex2.y) * Physics::pixelsPerMeter;
     line.color = parseB2Color(color);
@@ -174,6 +181,12 @@ void Renderer::DrawSolidPolygon(const b2Vec2 *vertices, int32 vertexCount, const
     debugPolygons.append(DebugPolygon{copiedVertices, parseB2Color(color)});
 }
 
-void Renderer::DrawSolidCircle(const b2Vec2&, float, const b2Vec2&, const b2Color&)
+void Renderer::DrawSolidCircle(const b2Vec2& center, float radius, const b2Vec2& axis, const b2Color& color)
 {
+    DebugCircle circle;
+    circle.center = QPointF(center.x, center.y)  * Physics::pixelsPerMeter;
+    circle.axis = QPointF(axis.x, axis.y)  * Physics::pixelsPerMeter;
+    circle.color = parseB2Color(color);
+    circle.radius = radius * Physics::pixelsPerMeter;
+    debugCircles.append(circle);
 }

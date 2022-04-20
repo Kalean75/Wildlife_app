@@ -53,9 +53,17 @@ private:
         QPointF vertex2;
         QColor color;
     };
+    struct DebugCircle
+    {
+        QPointF center;
+        QPointF axis;
+        QColor color;
+        float radius;
+    };
     const int cullingMargin = 500;
     const int grassWidth = 170;
     const int grassBorderWidth = 18;
+    const int debugStrokeWidth = 10;
     const float debugAlphaScale = 0.5f;
     const float cameraScaleStep = 0.2f;
     const float minCameraScale = 0.3f;
@@ -73,6 +81,7 @@ private:
     QMap<QString, QImage> images;
     QVector<DebugPolygon> debugPolygons;
     QVector<DebugLine> debugLines;
+    QVector<DebugCircle> debugCircles;
     QRect camera;
     QPoint cameraPanningBuffer;
     // Cannot signal to the paintEvent directly, so bag collections are stored as members for use in paintEvent
