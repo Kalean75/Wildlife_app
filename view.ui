@@ -48,7 +48,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QVBoxLayout" name="mainMenuLayout">
@@ -295,7 +295,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-ac83340c-7fff-032f-947f-a0a0952a9f30&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;quirrels are small to medium sized rabbits of the order rodentia and the family sciuridae, squirrels are common in much of the world, being indigenous to North and South America, Europe and Asia, Africa, as well as being introduced to Australia by humans.The closest related animals to squirrels are the mountain beaver, and the dormice.The name squirrel comes from the greek word skiouros, meaning “shadow-tailed” which refers to the their bushy tail. Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly, squirrels have four to five toed feet, and typically have longer hind limbs than forelimbs, which assists with climbined.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-ac83340c-7fff-032f-947f-a0a0952a9f30&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;quirrels are small to medium sized rodents of the order rodentia and the family sciuridae, squirrels are common in much of the world, being indigenous to North and South America, Europe and Asia, Africa, as well as being introduced to Australia by humans.The closest related animals to squirrels are the mountain beaver, and the dormice.The name squirrel comes from the greek word skiouros, meaning “shadow-tailed” which refers to the their bushy tail. Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly, squirrels have four to five toed feet, and typically have longer hind limbs than forelimbs, which assists with climbined.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
