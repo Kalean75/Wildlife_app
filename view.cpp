@@ -6,9 +6,9 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     ui->setupUi(this);
     ui->renderLayout->addWidget(&renderer);
     ui->applicationStack->setCurrentWidget(ui->mainMenu); // Ensure main menu is always presented first regardless of designer state
+    helpBox.setWindowTitle("How to Play");
+    helpBox.setText(helpBoxText);
     physics.setDebugRenderer(renderer);
-    //set help box shown to false
-    helpBoxShown = false;
     // Entity event connections
     connect(&entities, &Entities::addedPhysics, &physics, &Physics::addBody);
     connect(&entities, &Entities::removedPhysics, &physics, &Physics::removeBody);
@@ -115,9 +115,10 @@ void View::startGameButtonPressed()
     quiz.startQuiz(Quiz::Difficulty::Easy);
     // Switch to game state
     ui->applicationStack->setCurrentWidget(ui->game);
-    //show the help box at the beginning of each game.
-    if(helpBoxShown == false){
-        showHelpBox();
+    // Show help box at the beginning of the first quiz
+    if (!helpBoxShown)
+    {
+        helpBox.exec();
         helpBoxShown = true;
     }
 }
@@ -132,12 +133,8 @@ void View::backButtonPressed()
     entities.removeAll();
     ui->applicationStack->setCurrentWidget(ui->mainMenu);
 }
+
 void View::helpButtonPressed(){
-    showHelpBox();
-}
-void View::showHelpBox(){
-    helpBox.setText("How to Play");
-    helpBox.setInformativeText("Wild Life Education is a quiz based app designed to help users Identify animals in their natural environment. The quiz is played as follows: A question or a fun fact will appear at the top of the screen. You will need to find the animal that statement is describing and click on the animal. The quicker you find and click on the animal the more points you get!");
     helpBox.exec();
 }
 
