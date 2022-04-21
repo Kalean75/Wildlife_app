@@ -33,7 +33,8 @@ private:
         bool ReportFixture(b2Fixture *fixture)
         {
             body = fixture->GetBody();
-            return false;
+            if (body->GetType() == b2BodyType::b2_dynamicBody) return false;
+            return true;
         }
     };
     const int velocityIterations = 8;

@@ -102,15 +102,15 @@ void Physics::queryPoint(QPoint point)
 {
     b2AABB bounds;
     bounds.upperBound = b2Vec2(point.x() / pixelsPerMeter, point.y() / pixelsPerMeter);
-    bounds.lowerBound = b2Vec2((point.x() + 1) / pixelsPerMeter, (point.y() + 1) / pixelsPerMeter);
+    bounds.lowerBound = b2Vec2((point.x() + 0.1f) / pixelsPerMeter, (point.y() + 0.1f) / pixelsPerMeter);
     worldQuery->body = nullptr;
     world->QueryAABB(worldQuery, bounds);
     // TODO: Maybe emit a signal to some steering system for body movement
     // TODO: Some sort of heuristic for determining an animal aside from just "is dynamic body"
     b2Body *body = worldQuery->body;
-    if (body && body->GetType() == b2_dynamicBody)
+    if (body)
     {
-        body->SetLinearVelocity(b2Vec2(0, -5.f)); // Ad hoc "jump impulse on click" implementation
+        body->SetLinearVelocity(b2Vec2(body->GetLinearVelocity().x, -5.f)); // Ad hoc "jump impulse on click" implementation
         emit bodyQueried(loadUserData(body));
     }
 }
