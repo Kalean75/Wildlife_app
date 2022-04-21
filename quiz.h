@@ -13,7 +13,11 @@ public:
     explicit Quiz(QObject *parent = nullptr);
     enum Answer
     {
-        Deer
+        Deer,
+        Turtle,
+        Rabbit,
+        Squirrel
+
     };
     enum Difficulty
     {
@@ -36,7 +40,10 @@ private:
     const int questionCount = 10;
     QVector<Question> easyQuizPool =
     {
-        Question("This animal has 310 degrees of vision, almost twice that of a human.", Deer)
+        Question("This animal has 310 degrees of vision, almost twice that of a human.", Deer),
+        Question("This animal Has a hard shell developed mainly from their ribs.", Turtle),
+        Question("This animal is commonly found in trees", Squirrel),
+        Question("This animal's feet are considered a sign of good luck", Rabbit)
     };
     QMap<Difficulty, QVector<Question>> quizPoolMap =
     {

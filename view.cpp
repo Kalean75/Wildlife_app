@@ -71,6 +71,7 @@ void View::startGameButtonPressed()
         entities.addPhysics(cloud, cloudPhysics);
         entities.addRender(cloud, cloudRender);
     }
+    //deer
     int deer = entities.add();
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag;
     Entities::RenderBag *deerRender = new Entities::RenderBag;
@@ -84,6 +85,55 @@ void View::startGameButtonPressed()
     entities.addPhysics(deer, deerPhysics);
     entities.addRender(deer, deerRender);
     entities.addQuiz(deer, deerQuiz);
+
+    //turtle
+    int turtle = entities.add();
+    Entities::PhysicsBag *turtlePhysics = new Entities::PhysicsBag;
+    Entities::RenderBag *turtleRender = new Entities::RenderBag;
+    Entities::QuizBag *turtleQuiz = new Entities::QuizBag;
+    turtlePhysics->y = -500.f;
+    turtlePhysics->w = 256.f;
+    turtlePhysics->h = 240.f;
+    turtlePhysics->x = 200.f;
+    turtlePhysics->restitution = 0.5f;
+    turtleRender->imageName = "turtle";
+    turtleQuiz->answerID = Quiz::Answer::Turtle;
+    entities.addPhysics(turtle, turtlePhysics);
+    entities.addRender(turtle, turtleRender);
+    entities.addQuiz(turtle, turtleQuiz);
+
+    //squirrel
+    int squirrel = entities.add();
+    Entities::PhysicsBag *squirrelPhysics = new Entities::PhysicsBag;
+    Entities::RenderBag *squirrelRender = new Entities::RenderBag;
+    Entities::QuizBag *squirrelQuiz = new Entities::QuizBag;
+    squirrelPhysics->y = -500.f;
+    squirrelPhysics->w = 256.f;
+    squirrelPhysics->h = 240.f;
+    squirrelPhysics->x = -200.f;
+    squirrelPhysics->restitution = 0.5f;
+    squirrelRender->imageName = "squirrel";
+    squirrelQuiz->answerID = Quiz::Answer::Squirrel;
+    entities.addPhysics(squirrel, squirrelPhysics);
+    entities.addRender(squirrel, squirrelRender);
+    entities.addQuiz(squirrel, squirrelQuiz);
+
+    //rabbit
+    int rabbit = entities.add();
+    Entities::PhysicsBag *rabbitPhysics = new Entities::PhysicsBag;
+    Entities::RenderBag *rabbitRender = new Entities::RenderBag;
+    Entities::QuizBag *rabbitQuiz = new Entities::QuizBag;
+    rabbitPhysics->y = -500.f;
+    rabbitPhysics->w = 256.f;
+    rabbitPhysics->h = 240.f;
+    rabbitPhysics->x = -400.f;
+    rabbitPhysics->restitution = 0.5f;
+    rabbitRender->imageName = "rabbit";
+    rabbitQuiz->answerID = Quiz::Answer::Rabbit;
+    entities.addPhysics(rabbit, rabbitPhysics);
+    entities.addRender(rabbit, rabbitRender);
+    entities.addQuiz(rabbit, rabbitQuiz);
+
     // Terrain initialization
     Terrain::Vertices vertices = terrain.buildVertices(50, QPoint(-10000, 200));
     for (int i = 1; i < vertices.size(); i++)
