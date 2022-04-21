@@ -47,6 +47,11 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     connect(ui->beastiaryBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->gameBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->helpButton, &QPushButton::clicked, this, &View::helpButtonPressed);
+    QWidget *animals = new QWidget();
+    animals->setLayout(ui->verticalLayout_2);
+
+    ui->scrollArea->setWidget(animals);
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 }
 
 void View::startGameButtonPressed()
