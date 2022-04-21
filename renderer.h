@@ -63,11 +63,12 @@ private:
     const int cullingMargin = 500;
     const int grassWidth = 170;
     const int grassBorderWidth = 18;
-    const int debugStrokeWidth = 10;
+    const int debugStrokeWidth = 7;
     const float debugAlphaScale = 0.5f;
     const float cameraScaleStep = 0.2f;
     const float minCameraScale = 0.3f;
     const float maxCameraScale = 1.3f;
+    const float radiansToDegrees = 180 / M_PI;
     float cameraScale = 0.5f;
     bool debugging = false;
     QMap<ThemeKey, QColor> theme =

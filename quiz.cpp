@@ -34,7 +34,7 @@ void Quiz::update(Entities::PhysicsBags physicsBags, Entities::QuizBags quizBags
         {
             if (answers.at(i) == questions.at(i).second) correctAnswers++;
         }
-        emit quizFinished(QString("Quiz grade: %1%").arg(QString::number(correctAnswers / questions.size() * 100)));
+        emit quizFinished(QString("Quiz grade: %1%").arg(QString::number(static_cast<float>(correctAnswers) / questions.size() * 100)));
     }
     answer = nullptr;
 }

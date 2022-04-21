@@ -47,11 +47,6 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     connect(ui->beastiaryBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->gameBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->helpButton, &QPushButton::clicked, this, &View::helpButtonPressed);
-    QWidget *animals = new QWidget();
-    animals->setLayout(ui->verticalLayout_2);
-
-    ui->scrollArea->setWidget(animals);
-    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 }
 
 void View::startGameButtonPressed()
@@ -92,11 +87,13 @@ void View::startGameButtonPressed()
     Entities::RenderBag *turtleRender = new Entities::RenderBag;
     Entities::QuizBag *turtleQuiz = new Entities::QuizBag;
     turtlePhysics->y = -500.f;
-    turtlePhysics->w = 256.f;
-    turtlePhysics->h = 240.f;
+    turtlePhysics->w = 128.f;
+    turtlePhysics->h = 128.f;
     turtlePhysics->x = 200.f;
     turtlePhysics->restitution = 0.5f;
     turtleRender->imageName = "turtle";
+    turtleRender->scaleX = 0.5f;
+    turtleRender->scaleY = 0.5f;
     turtleQuiz->answerID = Quiz::Answer::Turtle;
     entities.addPhysics(turtle, turtlePhysics);
     entities.addRender(turtle, turtleRender);
@@ -108,11 +105,13 @@ void View::startGameButtonPressed()
     Entities::RenderBag *squirrelRender = new Entities::RenderBag;
     Entities::QuizBag *squirrelQuiz = new Entities::QuizBag;
     squirrelPhysics->y = -500.f;
-    squirrelPhysics->w = 256.f;
-    squirrelPhysics->h = 240.f;
+    squirrelPhysics->w = 128.f;
+    squirrelPhysics->h = 128.f;
     squirrelPhysics->x = -200.f;
     squirrelPhysics->restitution = 0.5f;
     squirrelRender->imageName = "squirrel";
+    squirrelRender->scaleX = 0.5f;
+    squirrelRender->scaleY = 0.5f;
     squirrelQuiz->answerID = Quiz::Answer::Squirrel;
     entities.addPhysics(squirrel, squirrelPhysics);
     entities.addRender(squirrel, squirrelRender);
@@ -124,11 +123,13 @@ void View::startGameButtonPressed()
     Entities::RenderBag *rabbitRender = new Entities::RenderBag;
     Entities::QuizBag *rabbitQuiz = new Entities::QuizBag;
     rabbitPhysics->y = -500.f;
-    rabbitPhysics->w = 256.f;
-    rabbitPhysics->h = 240.f;
+    rabbitPhysics->w = 128.f;
+    rabbitPhysics->h = 128.f;
     rabbitPhysics->x = -400.f;
     rabbitPhysics->restitution = 0.5f;
     rabbitRender->imageName = "rabbit";
+    rabbitRender->scaleX = 0.5f;
+    rabbitRender->scaleY = 0.5f;
     rabbitQuiz->answerID = Quiz::Answer::Rabbit;
     entities.addPhysics(rabbit, rabbitPhysics);
     entities.addRender(rabbit, rabbitRender);
