@@ -25,6 +25,13 @@ class Entities : public QObject
 public:
     explicit Entities(QObject *parent = nullptr);
     ~Entities();
+    // https://www.iforce2d.net/b2dtut/collision-filtering
+    // Note that category bits must be powers of two
+    enum Category
+    {
+        Environment = 0x0001,
+        Ground = 0x0002
+    };
     struct PhysicsBag
     {
         float x = 0.f;
@@ -43,6 +50,8 @@ public:
         float linearDamping = 0.f;
         float angularDamping = 0.5f;
         bool isSensor = false;
+        short categoryBits = Category::Environment;
+        short maskBits = Category::Ground;
         b2Shape::Type shapeType = b2Shape::e_polygon;
         b2BodyType bodyType = b2_dynamicBody;
     };

@@ -54,6 +54,8 @@ void Physics::addBody(Entities::PhysicsBag *physicsBag)
     bodyFixture.density = physicsBag->density;
     bodyFixture.friction = physicsBag->friction;
     bodyFixture.restitution = physicsBag->restitution;
+    bodyFixture.filter.categoryBits = physicsBag->categoryBits;
+    bodyFixture.filter.maskBits = physicsBag->maskBits;
     // Cases enclosed in a scope to allow bodyFixture.shape to be assigned
     switch (physicsBag->shapeType)
     {

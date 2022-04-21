@@ -135,7 +135,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="beastiaryButton">
+            <widget class="QPushButton" name="bestiaryButton">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -149,7 +149,7 @@
               </size>
              </property>
              <property name="text">
-              <string>Beastiary</string>
+              <string>Bestiary</string>
              </property>
             </widget>
            </item>
@@ -176,7 +176,7 @@
          <number>18</number>
         </property>
         <item>
-         <widget class="QPushButton" name="beastiaryBackButton">
+         <widget class="QPushButton" name="bestiaryBackButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -941,7 +941,7 @@ Scroll to zoom camera</string>
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="renderLayout" stretch="">
+         <layout class="QVBoxLayout" name="renderLayout">
           <property name="spacing">
            <number>0</number>
           </property>

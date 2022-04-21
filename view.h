@@ -23,7 +23,7 @@ public:
 
 public slots:
     void startGameButtonPressed();
-    void beastiaryButtonPressed();
+    void bestiaryButtonPressed();
     void backButtonPressed();
     void helpButtonPressed();
 

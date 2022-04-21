@@ -19,7 +19,7 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
         QSize labelSize(label->width(), label->height());
         QPixmap labelPixmap(labelSize);
         QPainter painter;
-        labelPixmap.fill(QColor(0, 0, 0, Renderer::maxRGB - 1)); // Fill color cannot be fully opaque or the composition blending does not work
+        labelPixmap.fill(QColor(0, 0, 0, Renderer::rgbMaxComponent - 1)); // Fill color cannot be fully opaque or the composition blending does not work
         painter.begin(&labelPixmap);
         painter.setCompositionMode(QPainter::CompositionMode_DestinationIn);
         painter.drawPixmap(0, 0, QPixmap::fromImage(QImage(":/" + imageNameTest.match(label->objectName()).captured(1)).scaled(labelSize)));
@@ -43,8 +43,8 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     // Interface connections
     connect(ui->debugRenderCheckBox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonPressed);
-    connect(ui->beastiaryButton, &QPushButton::clicked, this, &View::beastiaryButtonPressed);
-    connect(ui->beastiaryBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
+    connect(ui->bestiaryButton, &QPushButton::clicked, this, &View::bestiaryButtonPressed);
+    connect(ui->bestiaryBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->gameBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->helpButton, &QPushButton::clicked, this, &View::helpButtonPressed);
 }
@@ -60,7 +60,6 @@ void View::startGameButtonPressed()
         Entities::RenderBag *cloudRender = new Entities::RenderBag;
         cloudPhysics->x = i * 1024.f;
         cloudPhysics->y = -300.f;
-        cloudPhysics->isSensor = true;
         cloudPhysics->bodyType = b2BodyType::b2_staticBody;
         cloudRender->imageName = QString("cloud%1").arg(QString::number(random(1, 2)));
         entities.addPhysics(cloud, cloudPhysics);
@@ -147,6 +146,8 @@ void View::startGameButtonPressed()
         edgePhysics->y = v1.y();
         edgePhysics->x1 = v2.x();
         edgePhysics->y1 = v2.y();
+        edgePhysics->categoryBits = Entities::Category::Ground;
+        edgePhysics->maskBits = -1; // Everything collides with ground by default, so ground has to also collide with everything (-1 mask bits)
         edgePhysics->shapeType = b2Shape::e_edge;
         edgePhysics->bodyType = b2BodyType::b2_staticBody;
         entities.addPhysics(edge, edgePhysics);
@@ -167,7 +168,6 @@ void View::startGameButtonPressed()
             Entities::RenderBag *treeRender = new Entities::RenderBag;
             treePhysics->x = treeVertex.x();
             treePhysics->y = treeVertex.y() - 250.f;
-            treePhysics->isSensor = true;
             treePhysics->bodyType = b2BodyType::b2_staticBody;
             treeRender->imageName = "tree";
             treeRender->scaleX = std::cos(random(0, 1) * M_PI);
@@ -176,8 +176,7 @@ void View::startGameButtonPressed()
         }
         bushPhysics->x = bushVertex.x();
         bushPhysics->y = bushVertex.y() - 45.f;
-        bushPhysics->angle = std::atan2(bushVertex.y() - previousBushVertex.y(), bushVertex.x() - previousBushVertex.x());;
-        bushPhysics->isSensor = true;
+        bushPhysics->angle = std::atan2(bushVertex.y() - previousBushVertex.y(), bushVertex.x() - previousBushVertex.x());
         bushPhysics->bodyType = b2BodyType::b2_staticBody;
         bushRender->imageName = "bush";
         bushRender->scaleX = std::cos(random(0, 1) * M_PI);
@@ -196,7 +195,7 @@ void View::startGameButtonPressed()
     }
 }
 
-void View::beastiaryButtonPressed()
+void View::bestiaryButtonPressed()
 {
     ui->applicationStack->setCurrentWidget(ui->bestiary); // Open bestiary
 }
