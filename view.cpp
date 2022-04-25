@@ -40,6 +40,7 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     // Quiz connections
     connect(&quiz, &Quiz::questionChanged, ui->quizLabel, &QLabel::setText);
     connect(&quiz, &Quiz::quizFinished, ui->quizLabel, &QLabel::setText);
+    connect(&quiz, &Quiz::quizFinished, this, &View::endOfQuizPopUp);
     // Interface connections
     connect(ui->debugRenderCheckBox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonPressed);
@@ -210,6 +211,37 @@ void View::helpButtonPressed(){
     //set the text to the intructions text instead of the welcome text
     helpBox.setText(helpBoxButtonText);
     helpBox.exec();
+}
+void View::endOfQuizPopUp(){
+    QMessageBox EndOfQuizBox;
+    // Do not delete method, this will create a duplicate window everytime a quiz is created.
+    EndOfQuizBox.setWindowTitle("Quiz Has Finished");
+    EndOfQuizBox.setText("You have answered all the questions!");
+    EndOfQuizBox.setInformativeText("You can study the beastiary, go back to the main menu, or continue to the next level.");
+    QPushButton *backToMainMenuButton;
+    QPushButton *studyBeastiaryButton;
+    QPushButton *nextLevelButton;
+    nextLevelButton = EndOfQuizBox.addButton(tr("Next Level"), QMessageBox::ActionRole);
+    backToMainMenuButton = EndOfQuizBox.addButton(tr("Main Menu"), QMessageBox::NoRole);
+    studyBeastiaryButton = EndOfQuizBox.addButton(tr("Beastiary"), QMessageBox::NoRole);
+
+    EndOfQuizBox.exec();
+    if (EndOfQuizBox.clickedButton() == nextLevelButton) {
+        // next level
+        // RESETS GAME PLACE HOLDER FOR TESTING
+        entities.removeAll();
+        startGameButtonPressed();
+    } else if (EndOfQuizBox.clickedButton() == backToMainMenuButton) {
+        // back to menu
+        backButtonPressed();
+    }
+    else if (EndOfQuizBox.clickedButton() == studyBeastiaryButton) {
+        // go to beastiary.
+        entities.removeAll();
+        ui->applicationStack->setCurrentWidget(ui->bestiary);
+    }
+
+
 }
 
 View::~View()
