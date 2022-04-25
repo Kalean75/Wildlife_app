@@ -10,7 +10,7 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     ui->renderLayout->addWidget(&renderer);
     ui->applicationStack->setCurrentWidget(ui->mainMenu); // Ensure main menu is always presented first regardless of designer state
     helpBox.setWindowTitle("How to Play");
-    helpBox.setText(helpBoxText);
+    helpBox.setText(helpBoxWelcomeText);
     physics.setDebugRenderer(renderer);
     // Load all bestiary silhouettes from their corresponding animal images
     QRegularExpression imageNameTest("(.+)Image$");
@@ -207,6 +207,8 @@ void View::backButtonPressed()
 }
 
 void View::helpButtonPressed(){
+    //set the text to the intructions text instead of the welcome text
+    helpBox.setText(helpBoxButtonText);
     helpBox.exec();
 }
 

@@ -28,9 +28,17 @@ public slots:
     void helpButtonPressed();
 
 private:
-    const QString helpBoxText = QString
+    const QString helpBoxWelcomeText = QString
     (
         "Welcome!\n\nWildlife Education is a quiz based app designed to help users identify animals in their natural environment. "
+        "The quiz is played as follows: A question or a fun fact will appear at the top of the screen. "
+        "You will need to find the animal that statement is describing and click on the animal. "
+        "The quicker you find and click on the animal, the more points you get!"
+    );
+    // make the text not say welcome when the help button is pressed.
+    const QString helpBoxButtonText = QString
+    (
+        "Instructions:\n\nWildlife Education is a quiz based app designed to help users identify animals in their natural environment. "
         "The quiz is played as follows: A question or a fun fact will appear at the top of the screen. "
         "You will need to find the animal that statement is describing and click on the animal. "
         "The quicker you find and click on the animal, the more points you get!"
