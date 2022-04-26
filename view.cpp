@@ -41,6 +41,8 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     connect(&quiz, &Quiz::questionChanged, ui->quizLabel, &QLabel::setText);
     connect(&quiz, &Quiz::quizFinished, ui->quizLabel, &QLabel::setText);
     connect(&quiz, &Quiz::quizFinished, this, &View::endOfQuizPopUp);
+    // ResultsPage
+    connect(&quiz, &Quiz::sendResults, this, &View::endOfQuizResults);
     // Interface connections
     connect(ui->debugRenderCheckBox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
     connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonHandler);
@@ -245,6 +247,7 @@ void View::endOfQuizPopUp(QString result){
     }
     QPushButton* backToMainMenuButton = EndOfQuizBox.addButton(tr("Main Menu"), QMessageBox::NoRole);
     QPushButton* studyBeastiaryButton = EndOfQuizBox.addButton(tr("Beastiary"), QMessageBox::NoRole);
+    QPushButton* resultsPageButton = EndOfQuizBox.addButton(tr("Results"),QMessageBox::NoRole);
 
     EndOfQuizBox.exec();
     if (EndOfQuizBox.clickedButton() == nextLevelButton) {
@@ -261,6 +264,11 @@ void View::endOfQuizPopUp(QString result){
         entities.removeAll();
         ui->applicationStack->setCurrentWidget(ui->bestiary);
     }
+    else if (EndOfQuizBox.clickedButton() == resultsPageButton) {
+        // go to beastiary.
+        entities.removeAll();
+        ui->applicationStack->setCurrentWidget(ui->resultsPage);
+    }
     else if (EndOfQuizBox.clickedButton() == retryButton) {
         entities.removeAll();
         //start over
@@ -271,8 +279,21 @@ void View::endOfQuizPopUp(QString result){
 
 
 }
+void View::endOfQuizResults(QVector<QString> results){
+    ui->ResultsLabel->setText(" ");
+    for(QString result : results)
+        ui->ResultsLabel->setText(ui->ResultsLabel->text()+"\n"+result);
+}
 
 View::~View()
 {
     delete ui;
 }
+
+//When the results page push button is clicked.
+void View::on_pushButton_clicked()
+{
+    entities.removeAll();
+    ui->applicationStack->setCurrentWidget(ui->mainMenu);
+}
+

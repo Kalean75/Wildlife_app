@@ -48,7 +48,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QHBoxLayout" name="mainMenuLayout">
@@ -234,8 +234,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>318</width>
-             <height>814</height>
+             <width>328</width>
+             <height>876</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -956,6 +956,52 @@ Scroll to zoom camera</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="resultsPage">
+       <widget class="QLabel" name="ResultsLabel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>169</y>
+          <width>800</width>
+          <height>471</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>TExt</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="margin">
+         <number>40</number>
+        </property>
+        <property name="indent">
+         <number>12</number>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>640</y>
+          <width>201</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Home</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -969,7 +1015,7 @@ Scroll to zoom camera</string>
      <x>0</x>
      <y>0</y>
      <width>1440</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

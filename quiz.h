@@ -34,6 +34,7 @@ public slots:
 signals:
     void questionChanged(QString);
     void quizFinished(QString);
+    void sendResults(QVector<QString>);
 
 private:
     typedef QPair<QString, Answer> Question;
@@ -70,6 +71,13 @@ private:
     QVector<Answer> answers;
     bool quizInProgress();
     QString quizQuestionLabel();
+    //Added by Tanner 4/23/2022 2:36
+    Difficulty difficulty;
+    QVector<Question> testQuestions;
+    QVector<Answer> yourAnswers;
+    QVector<QString> percentages;
+    QVector<QString> getResults();
+    QString quizAnswer(Answer answer);
 };
 
 #endif // QUIZ_H

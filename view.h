@@ -28,7 +28,11 @@ public slots:
     void backButtonPressed();
     void helpButtonPressed();
     void endOfQuizPopUp(QString result);
+    void endOfQuizResults(QVector<QString> information);
 
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     const QString helpBoxWelcomeText = QString
