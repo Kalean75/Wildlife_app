@@ -43,14 +43,20 @@ View::View(QWidget *parent) : QMainWindow(parent), ui(new Ui::View)
     connect(&quiz, &Quiz::quizFinished, this, &View::endOfQuizPopUp);
     // Interface connections
     connect(ui->debugRenderCheckBox, &QCheckBox::stateChanged, &renderer, &Renderer::toggleDebugging);
-    connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonPressed);
+    connect(ui->startGameButton, &QPushButton::clicked, this, &View::startGameButtonHandler);
     connect(ui->bestiaryButton, &QPushButton::clicked, this, &View::bestiaryButtonPressed);
     connect(ui->bestiaryBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->gameBackButton, &QPushButton::clicked, this, &View::backButtonPressed);
     connect(ui->helpButton, &QPushButton::clicked, this, &View::helpButtonPressed);
 }
-
-void View::startGameButtonPressed()
+//when a new game is started, start on easy difficulty
+void View::startGameButtonHandler(){
+    currDiff = Quiz::Difficulty::Easy;
+    startGame(currDiff);
+    ui->difficultyLabel->setText("Level: Easy");
+}
+//starts a new game at a set difficulty
+void View::startGame(Quiz::Difficulty difficulty)
 {
     // Entity initialization
     // TODO: Move all these hard-coded values to a spawner system, or at least some sort of centralized, well-defined location
@@ -185,7 +191,7 @@ void View::startGameButtonPressed()
         entities.addRender(bush, bushRender);
     }
     // Quiz initialization
-    quiz.startQuiz(Quiz::Difficulty::Easy);
+    quiz.startQuiz(difficulty);
     // Switch to game state
     ui->applicationStack->setCurrentWidget(ui->game);
     // Show help box at the beginning of the first quiz
@@ -212,6 +218,16 @@ void View::helpButtonPressed(){
     helpBox.setText(helpBoxButtonText);
     helpBox.exec();
 }
+void View::iterateDifficulty(){
+    if(currDiff == Quiz::Difficulty::Easy){
+        currDiff = Quiz::Difficulty::Medium;
+        ui->difficultyLabel->setText("Level: Medium");
+    }
+    else if(currDiff == Quiz::Difficulty::Medium){
+        currDiff = Quiz::Difficulty::Hard;
+        ui->difficultyLabel->setText("Level: Hard");
+    }
+}
 void View::endOfQuizPopUp(){
     QMessageBox EndOfQuizBox;
     // Do not delete method, this will create a duplicate window everytime a quiz is created.
@@ -227,10 +243,10 @@ void View::endOfQuizPopUp(){
 
     EndOfQuizBox.exec();
     if (EndOfQuizBox.clickedButton() == nextLevelButton) {
-        // next level
-        // RESETS GAME PLACE HOLDER FOR TESTING
         entities.removeAll();
-        startGameButtonPressed();
+        // next level
+        iterateDifficulty();
+        startGame(currDiff);
     } else if (EndOfQuizBox.clickedButton() == backToMainMenuButton) {
         // back to menu
         backButtonPressed();

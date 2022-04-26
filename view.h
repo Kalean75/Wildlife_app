@@ -22,11 +22,13 @@ public:
     ~View();
 
 public slots:
-    void startGameButtonPressed();
+    void startGameButtonHandler();
+    void startGame(Quiz::Difficulty difficulty);
     void bestiaryButtonPressed();
     void backButtonPressed();
     void helpButtonPressed();
     void endOfQuizPopUp();
+
 
 private:
     const QString helpBoxWelcomeText = QString
@@ -51,6 +53,8 @@ private:
     Renderer renderer;
     Quiz quiz;
     Terrain terrain;
+    Quiz::Difficulty currDiff;
+    void iterateDifficulty();
     Ui::View *ui;
 };
 

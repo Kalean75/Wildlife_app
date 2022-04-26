@@ -850,6 +850,13 @@ Scroll to zoom camera</string>
               </widget>
              </item>
              <item>
+              <widget class="QLabel" name="difficultyLabel">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QLabel" name="quizLabel">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
