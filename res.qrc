@@ -8,5 +8,10 @@
         <file alias="rabbit">res/rabbit.png</file>
         <file alias="squirrel">res/squirrel.png</file>
         <file alias="turtle">res/turtle.png</file>
+        <file alias="badger">res/badger.png</file>
+        <file alias="bear">res/bear.png</file>
+        <file alias="fox">res/fox.png</file>
+        <file alias="moose">res/moose.png</file>
+        <file alias="wolf">res/wolf.png</file>
     </qresource>
 </RCC>
