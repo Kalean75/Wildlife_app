@@ -31,6 +31,11 @@ public slots:
     void endOfQuizResults(QVector<QString> information);
 
 
+protected:
+    void createAnimals();
+
+    void createAnimalEntities();
+
 private slots:
     void on_pushButton_clicked();
 

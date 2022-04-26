@@ -57,23 +57,9 @@ void View::startGameButtonHandler(){
     startGame(currDiff);
     ui->difficultyLabel->setText("Level: Easy");
 }
-//starts a new game at a set difficulty
-void View::startGame(Quiz::Difficulty difficulty)
+//creates animals in view
+void View::createAnimalEntities()
 {
-    // Entity initialization
-    // TODO: Move all these hard-coded values to a spawner system, or at least some sort of centralized, well-defined location
-    for (int i = -10; i < 60; i++)
-    {
-        int cloud = entities.add();
-        Entities::PhysicsBag *cloudPhysics = new Entities::PhysicsBag;
-        Entities::RenderBag *cloudRender = new Entities::RenderBag;
-        cloudPhysics->x = i * 1024.f;
-        cloudPhysics->y = -900.f;
-        cloudPhysics->bodyType = b2BodyType::b2_staticBody;
-        cloudRender->imageName = QString("cloud%1").arg(QString::number(random(1, 2)));
-        entities.addPhysics(cloud, cloudPhysics);
-        entities.addRender(cloud, cloudRender);
-    }
     //deer
     int deer = entities.add();
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag;
@@ -142,6 +128,62 @@ void View::startGame(Quiz::Difficulty difficulty)
     entities.addPhysics(rabbit, rabbitPhysics);
     entities.addRender(rabbit, rabbitRender);
     entities.addQuiz(rabbit, rabbitQuiz);
+
+    //bear
+    int bear = entities.add();
+    Entities::PhysicsBag *bearPhysics = new Entities::PhysicsBag;
+    Entities::RenderBag *bearRender = new Entities::RenderBag;
+    Entities::QuizBag *bearQuiz = new Entities::QuizBag;
+    bearPhysics->y = -500.f;
+    bearPhysics->w = 128.f;
+    bearPhysics->h = 128.f;
+    bearPhysics->x = -1500.f;
+    bearPhysics->restitution = 0.f;
+    bearRender->imageName = "bear";
+    bearRender->scaleX = 0.5f;
+    bearRender->scaleY = 0.5f;
+    bearQuiz->answerID = Quiz::Answer::Bear;
+    entities.addPhysics(bear, bearPhysics);
+    entities.addRender(bear, bearRender);
+    entities.addQuiz(bear, bearQuiz);
+
+    //badger
+    int badger = entities.add();
+    Entities::PhysicsBag *badgerPhysics = new Entities::PhysicsBag;
+    Entities::RenderBag *badgerRender = new Entities::RenderBag;
+    Entities::QuizBag *badgerQuiz = new Entities::QuizBag;
+    badgerPhysics->y = -500.f;
+    badgerPhysics->w = 128.f;
+    badgerPhysics->h = 128.f;
+    badgerPhysics->x = -1500.f;
+    badgerPhysics->restitution = 0.f;
+    badgerRender->imageName = "badger";
+    badgerRender->scaleX = 0.5f;
+    badgerRender->scaleY = 0.5f;
+    badgerQuiz->answerID = Quiz::Answer::Badger;
+    entities.addPhysics(badger, badgerPhysics);
+    entities.addRender(badger, badgerRender);
+    entities.addQuiz(badger, badgerQuiz);
+}
+//starts a new game at a set difficulty
+void View::startGame(Quiz::Difficulty difficulty)
+{
+    // Entity initialization
+    // TODO: Move all these hard-coded values to a spawner system, or at least some sort of centralized, well-defined location
+    for (int i = -10; i < 60; i++)
+    {
+        int cloud = entities.add();
+        Entities::PhysicsBag *cloudPhysics = new Entities::PhysicsBag;
+        Entities::RenderBag *cloudRender = new Entities::RenderBag;
+        cloudPhysics->x = i * 1024.f;
+        cloudPhysics->y = -900.f;
+        cloudPhysics->bodyType = b2BodyType::b2_staticBody;
+        cloudRender->imageName = QString("cloud%1").arg(QString::number(random(1, 2)));
+        entities.addPhysics(cloud, cloudPhysics);
+        entities.addRender(cloud, cloudRender);
+    }
+    //deer
+    createAnimalEntities();
 
     // Terrain initialization
     Terrain::Vertices vertices = terrain.buildVertices(50, QPoint(-10000, 200));
