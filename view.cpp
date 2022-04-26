@@ -155,7 +155,7 @@ void View::createAnimalEntities()
     badgerPhysics->y = -500.f;
     badgerPhysics->w = 128.f;
     badgerPhysics->h = 128.f;
-    badgerPhysics->x = -1500.f;
+    badgerPhysics->x = 1500.f;
     badgerPhysics->restitution = 0.f;
     badgerRender->imageName = "badger";
     badgerRender->scaleX = 0.5f;
@@ -164,6 +164,42 @@ void View::createAnimalEntities()
     entities.addPhysics(badger, badgerPhysics);
     entities.addRender(badger, badgerRender);
     entities.addQuiz(badger, badgerQuiz);
+
+    //moose
+    int moose = entities.add();
+    Entities::PhysicsBag * moosePhysics = new Entities::PhysicsBag;
+    Entities::RenderBag * mooseRender = new Entities::RenderBag;
+    Entities::QuizBag * mooseQuiz = new Entities::QuizBag;
+     moosePhysics->y = -500.f;
+     moosePhysics->w = 128.f;
+    moosePhysics->h = 128.f;
+    moosePhysics->x = -2000.f;
+    moosePhysics->restitution = 0.f;
+     mooseRender->imageName = "moose";
+     mooseRender->scaleX = 0.5f;
+     mooseRender->scaleY = 0.5f;
+     mooseQuiz->answerID = Quiz::Answer::Moose;
+    entities.addPhysics(moose, moosePhysics);
+    entities.addRender(moose, mooseRender);
+    entities.addQuiz(moose, mooseQuiz);
+
+    //fox
+    int fox = entities.add();
+    Entities::PhysicsBag * foxPhysics = new Entities::PhysicsBag;
+    Entities::RenderBag * foxRender = new Entities::RenderBag;
+    Entities::QuizBag * foxQuiz = new Entities::QuizBag;
+     foxPhysics->y = -500.f;
+     foxPhysics->w = 128.f;
+    foxPhysics->h = 128.f;
+    foxPhysics->x = 2000.f;
+    foxPhysics->restitution = 0.f;
+    foxRender->imageName = "fox";
+    foxRender->scaleX = 0.5f;
+    foxRender->scaleY = 0.5f;
+    foxQuiz->answerID = Quiz::Answer::Fox;
+    entities.addPhysics(fox, foxPhysics);
+    entities.addRender(fox, foxRender);
+    entities.addQuiz(fox, foxQuiz);
 }
 //starts a new game at a set difficulty
 void View::startGame(Quiz::Difficulty difficulty)

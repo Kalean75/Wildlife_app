@@ -18,7 +18,9 @@ public:
         Rabbit,
         Squirrel,
         Bear,
-        Badger
+        Badger,
+        Moose,
+        Fox
 
     };
     enum Difficulty
