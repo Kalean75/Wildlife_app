@@ -27,7 +27,7 @@ public slots:
     void bestiaryButtonPressed();
     void backButtonPressed();
     void helpButtonPressed();
-    void endOfQuizPopUp();
+    void endOfQuizPopUp(QString result);
 
 
 private:

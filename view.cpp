@@ -228,18 +228,23 @@ void View::iterateDifficulty(){
         ui->difficultyLabel->setText("Level: Hard");
     }
 }
-void View::endOfQuizPopUp(){
+void View::endOfQuizPopUp(QString result){
     QMessageBox EndOfQuizBox;
     // Do not delete method, this will create a duplicate window everytime a quiz is created.
     EndOfQuizBox.setWindowTitle("Quiz Has Finished");
-    EndOfQuizBox.setText("You have answered all the questions!");
-    EndOfQuizBox.setInformativeText("You can study the beastiary, go back to the main menu, or continue to the next level.");
-    QPushButton *backToMainMenuButton;
-    QPushButton *studyBeastiaryButton;
-    QPushButton *nextLevelButton;
-    nextLevelButton = EndOfQuizBox.addButton(tr("Next Level"), QMessageBox::ActionRole);
-    backToMainMenuButton = EndOfQuizBox.addButton(tr("Main Menu"), QMessageBox::NoRole);
-    studyBeastiaryButton = EndOfQuizBox.addButton(tr("Beastiary"), QMessageBox::NoRole);
+    EndOfQuizBox.setText("You have answered all the questions for this level of the quiz!");
+    EndOfQuizBox.setInformativeText("You can study the beastiary, go back to the main menu, or continue to the next level. \n" + result);
+    QPushButton* retryButton;
+    QPushButton* nextLevelButton;
+    // if the last level then give option to retry quiz, if not, give option to go to next level.
+    if(currDiff == Quiz::Difficulty::Hard){
+       retryButton = EndOfQuizBox.addButton(tr("Retry"), QMessageBox::ActionRole);
+    }
+    else {
+       nextLevelButton = EndOfQuizBox.addButton(tr("Next Level"), QMessageBox::ActionRole);
+    }
+    QPushButton* backToMainMenuButton = EndOfQuizBox.addButton(tr("Main Menu"), QMessageBox::NoRole);
+    QPushButton* studyBeastiaryButton = EndOfQuizBox.addButton(tr("Beastiary"), QMessageBox::NoRole);
 
     EndOfQuizBox.exec();
     if (EndOfQuizBox.clickedButton() == nextLevelButton) {
@@ -255,6 +260,13 @@ void View::endOfQuizPopUp(){
         // go to beastiary.
         entities.removeAll();
         ui->applicationStack->setCurrentWidget(ui->bestiary);
+    }
+    else if (EndOfQuizBox.clickedButton() == retryButton) {
+        entities.removeAll();
+        //start over
+        currDiff = Quiz::Difficulty::Easy;
+        startGame(currDiff);
+        ui->difficultyLabel->setText("Level: Easy");
     }
 
 
