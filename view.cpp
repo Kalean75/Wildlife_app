@@ -68,7 +68,7 @@ void View::startGame(Quiz::Difficulty difficulty)
         Entities::PhysicsBag *cloudPhysics = new Entities::PhysicsBag;
         Entities::RenderBag *cloudRender = new Entities::RenderBag;
         cloudPhysics->x = i * 1024.f;
-        cloudPhysics->y = -300.f;
+        cloudPhysics->y = -900.f;
         cloudPhysics->bodyType = b2BodyType::b2_staticBody;
         cloudRender->imageName = QString("cloud%1").arg(QString::number(random(1, 2)));
         entities.addPhysics(cloud, cloudPhysics);
@@ -82,7 +82,7 @@ void View::startGame(Quiz::Difficulty difficulty)
     deerPhysics->y = -500.f;
     deerPhysics->w = 256.f;
     deerPhysics->h = 240.f;
-    deerPhysics->restitution = 0.5f;
+    deerPhysics->restitution = 0.f;
     deerRender->imageName = "deer";
     deerQuiz->answerID = Quiz::Answer::Deer;
     entities.addPhysics(deer, deerPhysics);
@@ -97,8 +97,8 @@ void View::startGame(Quiz::Difficulty difficulty)
     turtlePhysics->y = -500.f;
     turtlePhysics->w = 128.f;
     turtlePhysics->h = 128.f;
-    turtlePhysics->x = 200.f;
-    turtlePhysics->restitution = 0.5f;
+    turtlePhysics->x = 500.f;
+    turtlePhysics->restitution = 0.f;
     turtleRender->imageName = "turtle";
     turtleRender->scaleX = 0.5f;
     turtleRender->scaleY = 0.5f;
@@ -115,8 +115,8 @@ void View::startGame(Quiz::Difficulty difficulty)
     squirrelPhysics->y = -500.f;
     squirrelPhysics->w = 128.f;
     squirrelPhysics->h = 128.f;
-    squirrelPhysics->x = -200.f;
-    squirrelPhysics->restitution = 0.5f;
+    squirrelPhysics->x = -300.f;
+    squirrelPhysics->restitution = 0.f;
     squirrelRender->imageName = "squirrel";
     squirrelRender->scaleX = 0.5f;
     squirrelRender->scaleY = 0.5f;
@@ -133,8 +133,8 @@ void View::startGame(Quiz::Difficulty difficulty)
     rabbitPhysics->y = -500.f;
     rabbitPhysics->w = 128.f;
     rabbitPhysics->h = 128.f;
-    rabbitPhysics->x = -400.f;
-    rabbitPhysics->restitution = 0.5f;
+    rabbitPhysics->x = -900.f;
+    rabbitPhysics->restitution = 0.f;
     rabbitRender->imageName = "rabbit";
     rabbitRender->scaleX = 0.5f;
     rabbitRender->scaleY = 0.5f;
