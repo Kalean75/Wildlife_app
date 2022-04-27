@@ -34,7 +34,7 @@ public slots:
 protected:
     void createAnimals();
 
-    void createAnimalEntities();
+    void createAnimalEntities(Terrain::Vertices);
 
 private slots:
     void on_pushButton_clicked();

@@ -57,17 +57,25 @@ void View::startGameButtonHandler(){
     startGame(currDiff);
     ui->difficultyLabel->setText("Level: Easy");
 }
+
+QPointF sampleVertex(Terrain::Vertices& vertices)
+{
+    return vertices.takeAt(random(0, static_cast<int>(vertices.size() - 1)));
+}
+
 //creates animals in view
-void View::createAnimalEntities()
+void View::createAnimalEntities(Terrain::Vertices vertices)
 {
     //deer
     int deer = entities.add();
+    QPointF deerPos = sampleVertex(vertices);
     Entities::PhysicsBag *deerPhysics = new Entities::PhysicsBag;
     Entities::RenderBag *deerRender = new Entities::RenderBag;
     Entities::QuizBag *deerQuiz = new Entities::QuizBag;
-    deerPhysics->y = -500.f;
     deerPhysics->w = 256.f;
-    deerPhysics->h = 240.f;
+    deerPhysics->h = 230.f;
+    deerPhysics->x = deerPos.x();
+    deerPhysics->y = deerPos.y();
     deerRender->imageName = "deer";
     deerQuiz->answerID = Quiz::Answer::Deer;
     entities.addPhysics(deer, deerPhysics);
@@ -76,13 +84,14 @@ void View::createAnimalEntities()
 
     //turtle
     int turtle = entities.add();
+    QPointF turtlePos = sampleVertex(vertices);
     Entities::PhysicsBag *turtlePhysics = new Entities::PhysicsBag;
     Entities::RenderBag *turtleRender = new Entities::RenderBag;
     Entities::QuizBag *turtleQuiz = new Entities::QuizBag;
-    turtlePhysics->y = -500.f;
     turtlePhysics->w = 128.f;
-    turtlePhysics->h = 80.f;
-    turtlePhysics->x = 500.f;
+    turtlePhysics->h = 75.f;
+    turtlePhysics->x = turtlePos.x();
+    turtlePhysics->y = turtlePos.y();
     turtleRender->imageName = "turtle";
     turtleRender->scaleX = 0.5f;
     turtleRender->scaleY = 0.5f;
@@ -93,13 +102,14 @@ void View::createAnimalEntities()
 
     //squirrel
     int squirrel = entities.add();
+    QPointF squirrelPos = sampleVertex(vertices);
     Entities::PhysicsBag *squirrelPhysics = new Entities::PhysicsBag;
     Entities::RenderBag *squirrelRender = new Entities::RenderBag;
     Entities::QuizBag *squirrelQuiz = new Entities::QuizBag;
-    squirrelPhysics->y = -500.f;
     squirrelPhysics->w = 128.f;
-    squirrelPhysics->h = 128.f;
-    squirrelPhysics->x = -300.f;
+    squirrelPhysics->h = 103.f;
+    squirrelPhysics->x = squirrelPos.x();
+    squirrelPhysics->y = squirrelPos.y();
     squirrelRender->imageName = "squirrel";
     squirrelRender->scaleX = 0.5f;
     squirrelRender->scaleY = 0.5f;
@@ -110,13 +120,14 @@ void View::createAnimalEntities()
 
     //rabbit
     int rabbit = entities.add();
+    QPointF rabbitPos = sampleVertex(vertices);
     Entities::PhysicsBag *rabbitPhysics = new Entities::PhysicsBag;
     Entities::RenderBag *rabbitRender = new Entities::RenderBag;
     Entities::QuizBag *rabbitQuiz = new Entities::QuizBag;
-    rabbitPhysics->y = -500.f;
     rabbitPhysics->w = 128.f;
-    rabbitPhysics->h = 128.f;
-    rabbitPhysics->x = -900.f;
+    rabbitPhysics->h = 123.f;
+    rabbitPhysics->x = rabbitPos.x();
+    rabbitPhysics->y = rabbitPos.y();
     rabbitRender->imageName = "rabbit";
     rabbitRender->scaleX = 0.5f;
     rabbitRender->scaleY = 0.5f;
@@ -127,13 +138,14 @@ void View::createAnimalEntities()
 
     //bear
     int bear = entities.add();
+    QPointF bearPos = sampleVertex(vertices);
     Entities::PhysicsBag *bearPhysics = new Entities::PhysicsBag;
     Entities::RenderBag *bearRender = new Entities::RenderBag;
     Entities::QuizBag *bearQuiz = new Entities::QuizBag;
-    bearPhysics->y = -500.f;
     bearPhysics->w = 384.f;
-    bearPhysics->h = 225.f;
-    bearPhysics->x = -1500.f;
+    bearPhysics->h = 205.f;
+    bearPhysics->x = bearPos.x();
+    bearPhysics->y = bearPos.y();
     bearRender->imageName = "bear";
     bearRender->scaleX = 0.75f;
     bearRender->scaleY = 0.75f;
@@ -144,13 +156,14 @@ void View::createAnimalEntities()
 
     //badger
     int badger = entities.add();
+    QPointF badgerPos = sampleVertex(vertices);
     Entities::PhysicsBag *badgerPhysics = new Entities::PhysicsBag;
     Entities::RenderBag *badgerRender = new Entities::RenderBag;
     Entities::QuizBag *badgerQuiz = new Entities::QuizBag;
-    badgerPhysics->y = -500.f;
     badgerPhysics->w = 128.f;
-    badgerPhysics->h = 64.f;
-    badgerPhysics->x = 1500.f;
+    badgerPhysics->h = 59.f;
+    badgerPhysics->x = badgerPos.x();
+    badgerPhysics->y = badgerPos.y();
     badgerRender->imageName = "badger";
     badgerRender->scaleX = 0.5f;
     badgerRender->scaleY = 0.5f;
@@ -161,13 +174,14 @@ void View::createAnimalEntities()
 
     //moose
     int moose = entities.add();
+    QPointF moosePos = sampleVertex(vertices);
     Entities::PhysicsBag * moosePhysics = new Entities::PhysicsBag;
     Entities::RenderBag * mooseRender = new Entities::RenderBag;
     Entities::QuizBag * mooseQuiz = new Entities::QuizBag;
-    moosePhysics->y = -500.f;
     moosePhysics->w = 384.f;
-    moosePhysics->h = 384.f;
-    moosePhysics->x = -2000.f;
+    moosePhysics->h = 324.f;
+    moosePhysics->x = moosePos.x();
+    moosePhysics->y = moosePos.y();
     mooseRender->imageName = "moose";
     mooseRender->scaleX = 0.75f;
     mooseRender->scaleY = 0.75f;
@@ -178,13 +192,14 @@ void View::createAnimalEntities()
 
     //fox
     int fox = entities.add();
+    QPointF foxPos = sampleVertex(vertices);
     Entities::PhysicsBag * foxPhysics = new Entities::PhysicsBag;
     Entities::RenderBag * foxRender = new Entities::RenderBag;
     Entities::QuizBag * foxQuiz = new Entities::QuizBag;
-    foxPhysics->y = -500.f;
     foxPhysics->w = 256.f;
-    foxPhysics->h = 256.f;
-    foxPhysics->x = 2000.f;
+    foxPhysics->h = 230.f;
+    foxPhysics->x = foxPos.x();
+    foxPhysics->y = foxPos.y();
     foxRender->imageName = "fox";
     foxQuiz->answerID = Quiz::Answer::Fox;
     entities.addPhysics(fox, foxPhysics);
@@ -193,13 +208,14 @@ void View::createAnimalEntities()
 
     //wolf
     int wolf = entities.add();
+    QPointF wolfPos = sampleVertex(vertices);
     Entities::PhysicsBag * wolfPhysics = new Entities::PhysicsBag;
     Entities::RenderBag * wolfRender = new Entities::RenderBag;
     Entities::QuizBag * wolfQuiz = new Entities::QuizBag;
-    wolfPhysics->y = -500.f;
     wolfPhysics->w = 256.f;
-    wolfPhysics->h = 256.f;
-    wolfPhysics->x = 2500.f;
+    wolfPhysics->h = 251.f;
+    wolfPhysics->x = wolfPos.x();
+    wolfPhysics->y = wolfPos.y();
     wolfRender->imageName = "wolf";
     wolfQuiz->answerID = Quiz::Answer::Wolf;
     entities.addPhysics(wolf, wolfPhysics);
@@ -223,9 +239,6 @@ void View::startGame(Quiz::Difficulty difficulty)
         entities.addPhysics(cloud, cloudPhysics);
         entities.addRender(cloud, cloudRender);
     }
-    //deer
-    createAnimalEntities();
-
     // Terrain initialization
     Terrain::Vertices vertices = terrain.buildVertices(50, QPoint(-10000, 200));
     for (int i = 1; i < vertices.size(); i++)
@@ -275,6 +288,14 @@ void View::startGame(Quiz::Difficulty difficulty)
         entities.addPhysics(bush, bushPhysics);
         entities.addRender(bush, bushRender);
     }
+    Terrain::Vertices prunedVertices;
+    for (int i = 0; i < vertices.size(); i++)
+    {
+        if (i % 4 == 0) prunedVertices.append(vertices.at(i) - QPointF(0, 500));
+    }
+    prunedVertices.remove(0);
+    prunedVertices.remove(prunedVertices.size() - 1);
+    createAnimalEntities(prunedVertices);
     // Quiz initialization
     quiz.startQuiz(difficulty);
     // Switch to game state
