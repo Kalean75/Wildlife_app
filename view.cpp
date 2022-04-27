@@ -240,7 +240,7 @@ void View::startGame(Quiz::Difficulty difficulty)
         entities.addRender(cloud, cloudRender);
     }
     // Terrain initialization
-    Terrain::Vertices vertices = terrain.buildVertices(50, QPoint(-10000, 200));
+    Terrain::Vertices vertices = terrain.buildVertices(38, QPoint(-10000, 200));
     for (int i = 1; i < vertices.size(); i++)
     {
         int edge = entities.add();
@@ -257,7 +257,7 @@ void View::startGame(Quiz::Difficulty difficulty)
         edgePhysics->bodyType = b2BodyType::b2_staticBody;
         entities.addPhysics(edge, edgePhysics);
     }
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 75; i++)
     {
         int bush = entities.add();
         int bushIndex = qMax(1, random(0, static_cast<int>(vertices.size() - 1)));
@@ -297,7 +297,6 @@ void View::startGame(Quiz::Difficulty difficulty)
     prunedVertices.remove(prunedVertices.size() - 1);
     createAnimalEntities(prunedVertices);
     // Quiz initialization
-    quiz.clear();
     quiz.startQuiz(difficulty);
     // Switch to game state
     ui->applicationStack->setCurrentWidget(ui->game);
@@ -392,7 +391,6 @@ void View::endOfQuizResults(QVector<QString> results){
     for(QString result : results){
         current+="\n"+result;
         ui->ResultsLabel->setText(current);
-        qDebug()<<i;
         if(i==15){//for Easy
             current+="\n End of Quiz: Easy\n \n";
             ui->ResultsLabel->setText(current);
@@ -421,6 +419,7 @@ View::~View()
 void View::on_pushButton_clicked()
 {
     entities.removeAll();
+    quiz.clear();
     ui->applicationStack->setCurrentWidget(ui->mainMenu);
 }
 
