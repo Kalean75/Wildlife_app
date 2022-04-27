@@ -271,6 +271,7 @@ void View::startGame(Quiz::Difficulty difficulty)
         entities.addRender(bush, bushRender);
     }
     // Quiz initialization
+    quiz.clear();
     quiz.startQuiz(difficulty);
     // Switch to game state
     ui->applicationStack->setCurrentWidget(ui->game);
@@ -351,6 +352,7 @@ void View::endOfQuizPopUp(QString result){
         entities.removeAll();
         //start over
         currDiff = Quiz::Difficulty::Easy;
+        quiz.clear();
         startGame(currDiff);
         ui->difficultyLabel->setText("Level: Easy");
     }
@@ -359,9 +361,30 @@ void View::endOfQuizPopUp(QString result){
 }
 void View::endOfQuizResults(QVector<QString> results){
     ui->ResultsLabel->setText(" ");
-    for(QString result : results)
-        ui->ResultsLabel->setText(ui->ResultsLabel->text()+"\n"+result);
+    QString current;
+    int i=0;
+    for(QString result : results){
+        current+="\n"+result;
+        ui->ResultsLabel->setText(current);
+        qDebug()<<i;
+        if(i==15){//for Easy
+            current+="\n End of Quiz: Easy\n \n";
+            ui->ResultsLabel->setText(current);
+        }
+        if(i==37){//for Medium
+            current+="\n End of Quiz: Medium\n \n";
+            ui->ResultsLabel->setText(current);
+        }
+        if(i==65){//for Hard
+            current+="\n End of Quiz: Hard\n \n";
+            ui->ResultsLabel->setText(current);
+            i=0;
+        }
+        i++;
+    }
+
 }
+
 
 View::~View()
 {
