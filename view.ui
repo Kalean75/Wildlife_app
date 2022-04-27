@@ -48,7 +48,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QHBoxLayout" name="mainMenuLayout">
@@ -244,10 +244,10 @@
           <widget class="QWidget" name="scrollAreaContents">
            <property name="geometry">
             <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>278</width>
-             <height>802</height>
+             <x>145</x>
+             <y>-778</y>
+             <width>1100</width>
+             <height>1650</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -385,11 +385,8 @@ high demands of antler growth in terms of minerals, protein and energy.
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-c2ff94f9-7fff-a245-e4d3-4cbe053c4389&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;he common deer is any of the 43 species of hoofed mammalian ruminants in the order Artiodactyla, notable for having two large and two small hooves on each foot and also for having antlers in the males of most species. Deer are native to all continents except Australia and Antarctica. One species, the reindeer (also known as caribou), has been domesticated. Reindeer also carry the distinction of being the only species of deer where both sexes carry antlers. All deer lack a gallbladder, and females carry four mammary glands. Specialized herbivores and highly selective feeders, deer prefer plant food characterized by low fiber and high protein content, such as herbs, lichens, foliage and fruits. The bias of deer toward high-quality food has its origin in the very high demands of antler growth in terms of minerals, protein and energy.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The common deer is any of the 43 species of hoofed mammalian ruminants in the order Artiodactyla, notable for having two large and two small hooves on each foot and also for having antlers in the males of most species. Deer are native to all continents except Australia and Antarctica. One species, the reindeer (also known as caribou), has been domesticated. Reindeer also carry the distinction of being the only species of deer where both sexes carry antlers. All deer lack a gallbladder, and females carry four mammary glands. Specialized herbivores and highly selective feeders, deer prefer plant food characterized by low fiber and high protein content, such as herbs, lichens, foliage and fruits. The bias of deer toward high-quality food has its origin in the very high demands of antler growth in terms of minerals, protein and energy.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -647,11 +644,8 @@ than forelimbs, which assists with climbined.
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-ac83340c-7fff-032f-947f-a0a0952a9f30&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;quirrels are small to medium sized rodents of the order rodentia and the family sciuridae, squirrels are common in much of the world, being indigenous to North and South America, Europe and Asia, Africa, as well as being introduced to Australia by humans.The closest related animals to squirrels are the mountain beaver, and the dormice.The name squirrel comes from the greek word skiouros, meaning “shadow-tailed” which refers to the their bushy tail. Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly, squirrels have four to five toed feet, and typically have longer hind limbs than forelimbs, which assists with climbined.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Squirrels are small to medium sized rodents of the order rodentia and the family sciuridae, squirrels are common in much of the world, being indigenous to North and South America, Europe and Asia, Africa, as well as being introduced to Australia by humans.The closest related animals to squirrels are the mountain beaver, and the dormice.The name squirrel comes from the greek word skiouros, meaning “shadow-tailed” which refers to the their bushy tail. Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly, squirrels have four to five toed feet, and typically have longer hind limbs than forelimbs, which assists with climbined.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -781,12 +775,8 @@ inches and 6.1 ounces for the smallest species.
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-b4186b46-7fff-7814-56eb-81bce9d4c5ba&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;urtles belong to an order of reptiles known as Testudines, which are characterized by a hard shell which is developed mainly from their ribs. Modern turtles are divided into two major groups, side-necked and hidden-neck, which are distinguished by the way their heads retract.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;Turtles are found on the majority of continents, as well as the ocean. Since they breathe air and do not lay their eggs underwater, they are amphibians. Turtles are closely related to crocodilians(Alligators, crocodiles, etc) as well as birds. Turtle species can range in size from around 9 feet, and 1,000 lbs for the largest, to around 4 inches and 6.1 ounces for the smallest species.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Turtles belong to an order of reptiles known as Testudines, which are characterized by a hard shell which is developed mainly from their ribs. Modern turtles are divided into two major groups, side-necked and hidden-neck, which are distinguished by the way their heads retract. Turtles are found on the majority of continents, as well as the ocean. Since they breathe air and do not lay their eggs underwater, they are amphibians. Turtles are closely related to crocodilians(Alligators, crocodiles, etc) as well as birds. Turtle species can range in size from around 9 feet, and 1,000 lbs for the largest, to around 4 inches and 6.1 ounces for the smallest species.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -919,11 +909,8 @@ max speed of a rabbit is 25 mph and can jump up to 3 feet.
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-f12f92c6-7fff-3c3a-7a46-b8c20e53ea45&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;R&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;abbits, also known as bunnies or bunny rabbits, are small mammals in the family Leporidae (which also contains the hares). There 205 breeds of domesticated rabbits and 13 wild species. Male rabbits are called bucks and female does (similar to deer). Rabbits were first domesticated in ancient Rome. Rabbit feet are often considered signs of good luck across many cultures. The max speed of a rabbit is 25 mph and can jump up to 3 feet. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rabbits, also known as bunnies or bunny rabbits, are small mammals in the family Leporidae (which also contains the hares). There 205 breeds of domesticated rabbits and 13 wild species. Male rabbits are called bucks and female does (similar to deer). Rabbits were first domesticated in ancient Rome. Rabbit feet are often considered signs of good luck across many cultures. The max speed of a rabbit is 25 mph and can jump up to 3 feet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1064,10 +1051,8 @@ encounters is the best defense, as black bears prefer to avoid people.
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;**The black bear (Ursus americanus), also called the American bear and the most common bear (family Ursidae), is commonly found in the forests of North America and parts of Mexico. Black bears are sometimes referred to as cinnamon bears. Interestingly, black bears can be found with brown coats, which is most commonly seen in North America. True brown bears, or grizzly bears, are much larger. Adults range from 1.5 to 1.8 meters (5 to 6 feet) in length and weigh 90–270 kg (200–600 pounds). Omnivorous and highly opportunistic in their feeding, black bears will eat anything from roots to pinecones, as well as honey from wild or domestic bees. In natural habitats, black bears are active during the day. However, in areas of high human activity such as dumps and campsites, black bears often become nocturnal to avoid encounters with humans. Human encounters with black bears occasionally result in injury or death, and attacks are reported every year. In almost all cases, avoiding surprise encounters is the best defense, as black bears prefer to avoid people. **&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The black bear (Ursus americanus), also called the American bear and the most common bear (family Ursidae), is commonly found in the forests of North America and parts of Mexico. Black bears are sometimes referred to as cinnamon bears. Interestingly, black bears can be found with brown coats, which is most commonly seen in North America. True brown bears, or grizzly bears, are much larger. Adults range from 1.5 to 1.8 meters (5 to 6 feet) in length and weigh 90–270 kg (200–600 pounds). Omnivorous and highly opportunistic in their feeding, black bears will eat anything from roots to pinecones, as well as honey from wild or domestic bees. In natural habitats, black bears are active during the day. However, in areas of high human activity such as dumps and campsites, black bears often become nocturnal to avoid encounters with humans. Human encounters with black bears occasionally result in injury or death, and attacks are reported every year. In almost all cases, avoiding surprise encounters is the best defense, as black bears prefer to avoid people.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1166,10 +1151,8 @@ which is an underground den of tunnels.
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;*Badgers are small short-legged omnivores in the Mustelidae family. They’re related to ferrets, minks, otters, wesels, and wolverines. The environment of badgers is usually dry, open grasslands, but they are very adaptable. They typically live up to 10 years in the wild. They can grow up to 20 to 34 inches long from head to tail. They are nocturnal and use their sharp claws to help them dig burrows and find food underground. A badger’s home is called a sett which is an underground den of tunnels. **&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Badgers are small short-legged omnivores in the Mustelidae family. They’re related to ferrets, minks, otters, wesels, and wolverines. The environment of badgers is usually dry, open grasslands, but they are very adaptable. They typically live up to 10 years in the wild. They can grow up to 20 to 34 inches long from head to tail. They are nocturnal and use their sharp claws to help them dig burrows and find food underground. A badger’s home is called a sett which is an underground den of tunnels.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1684,7 +1667,7 @@ Scroll to zoom camera</string>
         <widget class="QWidget" name="scrollAreaContents_2">
          <property name="geometry">
           <rect>
-           <x>152</x>
+           <x>145</x>
            <y>0</y>
            <width>1100</width>
            <height>811</height>
@@ -1740,8 +1723,8 @@ Scroll to zoom camera</string>
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:20pt; font-weight:700; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Test&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:20pt; font-weight:700; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont';&quot;&gt;Test&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </widget>
@@ -1760,7 +1743,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1440</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
