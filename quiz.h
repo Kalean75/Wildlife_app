@@ -54,7 +54,8 @@ private:
         Question("This animal is commonly found in trees.", Squirrel),
         Question("This animal hops around instead of walking.", Rabbit),
         Question("This animal is nocturnal and tends to live in burrows.", Badger),
-        Question("Most commonly found in North America and parts of Mexico.", Bear)
+        Question("Most commonly found in North America and parts of Mexico.", Bear),
+        Question(" pack sizes can range from 2 to 36", Wolf)
     };
     QVector<Question> mediumQuizPool =
     {
@@ -67,7 +68,8 @@ private:
         Question("Has longer hind limbs than fore-limbs.", Squirrel),
         Question("This animal's feet are considered a sign of good luck.", Rabbit),
         Question("Can grow up to 20 to 34 inches long from head to tail.", Badger),
-        Question("This animal Can grow to up to 6ft, and 600 lbs.", Bear)
+        Question("This animal Can grow to up to 6ft, and 600 lbs.", Bear),
+        Question("The average lifespan of this animalis 7 years in the wild and 12 years in captivity", Wolf)
     };
     QVector<Question> hardQuizPool =
     {
@@ -79,7 +81,9 @@ private:
         Question("This animal's was first domesticated by ancient Rome.", Rabbit),
         Question("This animal has a max speed of 25 mph.", Rabbit),
         Question("This animal typically lives for about 10 years.", Badger),
-        Question("This animal Is a member of the family ursidae.", Bear)
+        Question("This animal Is a member of the family ursidae.", Bear),
+        Question("Can live up to 13 years in the wild and up to 16 years in captivity", Wolf)
+
     };
     QMap<Difficulty, QVector<Question>> quizPoolMap =
     {
