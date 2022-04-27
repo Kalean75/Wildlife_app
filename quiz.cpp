@@ -7,18 +7,12 @@ Quiz::Quiz(QObject *parent) : QObject(parent)
 
 void Quiz::startQuiz(Difficulty difficulty)
 {
-    if(difficulty==Easy)
-        questionCount=5;
-    else if(difficulty==Medium)
-        questionCount=7;
-    else
-        questionCount=9;
     this->difficulty = difficulty;
     QVector<Question> pool = quizPoolMap.value(difficulty);
     int count = qMin(pool.size(), questionCountMap.value(difficulty));
     questions.clear();
     answers.clear();
-    for (int i = 0; i < questionCount; i++)
+    for (int i = 0; i < count; i++)
 
     {
         questions.append(pool.takeAt(random(0, static_cast<int>(pool.size() - 1))));
@@ -123,6 +117,8 @@ QString Quiz::quizAnswer(Answer answer){
         return QString("Moose");
     if(answer==Fox)
         return QString("Fox");
+    if(answer==Wolf)
+        return QString("Wolf");
 }
 void Quiz::clear(){
     testQuestions.clear();
