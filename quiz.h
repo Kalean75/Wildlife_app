@@ -30,6 +30,8 @@ public:
         Hard
     };
     void startQuiz(Difficulty);
+    //clear the data of quiz
+    void clear();
 
 public slots:
     void update(Entities::PhysicsBags, Entities::QuizBags);
@@ -42,6 +44,8 @@ signals:
 
 private:
     typedef QPair<QString, Answer> Question;
+    int questionCount = 5;
+
     QVector<Question> easyQuizPool =
     {
         Question("This animal has 310 degrees of vision, almost twice that of a human.", Deer),
