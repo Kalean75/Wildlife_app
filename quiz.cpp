@@ -9,7 +9,7 @@ void Quiz::startQuiz(Difficulty difficulty)
 {
     this->difficulty = difficulty;
     QVector<Question> pool = quizPoolMap.value(difficulty);
-    int count = qMin(pool.size(), questionCount);
+    int count = qMin(pool.size(), questionCountMap.value(difficulty));
     questions.clear();
     answers.clear();
     for (int i = 0; i < count; i++)
