@@ -20,8 +20,8 @@ public:
         Bear,
         Badger,
         Moose,
-        Fox
-
+        Fox,
+        Wolf
     };
     enum Difficulty
     {
@@ -45,6 +45,7 @@ signals:
 private:
     typedef QPair<QString, Answer> Question;
     int questionCount = 5;
+
     QVector<Question> easyQuizPool =
     {
         Question("This animal has 310 degrees of vision, almost twice that of a human.", Deer),
@@ -85,6 +86,12 @@ private:
         {Easy, easyQuizPool},
         {Medium, mediumQuizPool},
         {Hard, hardQuizPool}
+    };
+    QMap<Difficulty, int> questionCountMap =
+    {
+        {Easy, 5},
+        {Medium, 7},
+        {Hard, 9}
     };
     Entities::PhysicsBag *answer = nullptr;
     QVector<Question> questions;
