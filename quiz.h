@@ -20,8 +20,8 @@ public:
         Bear,
         Badger,
         Moose,
-        Fox
-
+        Fox,
+        Wolf
     };
     enum Difficulty
     {
