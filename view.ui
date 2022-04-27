@@ -220,6 +220,12 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
@@ -241,7 +247,7 @@
              <x>145</x>
              <y>0</y>
              <width>1100</width>
-             <height>802</height>
+             <height>1650</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -253,7 +259,7 @@
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>802</height>
+             <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -262,47 +268,30 @@
              <height>16777215</height>
             </size>
            </property>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="spacing">
+             <number>16</number>
+            </property>
+            <item>
              <layout class="QGridLayout" name="deerLayout">
               <property name="horizontalSpacing">
                <number>50</number>
               </property>
-              <item row="2" column="1">
-               <widget class="QTextEdit" name="deerInfo">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="verticalScrollBarPolicy">
-                 <enum>Qt::ScrollBarAlwaysOn</enum>
-                </property>
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-                <property name="html">
-                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-c2ff94f9-7fff-a245-e4d3-4cbe053c4389&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;he common deer is any of the 43 species of hoofed mammalian ruminants in the order Artiodactyla, notable for having two large and two small hooves on each foot and also for having antlers in the males of most species. Deer are native to all continents except Australia and Antarctica. One species, the reindeer (also known as caribou), has been domesticated. Reindeer also carry the distinction of being the only species of deer where both sexes carry antlers. All deer lack a gallbladder, and females carry four mammary glands. Specialized herbivores and highly selective feeders, deer prefer plant food characterized by low fiber and high protein content, such as herbs, lichens, foliage and fruits. The bias of deer toward high-quality food has its origin in the very high demands of antler growth in terms of minerals, protein and energy.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="1">
                <widget class="QLabel" name="deerName">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -321,6 +310,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -339,6 +329,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -352,7 +343,54 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="2" column="1">
+               <widget class="QTextEdit" name="deerInfo">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="verticalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOn</enum>
+                </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="markdown">
+                 <string>The common deer is any of the 43 species of hoofed mammalian ruminants in the
+order Artiodactyla, notable for having two large and two small hooves on each
+foot and also for having antlers in the males of most species. Deer are native
+to all continents except Australia and Antarctica. One species, the reindeer
+(also known as caribou), has been domesticated. Reindeer also carry the
+distinction of being the only species of deer where both sexes carry antlers.
+All deer lack a gallbladder, and females carry four mammary glands. Specialized
+herbivores and highly selective feeders, deer prefer plant food characterized
+by low fiber and high protein content, such as herbs, lichens, foliage and
+fruits. The bias of deer toward high-quality food has its origin in the very
+high demands of antler growth in terms of minerals, protein and energy.
+
+</string>
+                </property>
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The common deer is any of the 43 species of hoofed mammalian ruminants in the order Artiodactyla, notable for having two large and two small hooves on each foot and also for having antlers in the males of most species. Deer are native to all continents except Australia and Antarctica. One species, the reindeer (also known as caribou), has been domesticated. Reindeer also carry the distinction of being the only species of deer where both sexes carry antlers. All deer lack a gallbladder, and females carry four mammary glands. Specialized herbivores and highly selective feeders, deer prefer plant food characterized by low fiber and high protein content, such as herbs, lichens, foliage and fruits. The bias of deer toward high-quality food has its origin in the very high demands of antler growth in terms of minerals, protein and energy.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
                <widget class="QLabel" name="deerImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -385,7 +423,7 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
-            <item row="1" column="0">
+            <item>
              <layout class="QGridLayout" name="mooseLayout">
               <property name="horizontalSpacing">
                <number>50</number>
@@ -403,6 +441,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="font">
                  <font>
+                  <pointsize>11</pointsize>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -416,13 +455,13 @@ p, li { white-space: pre-wrap; }
                  <bool>true</bool>
                 </property>
                 <property name="markdown">
-                 <string>**The moose is the largest animal in the deer family. Moose primarily live in
+                 <string>The moose is the largest animal in the deer family. Moose primarily live in
 areas that have cold, snowy winters. Their wide hooves act like snowshoes to
 help them walk. The moose’s antlers—which stretch nearly six feet wide from tip
 to tip—drip water as the animal exits the water and trots toward the forest.
 The massive moose (weighing nearly 2,000 pounds) is the largest animal in the
 deer family. Male moose, called bulls, begin growing their antlers in the early
-spring.**
+spring.
 
 </string>
                 </property>
@@ -430,8 +469,8 @@ spring.**
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;docs-internal-guid-5f7a7ae3-7fff-ba64-1ba2-ccb463ab6ddf&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:#ffffff;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:#ffffff;&quot;&gt;he moose is the largest animal in the deer family. Moose primarily live in areas that have cold, snowy winters. Their wide hooves act like snowshoes to help them walk. The moose’s antlers—which stretch nearly six feet wide from tip to tip—drip water as the animal exits the water and trots toward the forest. The massive moose (weighing nearly 2,000 pounds) is the largest animal in the deer family. Male moose, called bulls, begin growing their antlers in the early spring.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The moose is the largest animal in the deer family. Moose primarily live in areas that have cold, snowy winters. Their wide hooves act like snowshoes to help them walk. The moose’s antlers—which stretch nearly six feet wide from tip to tip—drip water as the animal exits the water and trots toward the forest. The massive moose (weighing nearly 2,000 pounds) is the largest animal in the deer family. Male moose, called bulls, begin growing their antlers in the early spring.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -440,6 +479,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -458,6 +498,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -479,6 +520,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -492,7 +534,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="6" column="0">
                <widget class="QLabel" name="mooseImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -522,7 +564,7 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
-            <item row="2" column="0">
+            <item>
              <layout class="QGridLayout" name="squirrelLayout">
               <property name="horizontalSpacing">
                <number>50</number>
@@ -535,6 +577,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -553,6 +596,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -583,13 +627,25 @@ p, li { white-space: pre-wrap; }
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
+                <property name="markdown">
+                 <string>Squirrels are small to medium sized rodents of the order rodentia and the
+family sciuridae, squirrels are common in much of the world, being indigenous
+to North and South America, Europe and Asia, Africa, as well as being
+introduced to Australia by humans.The closest related animals to squirrels are
+the mountain beaver, and the dormice.The name squirrel comes from the greek
+word skiouros, meaning “shadow-tailed” which refers to the their bushy tail.
+Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly,
+squirrels have four to five toed feet, and typically have longer hind limbs
+than forelimbs, which assists with climbined.
+
+</string>
+                </property>
                 <property name="html">
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-ac83340c-7fff-032f-947f-a0a0952a9f30&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;quirrels are small to medium sized rodents of the order rodentia and the family sciuridae, squirrels are common in much of the world, being indigenous to North and South America, Europe and Asia, Africa, as well as being introduced to Australia by humans.The closest related animals to squirrels are the mountain beaver, and the dormice.The name squirrel comes from the greek word skiouros, meaning “shadow-tailed” which refers to the their bushy tail. Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly, squirrels have four to five toed feet, and typically have longer hind limbs than forelimbs, which assists with climbined.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Squirrels are small to medium sized rodents of the order rodentia and the family sciuridae, squirrels are common in much of the world, being indigenous to North and South America, Europe and Asia, Africa, as well as being introduced to Australia by humans.The closest related animals to squirrels are the mountain beaver, and the dormice.The name squirrel comes from the greek word skiouros, meaning “shadow-tailed” which refers to the their bushy tail. Squirrels range in size between 10 cm and 26g to 4 ft 2 in and 18lbs. Commonly, squirrels have four to five toed feet, and typically have longer hind limbs than forelimbs, which assists with climbined.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -598,6 +654,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -611,7 +668,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="squirrelImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -641,7 +698,7 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
-            <item row="3" column="0">
+            <item>
              <layout class="QGridLayout" name="turtleLayout">
               <property name="horizontalSpacing">
                <number>50</number>
@@ -651,6 +708,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -669,6 +727,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -699,14 +758,25 @@ p, li { white-space: pre-wrap; }
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
+                <property name="markdown">
+                 <string>Turtles belong to an order of reptiles known as Testudines, which are
+characterized by a hard shell which is developed mainly from their ribs. Modern
+turtles are divided into two major groups, side-necked and hidden-neck, which
+are distinguished by the way their heads retract. Turtles are found on the
+majority of continents, as well as the ocean. Since they breathe air and do not
+lay their eggs underwater, they are amphibians. Turtles are closely related to
+crocodilians(Alligators, crocodiles, etc) as well as birds. Turtle species can
+range in size from around 9 feet, and 1,000 lbs for the largest, to around 4
+inches and 6.1 ounces for the smallest species.
+
+</string>
+                </property>
                 <property name="html">
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-b4186b46-7fff-7814-56eb-81bce9d4c5ba&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;urtles belong to an order of reptiles known as Testudines, which are characterized by a hard shell which is developed mainly from their ribs. Modern turtles are divided into two major groups, side-necked and hidden-neck, which are distinguished by the way their heads retract.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;Turtles are found on the majority of continents, as well as the ocean. Since they breathe air and do not lay their eggs underwater, they are amphibians. Turtles are closely related to crocodilians(Alligators, crocodiles, etc) as well as birds. Turtle species can range in size from around 9 feet, and 1,000 lbs for the largest, to around 4 inches and 6.1 ounces for the smallest species.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Turtles belong to an order of reptiles known as Testudines, which are characterized by a hard shell which is developed mainly from their ribs. Modern turtles are divided into two major groups, side-necked and hidden-neck, which are distinguished by the way their heads retract. Turtles are found on the majority of continents, as well as the ocean. Since they breathe air and do not lay their eggs underwater, they are amphibians. Turtles are closely related to crocodilians(Alligators, crocodiles, etc) as well as birds. Turtle species can range in size from around 9 feet, and 1,000 lbs for the largest, to around 4 inches and 6.1 ounces for the smallest species.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -718,6 +788,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -731,7 +802,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="turtleImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -761,7 +832,7 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
-            <item row="4" column="0">
+            <item>
              <layout class="QGridLayout" name="rabbitLayout">
               <property name="horizontalSpacing">
                <number>50</number>
@@ -774,6 +845,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -792,6 +864,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -822,13 +895,22 @@ p, li { white-space: pre-wrap; }
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
+                <property name="markdown">
+                 <string>Rabbits, also known as bunnies or bunny rabbits, are small mammals in the
+family Leporidae (which also contains the hares). There 205 breeds of
+domesticated rabbits and 13 wild species. Male rabbits are called bucks and
+female does (similar to deer). Rabbits were first domesticated in ancient Rome.
+Rabbit feet are often considered signs of good luck across many cultures. The
+max speed of a rabbit is 25 mph and can jump up to 3 feet.
+
+</string>
+                </property>
                 <property name="html">
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-f12f92c6-7fff-3c3a-7a46-b8c20e53ea45&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;R&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:696; color:#000000; background-color:transparent;&quot;&gt;abbits, also known as bunnies or bunny rabbits, are small mammals in the family Leporidae (which also contains the hares). There 205 breeds of domesticated rabbits and 13 wild species. Male rabbits are called bucks and female does (similar to deer). Rabbits were first domesticated in ancient Rome. Rabbit feet are often considered signs of good luck across many cultures. The max speed of a rabbit is 25 mph and can jump up to 3 feet. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rabbits, also known as bunnies or bunny rabbits, are small mammals in the family Leporidae (which also contains the hares). There 205 breeds of domesticated rabbits and 13 wild species. Male rabbits are called bucks and female does (similar to deer). Rabbits were first domesticated in ancient Rome. Rabbit feet are often considered signs of good luck across many cultures. The max speed of a rabbit is 25 mph and can jump up to 3 feet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -837,6 +919,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -850,7 +933,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="rabbitImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -880,7 +963,7 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
-            <item row="5" column="0">
+            <item>
              <layout class="QGridLayout" name="bearLayout">
               <property name="horizontalSpacing">
                <number>50</number>
@@ -890,6 +973,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -908,6 +992,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -934,6 +1019,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="font">
                  <font>
+                  <pointsize>11</pointsize>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -944,7 +1030,7 @@ p, li { white-space: pre-wrap; }
                  <bool>true</bool>
                 </property>
                 <property name="markdown">
-                 <string>**The black bear (Ursus americanus), also called the American bear and the most
+                 <string>The black bear (Ursus americanus), also called the American bear and the most
 common bear (family Ursidae), is commonly found in the forests of North America
 and parts of Mexico. Black bears are sometimes referred to as cinnamon bears.
 Interestingly, black bears can be found with brown coats, which is most
@@ -957,7 +1043,7 @@ during the day. However, in areas of high human activity such as dumps and
 campsites, black bears often become nocturnal to avoid encounters with humans.
 Human encounters with black bears occasionally result in injury or death, and
 attacks are reported every year. In almost all cases, avoiding surprise
-encounters is the best defense, as black bears prefer to avoid people. **
+encounters is the best defense, as black bears prefer to avoid people.
 
 </string>
                 </property>
@@ -965,8 +1051,8 @@ encounters is the best defense, as black bears prefer to avoid people. **
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;The black bear (Ursus americanus), also called the American bear and the most common bear (family Ursidae), is commonly found in the forests of North America and parts of Mexico. Black bears are sometimes referred to as cinnamon bears. Interestingly, black bears can be found with brown coats, which is most commonly seen in North America. True brown bears, or grizzly bears, are much larger. Adults range from 1.5 to 1.8 meters (5 to 6 feet) in length and weigh 90–270 kg (200–600 pounds). Omnivorous and highly opportunistic in their feeding, black bears will eat anything from roots to pinecones, as well as honey from wild or domestic bees. In natural habitats, black bears are active during the day. However, in areas of high human activity such as dumps and campsites, black bears often become nocturnal to avoid encounters with humans. Human encounters with black bears occasionally result in injury or death, and attacks are reported every year. In almost all cases, avoiding surprise encounters is the best defense, as black bears prefer to avoid people. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The black bear (Ursus americanus), also called the American bear and the most common bear (family Ursidae), is commonly found in the forests of North America and parts of Mexico. Black bears are sometimes referred to as cinnamon bears. Interestingly, black bears can be found with brown coats, which is most commonly seen in North America. True brown bears, or grizzly bears, are much larger. Adults range from 1.5 to 1.8 meters (5 to 6 feet) in length and weigh 90–270 kg (200–600 pounds). Omnivorous and highly opportunistic in their feeding, black bears will eat anything from roots to pinecones, as well as honey from wild or domestic bees. In natural habitats, black bears are active during the day. However, in areas of high human activity such as dumps and campsites, black bears often become nocturnal to avoid encounters with humans. Human encounters with black bears occasionally result in injury or death, and attacks are reported every year. In almost all cases, avoiding surprise encounters is the best defense, as black bears prefer to avoid people.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -978,6 +1064,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -991,7 +1078,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="bearImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1021,7 +1108,7 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
-            <item row="6" column="0">
+            <item>
              <layout class="QGridLayout" name="badgerLayout">
               <property name="horizontalSpacing">
                <number>50</number>
@@ -1039,6 +1126,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="font">
                  <font>
+                  <pointsize>11</pointsize>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -1049,13 +1137,13 @@ p, li { white-space: pre-wrap; }
                  <bool>true</bool>
                 </property>
                 <property name="markdown">
-                 <string>**Badgers are small short-legged omnivores in the Mustelidae family. They’re
+                 <string>Badgers are small short-legged omnivores in the Mustelidae family. They’re
 related to ferrets, minks, otters, wesels, and wolverines. The environment of
 badgers is usually dry, open grasslands, but they are very adaptable. They
 typically live up to 10 years in the wild. They can grow up to 20 to 34 inches
 long from head to tail. They are nocturnal and use their sharp claws to help
 them dig burrows and find food underground. A badger’s home is called a sett
-which is an underground den of tunnels. **
+which is an underground den of tunnels.
 
 </string>
                 </property>
@@ -1063,8 +1151,8 @@ which is an underground den of tunnels. **
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Badgers are small short-legged omnivores in the Mustelidae family. They’re related to ferrets, minks, otters, wesels, and wolverines. The environment of badgers is usually dry, open grasslands, but they are very adaptable. They typically live up to 10 years in the wild. They can grow up to 20 to 34 inches long from head to tail. They are nocturnal and use their sharp claws to help them dig burrows and find food underground. A badger’s home is called a sett which is an underground den of tunnels. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Badgers are small short-legged omnivores in the Mustelidae family. They’re related to ferrets, minks, otters, wesels, and wolverines. The environment of badgers is usually dry, open grasslands, but they are very adaptable. They typically live up to 10 years in the wild. They can grow up to 20 to 34 inches long from head to tail. They are nocturnal and use their sharp claws to help them dig burrows and find food underground. A badger’s home is called a sett which is an underground den of tunnels.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1073,6 +1161,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -1091,6 +1180,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -1112,6 +1202,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -1125,7 +1216,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="6" column="0">
                <widget class="QLabel" name="badgerImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1155,7 +1246,7 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
-            <item row="7" column="0">
+            <item>
              <layout class="QGridLayout" name="foxLayout">
               <property name="horizontalSpacing">
                <number>50</number>
@@ -1173,6 +1264,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="font">
                  <font>
+                  <pointsize>11</pointsize>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -1183,7 +1275,7 @@ p, li { white-space: pre-wrap; }
                  <bool>true</bool>
                 </property>
                 <property name="markdown">
-                 <string>**The fox is one of the various members of the dog family (Canidae) resembling
+                 <string>The fox is one of the various members of the dog family (Canidae) resembling
 small to medium-sized bushy-tailed dogs with long fur, pointed ears and a
 narrow snout. In a restricted sense, the name refers to the 10 or so species
 classified as “true” foxes (genus Vulpes), especially the red, or common, fox
@@ -1199,10 +1291,7 @@ estimated that red foxes kill close to a million wild ducks each year). Red
 foxes mate in winter. After a gestation period of seven or eight weeks, the
 female (vixen) gives birth to 1–10 or more (5 is average) young, called cubs or
 pups. Birth takes place in a den, which is commonly a burrow abandoned by
-another animal. **
-
-**
-**
+another animal.
 
 </string>
                 </property>
@@ -1210,9 +1299,8 @@ another animal. **
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:138%;&quot;&gt;&lt;a name=&quot;docs-internal-guid-6696ad0d-7fff-75ea-6fb7-770d79759e4d&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial'; font-size:11pt; font-weight:700; color:#000000; background-color:transparent;&quot;&gt;he fox is one of the various members of the dog family (Canidae) resembling small to medium-sized bushy-tailed dogs with long fur, pointed ears and a narrow snout. In a restricted sense, the name refers to the 10 or so species classified as “true” foxes (genus Vulpes), especially the red, or common, fox (V. vulpes). There are a variety of foxes belonging to genera other than Vulpes, including the North American gray fox. The red fox is widely held as a symbol of animal cunning and the subject of considerable amounts of folklore. It also has the largest natural distribution of any land mammal except human beings. Red foxes are generally about 90–105 cm (36–42 inches) long (about 35–40 cm [14–16 inches] of this being tail), stand about 40 cm at the shoulder, and weigh about 5–7 kg (10–15 pounds). Much of their diet consists of mice, rabbits, eggs, fruit and birds (on the prairies of North America, it is estimated that red foxes kill close to a million wild ducks each year). Red foxes mate in winter. After a gestation period of seven or eight weeks, the female (vixen) gives birth to 1–10 or more (5 is average) young, called cubs or pups. Birth takes place in a den, which is commonly a burrow abandoned by another animal. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The fox is one of the various members of the dog family (Canidae) resembling small to medium-sized bushy-tailed dogs with long fur, pointed ears and a narrow snout. In a restricted sense, the name refers to the 10 or so species classified as “true” foxes (genus Vulpes), especially the red, or common, fox (V. vulpes). There are a variety of foxes belonging to genera other than Vulpes, including the North American gray fox. The red fox is widely held as a symbol of animal cunning and the subject of considerable amounts of folklore. It also has the largest natural distribution of any land mammal except human beings. Red foxes are generally about 90–105 cm (36–42 inches) long (about 35–40 cm [14–16 inches] of this being tail), stand about 40 cm at the shoulder, and weigh about 5–7 kg (10–15 pounds). Much of their diet consists of mice, rabbits, eggs, fruit and birds (on the prairies of North America, it is estimated that red foxes kill close to a million wild ducks each year). Red foxes mate in winter. After a gestation period of seven or eight weeks, the female (vixen) gives birth to 1–10 or more (5 is average) young, called cubs or pups. Birth takes place in a den, which is commonly a burrow abandoned by another animal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1221,6 +1309,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -1239,6 +1328,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>9</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="autoFillBackground">
@@ -1260,6 +1350,7 @@ p, li { white-space: pre-wrap; }
                 <property name="font">
                  <font>
                   <pointsize>20</pointsize>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -1273,7 +1364,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="6" column="0">
                <widget class="QLabel" name="foxImage">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
