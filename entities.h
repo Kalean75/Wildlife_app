@@ -47,8 +47,8 @@ public:
         float density = 1.f;
         float friction = 1.f;
         float restitution = 0.f;
-        float linearDamping = 0.f;
-        float angularDamping = 0.5f;
+        float linearDamping = 1.f;
+        float angularDamping = 50.f;
         bool isSensor = false;
         short categoryBits = Category::Environment;
         short maskBits = Category::Ground;
