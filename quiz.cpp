@@ -100,7 +100,8 @@ QVector<QString> Quiz::getResults(){
     return vector;
 }
 
-QString Quiz::quizAnswer(Answer answer){
+QString Quiz::quizAnswer(Answer answer)
+{
     if(answer==Deer)
         return QString("Deer");
     if(answer==Rabbit)
